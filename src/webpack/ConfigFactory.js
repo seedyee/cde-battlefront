@@ -167,6 +167,7 @@ function ConfigFactory(target, mode) {
     ]),
 
     resolve: {
+      modules: ['node_modules'],
       // Enable new module/jsnext:main field for requiring files
       // Defaults: https://webpack.github.io/docs/configuration.html#resolve-packagemains
       mainFields: ifServer(
@@ -183,9 +184,9 @@ function ConfigFactory(target, mode) {
       rules: removeEmpty([
         ...createJsRules(target, mode),
         ...createOtherRules(target, mode),
-        ...createCssRules(target, mode)]),
+        ...createCssRules(target, mode),
+      ]),
     },
-
     // See also: https://webpack.github.io/docs/configuration.html#devtool
     // and http://webpack.github.io/docs/build-performance.html#sourcemaps
     // All 'module*' and 'cheap' variants do not seem to work with this kind
