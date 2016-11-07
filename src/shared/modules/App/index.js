@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import { camelCase } from 'lodash'
 import { Match, Miss } from 'react-router'
 
-import 'normalize.css/normalize.css'
+import 'sanitize.css/sanitize.css'
 import './Fonts.css'
 import './Reset.css'
 import Styles from './App.css'
