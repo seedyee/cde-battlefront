@@ -1,0 +1,36 @@
+# http://www.appveyor.com/docs/appveyor-yml
+
+clone_depth: 10
+
+environment:
+  matrix:
+    - nodejs_version: 4
+      platform: x64
+    - nodejs_version: 4
+      platform: x86
+    - nodejs_version: 5
+      platform: x64
+    - nodejs_version: 5
+      platform: x86
+    - nodejs_version: 6.5.0
+      platform: x64
+    - nodejs_version: 6.5.0
+      platform: x86
+
+version: "{build}"
+build: off
+deploy: off
+
+install:
+  - ps: Install-Product node $env:nodejs_version $env:platform
+  - npm -g install npm@latest
+  - node --version
+  - npm --version
+  - ps: Copy-Item .env_example .env
+  - IF "%platform%" == "x64" CALL "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" amd64
+  - IF "%platform%" == "x86" CALL "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" x86
+  - npm prune
+  - npm install
+
+test_script:
+  - npm test
