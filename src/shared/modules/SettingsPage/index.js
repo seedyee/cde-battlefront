@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import Profile from './Profile'
 import { Link } from 'react-router'
 import Styles from './settingsPage.css'
@@ -8,6 +9,7 @@ class SettingsPage extends React.Component {
   render() {
     return (
       <div className={Styles.SettingsPage}>
+        <Helmet title="settings" />
         <div className={Styles.sidebar}>
           <ul>
             <li> Personal settings </li>
