@@ -1,0 +1,31 @@
+.SettingsPage {
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar {
+  display: flex;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  width: 230px;
+  height: 600px;
+  ul {
+    width: 100%;
+  }
+  li {
+    &:nth-child(1) {
+      background: #efefef;
+    }
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    font-size: 18px;
+  }
+}
+
+.content {
+  width: 750px;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+}

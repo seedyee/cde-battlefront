@@ -1,22 +1,38 @@
+@import '../../styles/variables.css';
 .Nav {
+  height: $nav-height;
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  background: #efefef;
+  font-size: 16px;
+}
+
+.content {
   display: flex;
-  width: 360px;
-  ul {
-    width: 100%;
-    margin: 0;
-    font-size: 20px;
-    list-style: none;
-    color: blue;
-    paddgin: 0;
-    display: flex;
-    -webkit-padding-start: 0px;
-    justify-content: space-between;
-    li {
-      margin: 10px 0;
-      cursor: pointer;
-    }
-    a {
-      text-decoration: none;
-    }
+  margin: 0 auto;
+  width: $site-content-width;
+  z-index: 100;
+  justify-content: space-between;
+}
+
+.pagesNav {
+  list-style: none;
+  color: blue;
+  paddgin: 0;
+  display: flex;
+  >li {
+    margin: 0 20px 0 0;
+    cursor: pointer;
+  }
+}
+
+.signsNav {
+  display: flex;
+  align-self: flex-end;
+  >li {
+    margin: 0 10px 0 0;
   }
 }

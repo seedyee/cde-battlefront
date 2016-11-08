@@ -6,6 +6,8 @@ import validate from '../validate'
 import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
 import Styles from './LoginForm.css'
 
+import { Button } from 'react-bootstrap'
+
 const renderField = ({ input, label, labelFor, forgetPassword, id, type, meta: { touched, error, warning } }) => (
   <div className={Styles.field}>
     <div className={Styles.labelContainer}>
@@ -38,13 +40,12 @@ class LoginForm extends Component {
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
       <form onSubmit={handleSubmit} className={Styles.LoginForm}>
-        <h1> Sigin in </h1>
         <Field
           name="email"
           labelFor="email"
           id="email"
           component={renderField}
-          label="Email (phone for mobile accounts)"
+          label="Email/Phone"
           type="email"
         />
         <Field
@@ -56,8 +57,8 @@ class LoginForm extends Component {
           type="password"
           forgetPassword="Forget your password ?"
         />
-        <button className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>Submit</button>
-        <button className={Styles.signUp} type="button" disabled={submitting} onClick={this.redirectTo}>Sign up</button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>Submit</Button>
+        <button className={Styles.signUp} disabled={submitting} type="button" onClick={this.redirectTo}>Sign up</button>
       </form>
     )
   }

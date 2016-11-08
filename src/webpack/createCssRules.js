@@ -18,8 +18,11 @@ const createCssRules = (target, mode) => {
     const ifModules = ifElse(cssModules)
     const rules = [
       {
-        test: /\.css$/,
-        include: ifModules(resolve(process.cwd(), 'src/shared'), /node_modules/),
+        test: /\.css$|\.scss$/,
+        include: ifModules(
+          [resolve(process.cwd(), 'src/shared')],
+          [/node_modules/]
+        ),
       },
       // When targetting the server we fake out the style loader as the
       // server can't handle the styles and doesn't care about them either..

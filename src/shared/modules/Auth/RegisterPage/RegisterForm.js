@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import validate from '../validate'
 import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
-import Styles from './register.css'
+import Styles from './registerForm.css'
+import { Button } from 'react-bootstrap'
 
 const renderField = ({ input, label, id, type, meta: { touched, error, warning } }) => (
   <div className={Styles.field}>
@@ -35,7 +36,7 @@ class RegisterForm extends Component {
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
       <form onSubmit={handleSubmit} className={Styles.RegisterForm}>
-        <h1> Sigin up </h1>
+        <h2> 开发平台 | 注册 </h2>
         <Field
           name="email"
           type="email"
@@ -57,7 +58,7 @@ class RegisterForm extends Component {
           label="Password"
           type="password"
         />
-        <button className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>Sigin up</button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>Sigin up</Button>
         <p className={Styles.signIn}>
           Already have an account?
           <button type="button" disabled={submitting} onClick={this.redirectTo}>Sign in</button>
