@@ -1,10 +1,10 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
 import { BrowserRouter } from 'react-router'
 import { Provider } from 'react-redux'
 import configureStore from '../shared/configStore'
 import App from '../shared/modules/App'
+import ReactHotLoader from './ReactHotLoader'
 
 const container = document.querySelector('#app')
 const initialState = window.APP_STATE || {} // eslint-disable-line
@@ -12,15 +12,15 @@ const store = configureStore(initialState)
 // start rootSagas on client
 store.startAbortableSaga()
 
-function renderApp() {
+function renderApp(AppComponent) {
   render(
-    <AppContainer>
+    <ReactHotLoader>
       <BrowserRouter>
         <Provider store={store}>
-          <App />
+          <AppComponent />
         </Provider>
       </BrowserRouter>
-    </AppContainer>,
+    </ReactHotLoader>,
     container
   )
 }
@@ -28,12 +28,13 @@ function renderApp() {
 // The following is needed so that we can support hot reloading our application.
 if (process.env.NODE_ENV === 'development' && module.hot) {
   // Accept changes to this file for hot reloading.
-  module.hot.accept('./index.js', () => renderApp())
+  module.hot.accept('./index.js')
+
   // Any changes to our App will cause a hotload re-render.
   module.hot.accept(
     '../shared/modules/App',
-    () => renderApp()
+    () => renderApp(require('../shared/modules/App').default) // eslint-disable-line
   )
 }
 
-renderApp()
+renderApp(App)
