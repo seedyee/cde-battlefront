@@ -71,7 +71,7 @@ function render(rootReactElement, initialState) {
 
         ${helmet ? helmet.title.toString() : ''}
         ${helmet ? helmet.link.toString() : ''}
-
+        ${helmet ? helmet.meta.toString() : ''}
         ${styles}
         ${helmet ? helmet.style.toString() : ''}
       </head>
