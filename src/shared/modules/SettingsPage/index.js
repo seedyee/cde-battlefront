@@ -1,11 +1,29 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import Profile from './Profile'
+import Emails from './Emails'
+import Account from './Account'
 import { Link } from 'react-router'
 import Styles from './settingsPage.css'
 
-
+const pathPrefix = '/settings/'
+const fieldNames = ['Profile', 'Emails', 'Account']
 class SettingsPage extends React.Component {
+  getSidebarItems = () => fieldNames.map(name => (
+    <li key={name}> <Link to={`${pathPrefix}${name}`}>{name}</Link> </li>
+  ))
+  getCountent = () => {
+    switch (this.props.params.name) {
+      case 'Profile':
+        return <Profile />
+      case 'Emails':
+        return <Emails />
+      case 'Account':
+        return <Account />
+      default:
+        return <Profile />
+    }
+  }
   render() {
     return (
       <div className={Styles.SettingsPage}>
@@ -13,13 +31,11 @@ class SettingsPage extends React.Component {
         <div className={Styles.sidebar}>
           <ul>
             <li> Personal settings </li>
-            <li> <Link to="/settings/profile">Profile</Link> </li>
-            <li> <Link to="/settings/emails">Emails</Link> </li>
-            <li> <Link to="/settings/account">Account</Link> </li>
+            {this.getSidebarItems()}
           </ul>
         </div>
         <div className={Styles.content}>
-          <Profile />
+          {this.getCountent()}
         </div>
       </div>
     )

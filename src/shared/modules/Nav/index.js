@@ -36,7 +36,7 @@ class Nav extends React.Component {
   }
 
   render() {
-    const { logoutRequest, logined, location: { pathname } } = this.props
+    const { logined, location: { pathname } } = this.props
     if (contains(pathname)) return (<span style={{ display: 'none' }}>noop</span>)
     return (
       <div className={Styles.Nav}>
