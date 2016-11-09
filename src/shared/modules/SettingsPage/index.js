@@ -1,10 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import Helmet from 'react-helmet'
 import Profile from './Profile'
 import Emails from './Emails'
 import Account from './Account'
-import Phone from './Phone'
+import Mobiles from './Mobiles'
 import Security from './Security'
 
 import { Link } from 'react-router'
@@ -15,28 +16,28 @@ const fields = {
   Profile: '基本信息',
   Account: '账户',
   Emails: '邮箱',
-  Phone: '手机',
+  Mobiles: '手机',
   Security: '安全',
 }
-
 class SettingsPage extends React.Component {
   getSidebarItems = () => Object.keys(fields).map(key => (
     <li key={key}> <Link to={`${pathPrefix}${key}`}>{fields[key]}</Link> </li>
   ))
   getCountent = () => {
+    const user = this.props.user
     switch (this.props.params.name) {
       case 'Profile':
-        return <Profile />
+        return <Profile user={user} />
       case 'Emails':
-        return <Emails />
+        return <Emails user={user.emails} />
       case 'Account':
-        return <Account />
-      case 'Phone':
-        return <Phone />
+        return <Account user={user} />
+      case 'Mobiles':
+        return <Mobiles user={user.mobiles} />
       case 'Security':
-        return <Security />
+        return <Security user={user} />
       default:
-        return <Profile />
+        return <Profile user={user} />
     }
   }
   render() {
@@ -57,4 +58,10 @@ class SettingsPage extends React.Component {
   }
 }
 
-export default SettingsPage
+import { selectUser } from './selectors'
+const mapStateToProps = state => ({
+  user: selectUser(state),
+})
+
+export default connect(mapStateToProps)(SettingsPage)
+
