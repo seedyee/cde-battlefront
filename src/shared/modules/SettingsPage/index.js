@@ -1,16 +1,27 @@
 import React from 'react'
+
 import Helmet from 'react-helmet'
 import Profile from './Profile'
 import Emails from './Emails'
 import Account from './Account'
+import Phone from './Phone'
+import Security from './Security'
+
 import { Link } from 'react-router'
 import Styles from './settingsPage.css'
 
 const pathPrefix = '/settings/'
-const fieldNames = ['Profile', 'Emails', 'Account']
+const fields = {
+  Profile: '基本信息',
+  Account: '账户',
+  Emails: '邮箱',
+  Phone: '手机',
+  Security: '安全',
+}
+
 class SettingsPage extends React.Component {
-  getSidebarItems = () => fieldNames.map(name => (
-    <li key={name}> <Link to={`${pathPrefix}${name}`}>{name}</Link> </li>
+  getSidebarItems = () => Object.keys(fields).map(key => (
+    <li key={key}> <Link to={`${pathPrefix}${key}`}>{fields[key]}</Link> </li>
   ))
   getCountent = () => {
     switch (this.props.params.name) {
@@ -20,6 +31,10 @@ class SettingsPage extends React.Component {
         return <Emails />
       case 'Account':
         return <Account />
+      case 'Phone':
+        return <Phone />
+      case 'Security':
+        return <Security />
       default:
         return <Profile />
     }
@@ -30,7 +45,7 @@ class SettingsPage extends React.Component {
         <Helmet title="settings" />
         <div className={Styles.sidebar}>
           <ul>
-            <li> Personal settings </li>
+            <li>个人信息设置</li>
             {this.getSidebarItems()}
           </ul>
         </div>

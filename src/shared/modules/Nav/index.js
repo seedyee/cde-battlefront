@@ -42,7 +42,7 @@ class Nav extends React.Component {
       <div className={Styles.Nav}>
         <div className={Styles.content}>
           <ul className={Styles.pagesNav}>
-            <li><Link to="/">Home</Link></li>
+            <li><Link className={Styles.home} to="/">Home</Link></li>
             <li><Link to="/dashboard">Dashboard</Link></li>
           </ul>
           <ul className={Styles.signsNav}>
