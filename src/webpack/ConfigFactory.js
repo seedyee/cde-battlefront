@@ -184,8 +184,7 @@ function ConfigFactory(target, mode) {
       rules: removeEmpty([
         ...createJsRules(target, mode),
         ...createOtherRules(target, mode),
-        ...createCssRules(target, mode),
-      ]),
+        ...createCssRules(target, mode)]),
     },
     // See also: https://webpack.github.io/docs/configuration.html#devtool
     // and http://webpack.github.io/docs/build-performance.html#sourcemaps
