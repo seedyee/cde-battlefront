@@ -29,6 +29,21 @@
   }
 }
 
+$logo-width: 40px;
+.home {
+  /* width: calc(width("./logo.png") / 2); */
+  /* height: calc(width("./logo.png") / 2); */
+  /* background: url("./logo.png"); */
+  display: block;
+  width: $logo-width;
+  height: $logo-width;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: $logo-width;
+  }
+}
+
 .signsNav {
   display: flex;
   align-self: flex-end;
