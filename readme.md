@@ -28,7 +28,6 @@ This boilerplate contains an absolutely minimal set of dependencies in order to 
 - Redux for state manage
 - Redux Saga for side effects manage
 - React Router v4  Declarative routing for React.
-- Immutable-js persistent data collections which increase efficiency and simplicity.
 - Ava Futuristic JavaScript test runner
 - Enzyme for testing React
 - Sinon for test spies, stubs and mocks

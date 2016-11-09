@@ -3,6 +3,7 @@ import { put, call, fork, select } from 'redux-saga/effects'
 import * as api from '../api'
 import { selectUser } from './selectors'
 import { loadUserActions } from './actions'
+import { isEmptyObj } from '../utils'
 
 // We are using SSR(server-side-rendering), if everything goes well we should have users in our
 // initialState thus we don't need to request users on client side again.
@@ -10,7 +11,8 @@ import { loadUserActions } from './actions'
 
 function* loadUser() {
   const user = yield select(selectUser)
-  if (user.isEmptyObj) return
+  // Is user is not empty
+  if (!isEmptyObj(user)) return
   yield put(loadUserActions.request())
   try {
     const response = yield call(api.loadUser, 'fakeId')

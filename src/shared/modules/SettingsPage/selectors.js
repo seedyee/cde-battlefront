@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 
-const selectSettings = () => (state) => state.get('settings')
+const selectSettings = () => (state) => state.settings
 export const selectUser = createSelector(
   selectSettings(),
-  s => s.get('user')
+  s => s.user
 )

@@ -1,19 +1,18 @@
 /* eslint-disable no-param-reassign */
 import test from 'ava'
-import { Map } from 'immutable'
 import authReducer from '../reducers'
 import { loginActions, logoutActions, registerActions } from '../actions'
 
 const payload = { payload: 'payload' }
 
-const initialState = Map({ logined: false, user: {} })
+const initialState = { logined: false, user: {} }
 
 test('should return the initial state', t => {
   t.deepEqual(authReducer(undefined, {}), initialState)
 })
 
 test('should handle login actions correctly', t => {
-  const expectedSuccessResult = initialState.set('logined', true).set('user', payload)
+  const expectedSuccessResult = { ...initialState, logined: true, user: payload }
   t.deepEqual(
     authReducer(undefined, loginActions.request()),
     initialState
@@ -45,7 +44,7 @@ test('should handle loginout actions correctly', t => {
 })
 
 test('should handle register actions correctly', t => {
-  const expectedSuccessResult = initialState.set('logined', true).set('user', payload)
+  const expectedSuccessResult = { ...initialState, logined: true, user: payload }
   t.deepEqual(
     authReducer(undefined, registerActions.request()),
     initialState

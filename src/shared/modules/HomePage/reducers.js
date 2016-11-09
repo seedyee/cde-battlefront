@@ -1,6 +1,4 @@
-import { combineReducers } from 'redux-immutable'
-import { fromJS } from 'immutable'
-
+import { combineReducers } from 'redux'
 import { loadUsersActions } from './actions'
 
 /* const users = (state = null, action) => {

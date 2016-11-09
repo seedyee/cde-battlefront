@@ -3,8 +3,8 @@
  * If we were to do this in store.js, reducers wouldn't be hot reloadable.
  */
 
-import { combineReducers } from 'redux-immutable'
-import { reducer as formReducers } from 'redux-form/immutable'
+import { combineReducers } from 'redux'
+import { reducer as formReducers } from 'redux-form'
 import authReducers from './modules/Auth/reducers'
 import settingsReducers from './modules/SettingsPage/reducers'
 

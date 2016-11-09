@@ -31,7 +31,7 @@ class SettingsPage extends React.Component {
   ))
   getCountent = () => {
     const user = this.props.user
-    const { basicInformation, emails = [], mobiles = [] } = user.toJS()
+    const { basicInformation, emails = [], mobiles = [] } = user
     const initialProfile = {
       ...basicInformation,
       email: find(emails, 'isPublic', 'email'),

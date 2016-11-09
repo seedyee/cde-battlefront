@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect'
 
-const selectAuth = state => state.get('auth')
+const selectAuth = state => state.auth
 
 export const selectUser = createSelector(
   selectAuth,
-  auth => auth.get('user')
+  a => a.user
 )
 
 export const selectLogined = createSelector(
   selectAuth,
-  auth => auth.get('logined')
+  a => a.logined
 )

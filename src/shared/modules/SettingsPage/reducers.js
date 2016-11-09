@@ -1,12 +1,11 @@
-import { combineReducers } from 'redux-immutable'
-import { fromJS } from 'immutable'
+import { combineReducers } from 'redux'
 
 import { loadUserActions } from './actions'
 
-const user = (state = fromJS({}), action) => {
+const user = (state = {}, action) => {
   switch (action.type) {
     case loadUserActions.SUCCESS:
-      return fromJS(action.payload)
+      return action.payload
     default:
       return state
   }

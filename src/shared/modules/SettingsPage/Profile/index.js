@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
-import { Field, reduxForm } from 'redux-form/immutable'
+import { Field, reduxForm } from 'redux-form'
 import validate from '../../utils/validate'
-/* import { connect } from 'react-redux'*/
 import Styles from './profile.css'
 import { Button } from 'react-bootstrap'
 import FormInputField from '../../FormInputField'
@@ -64,6 +63,5 @@ Profile.propTypes = {
 export default reduxForm({
   form: 'RegisterForm', // a unique name for this form
   /* validate: validate({ register: true }),*/
-  initialValues: {}
 })(Profile)
 

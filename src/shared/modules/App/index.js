@@ -26,50 +26,34 @@ if (process.env.NODE_ENV === 'development') {
   console.log('ES Modules Supported:', camelCase('hello-world') === 'helloWorld')
 }
 
-class App extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      title: 'Home',
-    }
-  }
+const App = () => (
+  <main>
+    <Helmet
+      htmlAttributes={{ lang: 'en' }}
+      titleTemplate="CDE - %s"
+      defaultTitle=""
+      meta={[
+        { name: 'charset', content: 'utf-8' },
+        { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { name: 'description', content: websiteDescription },
+      ]}
+    />
+    <div className={Styles.App}>
+      <Match pattern="*" component={Nav} />
+      <div className={Styles.content}>
+        <Match exactly pattern="/" component={HomePage} />
+        <Match pattern="/home" component={HomePage} />
+        <Match pattern="/about" component={AboutPage} />
+        <Match pattern="/dashboard" component={DashboardPage} />
+        <Match pattern="/login" component={LoginPage} />
+        <Match pattern="/register" component={RegisterPage} />
+        <Match pattern="/settings/:name" component={SettingsPage} />
+        <Miss component={NotFoundPage} />
+      </div>
+    </div>
+  </main>
+)
 
-  renderNav({ pathname }) {
-    if (pathname.startsWith('/login')) {
-      return ''
-    }
-    return <Nav />
-  }
-
-  render() {
-    return (
-      <main>
-        <Helmet
-          htmlAttributes={{ lang: 'en' }}
-          titleTemplate="CDE - %s"
-          defaultTitle=""
-          meta={[
-            { name: 'charset', content: 'utf-8' },
-            { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { name: 'description', content: websiteDescription },
-          ]}
-        />
-        <div className={Styles.App}>
-          <Match pattern="*" component={Nav} />
-          <div className={Styles.content}>
-            <Match exactly pattern="/" component={HomePage} />
-            <Match pattern="/home" component={HomePage} />
-            <Match pattern="/about" component={AboutPage} />
-            <Match pattern="/dashboard" component={DashboardPage} />
-            <Match pattern="/login" component={LoginPage} />
-            <Match pattern="/register" component={RegisterPage} />
-            <Match pattern="/settings/:name" component={SettingsPage} />
-            <Miss component={NotFoundPage} />
-          </div>
-        </div>
-      </main>
-    )
-  }
-}
 export default App
+

@@ -6,9 +6,9 @@ const validators = {
 
 const validate = ({ register } = { register: false }) => values => {
   const errors = {}
-  const email = values.get('email')
-  const password = values.get('password')
-  const username = values.get('username')
+  const email = values.email
+  const password = values.password
+  const username = values.username
   if (!email) {
     errors.email = 'Required'
   } else if (!validators.email.test(email)) {

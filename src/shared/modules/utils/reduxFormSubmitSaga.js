@@ -1,5 +1,5 @@
 import { put, take, race, call } from 'redux-saga/effects'
-import { SubmissionError } from 'redux-form/immutable'
+import { SubmissionError } from 'redux-form'
 const identity = f => f
 export const SUBMIT_FORM = '$$/SUBMIT_FORM'
 
@@ -14,7 +14,7 @@ const submitForm = (payload, actions, resolve, reject) => ({
 
 export const onSubmitActions = (actions, valuesTransform = identity) =>
   (values, dispatch) => new Promise((resolve, reject) => {
-    dispatch(submitForm(valuesTransform(values.toJS()), actions, resolve, reject))
+    dispatch(submitForm(valuesTransform(values), actions, resolve, reject))
   })
 
 export default function* reduxFormSubmitSaga() {
