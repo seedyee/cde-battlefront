@@ -19,25 +19,39 @@ const fields = {
   Mobiles: '手机',
   Security: '安全',
 }
+
+const find = (arr, predcateField, prop) => {
+  const obj = arr.filter(i => i[predcateField])[0] || {}
+  return obj[prop]
+}
+
 class SettingsPage extends React.Component {
   getSidebarItems = () => Object.keys(fields).map(key => (
     <li key={key}> <Link to={`${pathPrefix}${key}`}>{fields[key]}</Link> </li>
   ))
   getCountent = () => {
     const user = this.props.user
+    const { basicInformation, emails = [], mobiles = [] } = user.toJS()
+    const initialProfile = {
+      ...basicInformation,
+      email: find(emails, 'isPublic', 'email'),
+      mobile: find(mobiles, 'isPublic', 'mobile'),
+    }
+    console.log(initialProfile.email)
+    console.log(initialProfile)
     switch (this.props.params.name) {
       case 'Profile':
-        return <Profile user={user} />
+        return <Profile initialValues={initialProfile} />
       case 'Emails':
         return <Emails user={user.emails} />
       case 'Account':
         return <Account user={user} />
       case 'Mobiles':
-        return <Mobiles user={user.mobiles} />
+        return <Mobiles user={mobiles} />
       case 'Security':
         return <Security user={user} />
       default:
-        return <Profile user={user} />
+        return <Profile initialValues={initialProfile} />
     }
   }
   render() {

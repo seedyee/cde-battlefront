@@ -33,7 +33,7 @@ router.get('/logout', (req, res) => {
 })
 
 const user = {
-  basicsInformation: {
+  basicInformation: {
     id: '123456',
     usersname: '用户名',
     avatar: '用户头像',
@@ -51,12 +51,14 @@ const user = {
       mobile: '13660072677',
       isDefault: 1,
       isVerified: 1,
+      isPublic: 1,
     },
     {
       id: '2',
       mobile: '123456789110',
       isDefault: 0,
       isVerified: 0,
+      isPublic: 0,
     },
   ],
   emails: [
@@ -65,6 +67,7 @@ const user = {
       email: 'seedyee@mail.com',
       isDefault: 1,
       isVerified: 1,
+      isPublic: 1,
     },
     {
       id: '2',

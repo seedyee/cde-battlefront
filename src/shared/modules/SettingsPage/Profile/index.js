@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form/immutable'
 import validate from '../../utils/validate'
+/* import { connect } from 'react-redux'*/
 import Styles from './profile.css'
 import { Button } from 'react-bootstrap'
 import FormInputField from '../../FormInputField'
@@ -22,6 +23,13 @@ const Profile = ({ handleSubmit, submitting, pristine }) => {
           id="email"
           component={FormInputField}
           label="邮箱"
+        />
+        <Field
+          name="mobile"
+          type="mobile"
+          id="mobile"
+          component={FormInputField}
+          label="手机"
         />
         <Field
           name="company"
@@ -55,6 +63,7 @@ Profile.propTypes = {
 
 export default reduxForm({
   form: 'RegisterForm', // a unique name for this form
-  validate: validate({ register: true }),
+  /* validate: validate({ register: true }),*/
+  initialValues: {}
 })(Profile)
 

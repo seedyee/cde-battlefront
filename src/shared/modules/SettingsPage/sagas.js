@@ -10,7 +10,7 @@ import { loadUserActions } from './actions'
 
 function* loadUser() {
   const user = yield select(selectUser)
-  if (user) return
+  if (user.isEmptyObj) return
   yield put(loadUserActions.request())
   try {
     const response = yield call(api.loadUser, 'fakeId')
