@@ -5,21 +5,8 @@ import { Redirect } from 'react-router'
 import validate from '../validate'
 import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
 import Styles from './LoginForm.css'
-
+import FormInputField from '../../FormInputField'
 import { Button } from 'react-bootstrap'
-
-const renderField = ({ input, label, labelFor, forgetPassword, id, type, meta: { touched, error, warning } }) => (
-  <div className={Styles.field}>
-    <div className={Styles.labelContainer}>
-      <label htmlFor={labelFor}> {label} </label>
-      {forgetPassword ? <span className={Styles.forgetPassword}>{forgetPassword}</span> : null}
-    </div>
-    <input {...input} id={id} type={type} />
-    <div className={Styles.error}>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-    </div>
-  </div>
-)
 
 class LoginForm extends Component {
   constructor() {
@@ -44,7 +31,7 @@ class LoginForm extends Component {
           name="email"
           labelFor="email"
           id="email"
-          component={renderField}
+          component={FormInputField}
           label="Email/Phone"
           type="email"
         />
@@ -52,7 +39,7 @@ class LoginForm extends Component {
           name="password"
           id="password"
           labelFor="password"
-          component={renderField}
+          component={FormInputField}
           label="Password"
           type="password"
           forgetPassword="Forget your password ?"

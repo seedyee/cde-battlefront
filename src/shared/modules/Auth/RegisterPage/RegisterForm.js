@@ -6,16 +6,7 @@ import validate from '../validate'
 import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
 import Styles from './registerForm.css'
 import { Button } from 'react-bootstrap'
-
-const renderField = ({ input, label, id, type, meta: { touched, error, warning } }) => (
-  <div className={Styles.field}>
-    <label htmlFor={id}> {label} </label>
-    <input {...input} id={id} type={type} />
-    <div className={Styles.error}>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-    </div>
-  </div>
-)
+import FormInputField from '../../FormInputField'
 
 class RegisterForm extends Component {
   constructor() {
@@ -41,20 +32,20 @@ class RegisterForm extends Component {
           name="email"
           type="email"
           id="email"
-          component={renderField}
+          component={FormInputField}
           label="Email (phone for mobile accounts)"
         />
         <Field
           name="username"
           type="text"
           id="username"
-          component={renderField}
+          component={FormInputField}
           label="Username"
         />
         <Field
           name="password"
           id="password"
-          component={renderField}
+          component={FormInputField}
           label="Password"
           type="password"
         />
