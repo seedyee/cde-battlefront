@@ -1,15 +1,15 @@
 import { fork, cancel, take } from 'redux-saga/effects'
 
-import reduxFormSubmitSaga from './utils/reduxFormSubmitSaga'
+import reduxFormSubmitSaga from './modules/utils/reduxFormSubmitSaga'
 
-import homeSaga from './modules/HomePage/sagas'
 import authSaga from './modules/Auth/sagas'
+import settingsSaga from './modules/SettingsPage/sagas'
 
 export function* rootSaga() {
   yield [
     fork(reduxFormSubmitSaga),
-    fork(homeSaga),
     fork(authSaga),
+    fork(settingsSaga),
   ]
 }
 export const CANCEL_SAGAS_HMR = 'CANCEL_SAGAS_HMR'

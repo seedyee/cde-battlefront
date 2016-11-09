@@ -6,10 +6,10 @@
 import { combineReducers } from 'redux-immutable'
 import { reducer as formReducers } from 'redux-form/immutable'
 import authReducers from './modules/Auth/reducers'
-import homeReducers from './modules/HomePage/reducers'
+import settingsReducers from './modules/SettingsPage/reducers'
 
 export default combineReducers({
   form: formReducers,
   auth: authReducers,
-  home: homeReducers,
+  settings: settingsReducers,
 })

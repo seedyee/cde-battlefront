@@ -3,18 +3,3 @@
   justify-content: center;
 }
 
-.header {
-  img{
-    width: 60px;
-    height: 60px;
-    border-radius: 100px;
-    display: block;
-    margin: 0 auto;
-    cursor: pointer;
-  }
-  h3 {
-    text-align: center;
-  }
-}
-
-
