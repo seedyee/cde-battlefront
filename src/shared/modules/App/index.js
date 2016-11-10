@@ -18,6 +18,7 @@ import AboutPage from '../AboutPage'
 import SignInPage from '../Auth/SignInPage'
 import SignUpPage from '../Auth/SignUpPage'
 import NotFoundPage from '../NotFoundPage'
+import ProfilePage from '../ProfilePage'
 import SettingsPage from '../SettingsPage'
 
 const websiteDescription = 'A NodeJS V6 Universal React Boilerplate with an Amazing Developer Experience.'
@@ -48,6 +49,7 @@ const App = () => (
         <Match pattern="/dashboard" component={DashboardPage} />
         <Match pattern="/signIn" component={SignInPage} />
         <Match pattern="/signUp" component={SignUpPage} />
+        <Match pattern="/profile" component={ProfilePage} />
         <Match pattern="/settings/:name" component={SettingsPage} />
         <Miss component={NotFoundPage} />
       </div>

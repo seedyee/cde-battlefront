@@ -26,7 +26,7 @@ class Nav extends React.Component {
     /* if (!logined) return null*/
     return (
       <NavDropdown onSelect={this.onSelected} title="user" id="user">
-        <MenuItem eventKey="/">profile</MenuItem>
+        <MenuItem eventKey="/profile">profile</MenuItem>
         <MenuItem divider />
         <MenuItem eventKey="/settings/profile">settings</MenuItem>
         <MenuItem>
