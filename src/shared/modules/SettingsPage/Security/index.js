@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { Component } from 'react'
+import Styles from './index.css'
 
-const Security = () => (
-  <div>
-    <h1>Security</h1>
-  </div>
-)
+class Security extends Component {
+  constructor() {
+    super()
+    this.state = {
+      redirectTo: null,
+    }
+  }
+
+  render() {
+    return (
+      <div className={Styles.Security}>
+        <div className={Styles.sessions}>
+          <h3>会话信息</h3>
+        </div>
+        <div className={Styles.log}>
+          <h3>安全日志</h3>
+        </div>
+      </div>
+    )
+  }
+
+}
 
 export default Security
-
