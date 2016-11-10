@@ -37,11 +37,9 @@ class SettingsPage extends React.Component {
       email: find(emails, 'isPublic', 'email'),
       mobile: find(mobiles, 'isPublic', 'mobile'),
     }
-    console.log(initialProfile.email)
-    console.log(initialProfile)
     switch (this.props.params.name) {
       case 'Profile':
-        return <Profile initialValues={initialProfile} />
+        return <Profile initialValues={basicInformation} />
       case 'Emails':
         return <Emails user={user.emails} />
       case 'Account':

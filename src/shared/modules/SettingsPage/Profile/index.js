@@ -5,7 +5,8 @@ import Styles from './profile.css'
 import { Button } from 'react-bootstrap'
 import FormInputField from '../../FormInputField'
 
-const Profile = ({ handleSubmit, submitting, pristine }) => {
+const Profile = ({ handleSubmit, submitting, pristine, initialValues }) => {
+  console.log('------- ++++++++', initialValues)
   return (
     <div className={Styles.profile}>
       <form onSubmit={handleSubmit} className={Styles.RegisterForm}>
@@ -38,17 +39,13 @@ const Profile = ({ handleSubmit, submitting, pristine }) => {
           label="公司"
         />
         <Field
-          name="location"
+          name="companyAddress"
           type="text"
-          id="location"
+          id="companyAddress"
           component={FormInputField}
-          label="地址"
+          label="公司地址"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>Sigin up</Button>
-        <p className={Styles.signIn}>
-          Already have an account?
-          <button type="button" disabled={submitting} onClick={this.redirectTo}>Sign in</button>
-        </p>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更新</Button>
       </form>
     </div>
   )

@@ -35,14 +35,14 @@ router.get('/logout', (req, res) => {
 const user = {
   basicInformation: {
     id: '123456',
-    usersname: '用户名',
+    username: '用户名',
     avatar: '用户头像',
     company: '所在公司',
     companyAddress: '公司地址',
     companyBusiness: '行业',
-    posation: '职业',
+    position: '职业',
     personal: '个人简介',
-    registrationDate: '注册时间',
+    timestamp: '注册时间',
     realName: '用户真实姓名',
   },
   mobiles: [
