@@ -42,5 +42,6 @@ export default {
 
     // Polyfills the runtime needed
     ['transform-runtime'],
+    'transform-decorators-legacy',
   ],
 }
