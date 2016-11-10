@@ -27,7 +27,7 @@
 }
 
 html{
-  font-family: "Source Sans Pro";
+  font-family: "Source Sans Pro", "Microsoft YaHei", "微软雅黑", "Hiragino Sans GB", "冬青黑体", SimHei;
   margin: 0;
   padding: 0;
 }
