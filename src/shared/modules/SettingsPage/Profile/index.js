@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import validate from '../../utils/validate'
-import Styles from './profile.css'
+import Styles from './index.css'
 import { Button } from 'react-bootstrap'
 import FormInputField from '../../FormInputField'
 
-const Profile = ({ handleSubmit, submitting, pristine, initialValues }) => {
-  console.log('------- ++++++++', initialValues)
+const Profile = ({ handleSubmit, submitting, pristine }) => {
   return (
     <div className={Styles.profile}>
       <form onSubmit={handleSubmit} className={Styles.RegisterForm}>

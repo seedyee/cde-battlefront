@@ -9,7 +9,7 @@ import Mobiles from './Mobiles'
 import Security from './Security'
 
 import { Link } from 'react-router'
-import Styles from './settingsPage.css'
+import Styles from './index.css'
 
 const pathPrefix = '/settings/'
 const fields = {

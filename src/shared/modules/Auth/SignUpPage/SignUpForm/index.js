@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-import validate from '../../utils/validate'
-import { onSubmitActions } from '../../utils/reduxFormSubmitSaga'
-import Styles from './registerForm.css'
+import validate from '../../../utils/validate'
+import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
+import Styles from './index.css'
 import { Button } from 'react-bootstrap'
-import FormInputField from '../../FormInputField'
+import FormInputField from '../../../FormInputField'
 
 class RegisterForm extends Component {
   constructor() {
@@ -17,7 +17,7 @@ class RegisterForm extends Component {
   }
 
   redirectTo = () => {
-    this.setState({ redirectTo: '/login' })
+    this.setState({ redirectTo: '/signIn' })
   }
 
   render() {
@@ -26,7 +26,7 @@ class RegisterForm extends Component {
     if (logined) return <Redirect to="/dashboard" />
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
-      <form onSubmit={handleSubmit} className={Styles.RegisterForm}>
+      <form onSubmit={handleSubmit} className={Styles.signUpForm}>
         <h2> 开发平台 | 注册 </h2>
         <Field
           name="email"
@@ -66,8 +66,8 @@ RegisterForm.propTypes = {
   logined: PropTypes.bool.isRequired,
 }
 
-import { selectLogined } from '../selectors'
-import { registerActions } from '../actions'
+import { selectLogined } from '../../selectors'
+import { registerActions } from '../../actions'
 
 const comp = reduxForm({
   form: 'RegisterForm', // a unique name for this form

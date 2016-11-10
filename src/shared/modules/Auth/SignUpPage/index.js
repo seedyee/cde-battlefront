@@ -1,22 +1,22 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import RegisterForm from './RegisterForm'
-import Styles from './registerPage.css'
+import SignUpForm from './SignUpForm/index'
+import Styles from './index.css'
 import Logo from '../Logo'
 
-class RegisterPage extends React.Component {
+class SignUpPage extends React.Component {
   render() {
     return (
-      <div className={Styles.RegisterPage}>
+      <div className={Styles.signUpPage}>
         <Helmet title="Sign up" />
         <div className={Styles.content}>
           <Logo title="注册" />
-          <RegisterForm />
+          <SignUpForm />
         </div>
       </div>
     )
   }
 }
 
-export default RegisterPage
+export default SignUpPage

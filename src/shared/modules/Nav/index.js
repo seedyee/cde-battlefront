@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Styles from './Nav.css'
+import Styles from './index.css'
 import { logoutActions } from '../Auth/actions'
 import { selectLogined } from '../Auth/selectors'
 import { Link, propTypes } from 'react-router'
@@ -40,14 +40,14 @@ class Nav extends React.Component {
     const { logined, location: { pathname } } = this.props
     if (contains(pathname)) return (<span style={{ display: 'none' }}>noop</span>)
     return (
-      <div className={Styles.Nav}>
+      <div className={Styles.nav}>
         <div className={Styles.content}>
           <ul className={Styles.pagesNav}>
             <li><Link className={Styles.home} to="/"><img alt="site logo" src={logo} /></Link></li>
             <li><Link to="/dashboard">Dashboard</Link></li>
           </ul>
           <ul className={Styles.signsNav}>
-            {logined ? '' : <li className={Styles.signIn}><Link to="/login">Sign in</Link></li>}
+            {logined ? '' : <li className={Styles.signIn}><Link to="/signIn">Sign in</Link></li>}
             {this.getDropdown()}
           </ul>
         </div>

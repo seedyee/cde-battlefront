@@ -1,5 +1,5 @@
 import React from 'react'
-import Styles from './formInputField.css'
+import Styles from './index.css'
 
 export default ({ input, label, labelFor, forgetPassword, id, type, meta: { touched, error, warning } }) => (
   <div className={Styles.field}>

@@ -2,13 +2,13 @@ import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-import validate from '../../utils/validate'
-import { onSubmitActions } from '../../utils/reduxFormSubmitSaga'
-import Styles from './LoginForm.css'
-import FormInputField from '../../FormInputField'
+import validate from '../../../utils/validate'
+import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
+import Styles from './index.css'
+import FormInputField from '../../../FormInputField'
 import { Button } from 'react-bootstrap'
 
-class LoginForm extends Component {
+class SignInForm extends Component {
   constructor() {
     super()
     this.state = {
@@ -17,7 +17,7 @@ class LoginForm extends Component {
   }
 
   redirectTo = () => {
-    this.setState({ redirectTo: '/register' })
+    this.setState({ redirectTo: '/signUp' })
   }
 
   render() {
@@ -26,7 +26,7 @@ class LoginForm extends Component {
     if (logined) return <Redirect to="/dashboard" />
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
-      <form onSubmit={handleSubmit} className={Styles.LoginForm}>
+      <form onSubmit={handleSubmit} className={Styles.signInForm}>
         <Field
           name="email"
           labelFor="email"
@@ -51,21 +51,21 @@ class LoginForm extends Component {
   }
 }
 
-LoginForm.propTypes = {
+SignInForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
   pristine: PropTypes.bool.isRequired,
   logined: PropTypes.bool.isRequired,
 }
 
-import { selectLogined } from '../selectors'
-import { loginActions } from '../actions'
+import { selectLogined } from '../../selectors'
+import { loginActions } from '../../actions'
 
 const comp = reduxForm({
   form: 'LoginForm', // a unique name for this form
   validate: validate(),
   onSubmit: onSubmitActions(loginActions),
-})(LoginForm)
+})(SignInForm)
 
 const initialValues = {
 }
