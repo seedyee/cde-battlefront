@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import Styles from './index.css'
 import { logoutActions } from '../Auth/actions'
 import { selectLogined } from '../Auth/selectors'
-import { Link, propTypes } from 'react-router'
+import { Link } from 'react-router'
+import withRouter from '../utils/withRouter'
 import logo from './logo.png'
 
 import { NavDropdown, MenuItem } from 'react-bootstrap'
@@ -11,14 +12,10 @@ import { NavDropdown, MenuItem } from 'react-bootstrap'
 const paths = ['/login', '/register']
 const contains = (pathname) => paths.some(path => pathname.startsWith(path))
 
+@withRouter
 class Nav extends React.Component {
-  static contextTypes = {
-    router: propTypes.routerContext.isRequired,
-  }
-
   onSelected = (eventKey) => {
-    const { router } = this.context
-    router.transitionTo(eventKey)
+    this.push(eventKey)
   }
 
   getDropdown = () => {

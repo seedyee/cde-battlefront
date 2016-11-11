@@ -34,8 +34,9 @@ export default {
 
     // { ...todo, completed: true }
     'transform-object-rest-spread',
-
     // Polyfills the runtime needed
     ['transform-runtime'],
+
+    'transform-decorators-legacy',
   ],
 }
