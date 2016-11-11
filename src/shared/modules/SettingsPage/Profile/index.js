@@ -7,9 +7,11 @@ import FormInputField from '../../FormInputField'
 
 const Profile = ({ handleSubmit, submitting, pristine }) => {
   return (
-    <div className={Styles.profile}>
+    <div className={Styles.Profile}>
+      <h3>基本信息</h3>
       <form onSubmit={handleSubmit} className={Styles.RegisterForm}>
         <Field
+          styles={{ input: Styles.input }}
           name="username"
           type="text"
           id="username"
@@ -17,6 +19,7 @@ const Profile = ({ handleSubmit, submitting, pristine }) => {
           label="用户名"
         />
         <Field
+          styles={{ input: Styles.input }}
           name="email"
           type="email"
           id="email"
@@ -24,6 +27,7 @@ const Profile = ({ handleSubmit, submitting, pristine }) => {
           label="邮箱"
         />
         <Field
+          styles={{ input: Styles.input }}
           name="mobile"
           type="mobile"
           id="mobile"
@@ -31,6 +35,7 @@ const Profile = ({ handleSubmit, submitting, pristine }) => {
           label="手机"
         />
         <Field
+          styles={{ input: Styles.input }}
           name="company"
           type="text"
           id="company"
@@ -38,13 +43,14 @@ const Profile = ({ handleSubmit, submitting, pristine }) => {
           label="公司"
         />
         <Field
+          styles={{ input: Styles.input }}
           name="companyAddress"
           type="text"
           id="companyAddress"
           component={FormInputField}
           label="公司地址"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更新</Button>
+        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更新</Button>
       </form>
     </div>
   )
