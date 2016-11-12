@@ -1,15 +1,18 @@
 import { combineReducers } from 'redux'
 
-import { loadUserActions } from './actions'
+import * as userActions from './actions'
 
 const user = (state = {}, action) => {
   switch (action.type) {
-    case loadUserActions.SUCCESS:
+    case userActions.loadUserActions.SUCCESS:
       return action.payload
+    case userActions.updateUserActions.SUCCESS:
+      return { username: action.payload }
     default:
       return state
   }
 }
+
 
 export default combineReducers({
   user,

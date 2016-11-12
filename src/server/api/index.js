@@ -79,12 +79,27 @@ const user = {
   ],
 }
 
+const userName = {
+  basicInformation: {
+    id: '123456',
+    username: 'Seedyee',
+    avatar: '用户头像',
+    company: '跃考恩信息科技',
+    companyAddress: '深圳',
+    companyBusiness: '互联网',
+    position: '职业',
+    personal: '个人简介',
+    timestamp: '2016-11-11',
+    realName: '跃考恩',
+  },
+}
+
 router.get('/users/:id', (req, res) => {
   res.json(user)
 })
 
 router.post('/users/:id', (req, res) => {
-  res.json(user)
+  res.json(userName)
 })
 
 router.post('/users/:id/email', (req, res) => {

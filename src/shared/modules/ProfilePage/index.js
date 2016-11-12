@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Helmet from 'react-helmet'
-import Styles from './profilePage.css'
+import Styles from './index.css'
 import leapcorn from './leapcorn.png'
 
 import { Link, Redirect } from 'react-router'
