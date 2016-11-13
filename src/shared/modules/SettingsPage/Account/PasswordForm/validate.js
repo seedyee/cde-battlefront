@@ -1,19 +1,12 @@
 const validators = {
-  email: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-  // Minimum 8 characters at least 1 Alphabet and 1 Number:
   password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
 }
 
 const validate = ({ register } = { register: false }) => values => {
   const errors = {}
-  const email = values.email
   const password = values.password
-  const username = values.username
-  if (!email) {
-    errors.email = 'Required'
-  } else if (!validators.email.test(email)) {
-    errors.email = 'Invalid email address'
-  }
+  const newPassword = values.newPassword
+  const newPasswordConfirm = values.newPasswordConfirm
 
   if (!password) {
     errors.password = 'Required'
@@ -21,11 +14,9 @@ const validate = ({ register } = { register: false }) => values => {
     errors.password = 'Minimum 8 characters at least 1 Alphabet and 1 Number'
   }
 
-  if (register && !username) {
-    errors.username = 'Required'
-  }
 
   return errors
 }
 
 export default validate
+

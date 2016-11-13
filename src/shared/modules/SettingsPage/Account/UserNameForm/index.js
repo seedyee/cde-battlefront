@@ -21,7 +21,7 @@ class UserNameForm extends Component {
 
   render() {
     const { redirectTo } = this.state
-    const { handleSubmit, submitting } = this.props
+    const { handleSubmit, pristine, submitting } = this.props
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
       <form onSubmit={handleSubmit}>
@@ -32,7 +32,7 @@ class UserNameForm extends Component {
           id="username"
           component={FormInputField}
         />
-        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={submitting}>更新用户名</Button>
+        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更新用户名</Button>
       </form>
     )
   }
@@ -41,6 +41,7 @@ class UserNameForm extends Component {
 UserNameForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
+  pristine: PropTypes.bool.isRequired,
 }
 
 import { updateUserActions } from '../../actions'

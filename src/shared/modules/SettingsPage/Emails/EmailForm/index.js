@@ -21,7 +21,7 @@ class EmailForm extends Component {
 
   render() {
     const { redirectTo } = this.state
-    const { handleSubmit, submitting } = this.props
+    const { handleSubmit, pristine, submitting } = this.props
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
       <form onSubmit={handleSubmit}>
@@ -33,7 +33,7 @@ class EmailForm extends Component {
           component={FormInputField}
           label="邮箱地址"
         />
-        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={submitting}>添加邮箱</Button>
+        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添加邮箱</Button>
       </form>
     )
   }
@@ -42,12 +42,15 @@ class EmailForm extends Component {
 EmailForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
+  pristine: PropTypes.bool.isRequired,
 }
 
+import validate from '../../../utils/validate'
 import { addEmailActions } from '../../actions'
 
 const comp = reduxForm({
   form: 'emailForm',
+  validate: validate({ register: true }),
   onSubmit: onSubmitActions(addEmailActions),
 })(EmailForm)
 

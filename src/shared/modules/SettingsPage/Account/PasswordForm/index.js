@@ -58,12 +58,15 @@ class PasswordForm extends Component {
 PasswordForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
+  pristine: PropTypes.bool.isRequired,
 }
 
+import validate from '../../../utils/validate'
 import { updatePasswordActions } from '../../actions'
 
 const comp = reduxForm({
   form: 'passwordForm',
+  validate: validate({ register: true }),
   onSubmit: onSubmitActions(updatePasswordActions),
 })(PasswordForm)
 

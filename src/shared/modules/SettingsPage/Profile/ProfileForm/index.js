@@ -74,12 +74,15 @@ class ProfileForm extends Component {
 ProfileForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
+  pristine: PropTypes.bool.isRequired,
 }
 
+import validate from '../../../utils/validate'
 import { updateUserActions } from '../../actions'
 
 const comp = reduxForm({
   form: 'profileForm',
+  validate: validate({ register: true }),
   onSubmit: onSubmitActions(updateUserActions),
 })(ProfileForm)
 

@@ -21,7 +21,7 @@ class MobileForm extends Component {
 
   render() {
     const { redirectTo } = this.state
-    const { handleSubmit, submitting } = this.props
+    const { handleSubmit, pristine, submitting } = this.props
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
       <form onSubmit={handleSubmit}>
@@ -33,7 +33,7 @@ class MobileForm extends Component {
           component={FormInputField}
           label="手机号码"
         />
-        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={submitting}>添加手机</Button>
+        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添加手机</Button>
       </form>
     )
   }
@@ -42,12 +42,15 @@ class MobileForm extends Component {
 MobileForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
+  pristine: PropTypes.bool.isRequired,
 }
 
+import validate from '../../../utils/validate'
 import { updateMobileActions } from '../../actions'
 
 const comp = reduxForm({
   form: 'mobileForm',
+  validate: validate({ register: true }),
   onSubmit: onSubmitActions(updateMobileActions),
 })(MobileForm)
 
