@@ -15,7 +15,7 @@ const user = (state = {}, action) => {
 
 const password = (state = {}, action) => {
   switch (action.type) {
-    case userActions.updateUserActions.SUCCESS:
+    case userActions.updatePasswordActions.SUCCESS:
       return action.payload
     default:
       return state
