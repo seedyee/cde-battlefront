@@ -43,7 +43,7 @@ class SettingsPage extends React.Component {
       case 'Emails':
         return <Emails user={user.emails} />
       case 'Account':
-        return <Account user={user} />
+        return <Account initialValues={basicInformation} />
       case 'Mobiles':
         return <Mobiles user={mobiles} />
       case 'Security':

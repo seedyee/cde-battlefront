@@ -86,11 +86,5 @@ const comp = reduxForm({
   onSubmit: onSubmitActions(updateUserActions),
 })(ProfileForm)
 
-const initialValues = {}
-
-const mapStateToProps = () => ({
-  initialValues,
-})
-
-export default connect(mapStateToProps)(comp)
+export default connect()(comp)
 

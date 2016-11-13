@@ -3,10 +3,19 @@ import Styles from './index.css'
 import EmailForm from './EmailForm/index'
 
 class Emails extends Component {
+  getEmails = (emails) => Object.values(emails).map(email => (
+    <tr key={email.id}>
+      <th>{email.email}</th>
+      <th>{email.isVerified}</th>
+      <th>{`${email.isDefault}_${email.isPublic}`}</th>
+    </tr>
+  ))
+
   render() {
+    const { ...emails } = this.props.user
     return (
       <div className={Styles.Emails}>
-        <h3>查看邮箱</h3>
+        <h3>查看邮箱{console.log(JSON.stringify(emails, null, 2))}</h3>
         <div className={Styles.emailTable}>
           <table>
             <thead>
@@ -17,21 +26,7 @@ class Emails extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-              </tr>
-              <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-              </tr>
-              <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-              </tr>
+              {this.getEmails(emails)}
             </tbody>
           </table>
         </div>

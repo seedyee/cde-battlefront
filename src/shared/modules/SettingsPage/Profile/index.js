@@ -7,7 +7,7 @@ class Profile extends Component {
     return (
       <div className={Styles.Profile}>
         <h3>基本信息</h3>
-        <ProfileForm />
+        <ProfileForm initialValues={this.props.initialValues} />
       </div>
     )
   }
