@@ -102,6 +102,10 @@ router.post('/users/:id', (req, res) => {
   res.json(userName)
 })
 
+router.post('/users/:id/password', (req, res) => {
+  res.json(user)
+})
+
 router.post('/users/:id/email', (req, res) => {
   const { emails: [email] } = user
   res.json(email)

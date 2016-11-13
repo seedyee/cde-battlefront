@@ -1,19 +1,9 @@
 import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
 import Styles from './index.css'
-import FormInputField from '../../FormInputField'
-import { Button } from 'react-bootstrap'
+import MobileForm from './MobileForm/index'
 
 class Mobiles extends Component {
-  constructor() {
-    super()
-    this.state = {
-      redirectTo: null,
-    }
-  }
-
   render() {
-    const { handleSubmit } = this.props
     return (
       <div className={Styles.Mobiles}>
         <h3>查看手机</h3>
@@ -46,17 +36,7 @@ class Mobiles extends Component {
           </table>
         </div>
         <div className={Styles.addMobile}>
-          <form onSubmit={handleSubmit}>
-            <Field
-              styles={{ input: Styles.input }}
-              name="mobile"
-              type="text"
-              id="mobile"
-              component={FormInputField}
-              label="手机号码"
-            />
-            <Button bsStyle="default" className={Styles.submitBtn} type="submit">添加手机</Button>
-          </form>
+          <MobileForm />
         </div>
       </div>
 
@@ -65,7 +45,5 @@ class Mobiles extends Component {
 
 }
 
-export default reduxForm(
-
-)(Mobiles)
+export default Mobiles
 

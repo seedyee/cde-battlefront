@@ -2,7 +2,7 @@ import { take, put, call, fork, select } from 'redux-saga/effects'
 
 import * as api from '../api'
 import { selectUser } from './selectors'
-import { loadUserActions, updateUserActions } from './actions'
+import { loadUserActions, updateUserActions, updatePasswordActions, addEmailActions, updateMobileActions } from './actions'
 import { isEmptyObj } from '../utils'
 
 // We are using SSR(server-side-rendering), if everything goes well we should have users in our
@@ -41,9 +41,70 @@ function* updateUser() {
   }
 }
 
+function* updatePassword() {
+  while (true) {
+    const { payload } = yield take(updatePasswordActions.REQUEST)
+    try {
+      const { error, ...rest } = yield call(api.updatePassword, payload)
+      if (error) {
+        yield put(updatePasswordActions.failure(error.text))
+        alert(error.text)
+      } else {
+        yield put(updatePasswordActions.success(rest))
+        alert('更新密码成功 ！')
+      }
+    } catch (e) {
+      yield put(updatePasswordActions.failure(e))
+      alert(e)
+    }
+  }
+}
+
+function* addEmail() {
+  while (true) {
+    const { payload } = yield take(addEmailActions.REQUEST)
+    try {
+      const { error, ...rest } = yield call(api.addEmail, payload)
+      if (error) {
+        yield put(addEmailActions.failure(error.text))
+        alert(error.text)
+      } else {
+        yield put(addEmailActions.success(rest))
+        alert('新增邮箱成功 !')
+      }
+    } catch (e) {
+      yield put(addEmailActions.failure(e))
+      alert(e)
+    }
+  }
+}
+
+function* addMobile() {
+  while (true) {
+    const { payload } = yield take(updateMobileActions.REQUEST)
+    try {
+      const { error, ...rest } = yield call(api.addMobile, payload)
+      if (error) {
+        yield put(updateMobileActions.failure(error.text))
+        alert(error.text)
+      } else {
+        yield put(updateMobileActions.success(rest))
+        alert('手机添加成功 !')
+      }
+    } catch (e) {
+      yield put(updateMobileActions.failure(e))
+      alert(e)
+    }
+  }
+}
+
+
 export default function* settingsSaga() {
   yield [
     fork(loadUser),
     fork(updateUser),
+    fork(updatePassword),
+    fork(addEmail),
+    fork(addMobile),
   ]
 }

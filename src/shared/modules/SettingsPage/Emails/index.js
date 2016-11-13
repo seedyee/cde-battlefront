@@ -1,19 +1,9 @@
 import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
 import Styles from './index.css'
-import FormInputField from '../../FormInputField'
-import { Button } from 'react-bootstrap'
+import EmailForm from './EmailForm/index'
 
 class Emails extends Component {
-  constructor() {
-    super()
-    this.state = {
-      redirectTo: null,
-    }
-  }
-
   render() {
-    const { handleSubmit } = this.props
     return (
       <div className={Styles.Emails}>
         <h3>查看邮箱</h3>
@@ -46,26 +36,12 @@ class Emails extends Component {
           </table>
         </div>
         <div className={Styles.addEmail}>
-          <form onSubmit={handleSubmit}>
-            <Field
-              styles={{ input: Styles.input }}
-              name="email"
-              type="text"
-              id="email"
-              component={FormInputField}
-              label="邮箱地址"
-            />
-            <Button bsStyle="default" className={Styles.submitBtn} type="submit">添加邮箱</Button>
-          </form>
+          <EmailForm />
         </div>
       </div>
-
     )
   }
-
 }
 
-export default reduxForm(
-
-)(Emails)
+export default Emails
 

@@ -7,7 +7,7 @@ import FormInputField from '../../../FormInputField'
 import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
 import { Button } from 'react-bootstrap'
 
-class UserNameForm extends Component {
+class MobileForm extends Component {
   constructor() {
     super()
     this.state = {
@@ -27,28 +27,29 @@ class UserNameForm extends Component {
       <form onSubmit={handleSubmit}>
         <Field
           styles={{ input: Styles.input }}
-          name="username"
+          name="mobile"
           type="text"
-          id="username"
+          id="mobile"
           component={FormInputField}
+          label="手机号码"
         />
-        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={submitting}>更新用户名</Button>
+        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={submitting}>添加手机</Button>
       </form>
     )
   }
 }
 
-UserNameForm.propTypes = {
+MobileForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
 }
 
-import { updateUserActions } from '../../actions'
+import { updateMobileActions } from '../../actions'
 
 const comp = reduxForm({
-  form: 'userNameForm',
-  onSubmit: onSubmitActions(updateUserActions),
-})(UserNameForm)
+  form: 'mobileForm',
+  onSubmit: onSubmitActions(updateMobileActions),
+})(MobileForm)
 
 const initialValues = {}
 

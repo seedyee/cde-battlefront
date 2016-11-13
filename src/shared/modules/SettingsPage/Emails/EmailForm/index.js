@@ -7,7 +7,7 @@ import FormInputField from '../../../FormInputField'
 import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
 import { Button } from 'react-bootstrap'
 
-class UserNameForm extends Component {
+class EmailForm extends Component {
   constructor() {
     super()
     this.state = {
@@ -27,28 +27,29 @@ class UserNameForm extends Component {
       <form onSubmit={handleSubmit}>
         <Field
           styles={{ input: Styles.input }}
-          name="username"
+          name="email"
           type="text"
-          id="username"
+          id="email"
           component={FormInputField}
+          label="邮箱地址"
         />
-        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={submitting}>更新用户名</Button>
+        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={submitting}>添加邮箱</Button>
       </form>
     )
   }
 }
 
-UserNameForm.propTypes = {
+EmailForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
 }
 
-import { updateUserActions } from '../../actions'
+import { addEmailActions } from '../../actions'
 
 const comp = reduxForm({
-  form: 'userNameForm',
-  onSubmit: onSubmitActions(updateUserActions),
-})(UserNameForm)
+  form: 'emailForm',
+  onSubmit: onSubmitActions(addEmailActions),
+})(EmailForm)
 
 const initialValues = {}
 
