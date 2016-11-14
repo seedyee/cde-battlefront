@@ -11,7 +11,7 @@ class SignUpPage extends React.Component {
       <div className={Styles.signUpPage}>
         <Helmet title="Sign up" />
         <div className={Styles.content}>
-          <Logo title="注册" />
+          <Logo title="注&nbsp;&nbsp;册" />
           <SignUpForm />
         </div>
       </div>

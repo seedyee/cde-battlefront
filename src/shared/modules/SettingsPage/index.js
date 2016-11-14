@@ -39,9 +39,9 @@ class SettingsPage extends React.Component {
     }
     switch (this.props.params.name) {
       case 'Profile':
-        return <Profile initialValues={basicInformation} />
+        return <Profile initialValues={initialProfile} />
       case 'Emails':
-        return <Emails user={user.emails} />
+        return <Emails user={emails} />
       case 'Account':
         return <Account initialValues={basicInformation} />
       case 'Mobiles':
@@ -54,7 +54,7 @@ class SettingsPage extends React.Component {
   }
   render() {
     return (
-      <div className={Styles.SettingsPage}>
+      <div className={Styles.Settings}>
         <Helmet title="settings" />
         <div className={Styles.sidebar}>
           <ul>

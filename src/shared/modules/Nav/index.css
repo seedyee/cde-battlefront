@@ -7,7 +7,7 @@
   width: 100%;
   border-bottom: 1px solid #e5e5e5;
   background: #f5f5f5;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .content {
@@ -20,8 +20,6 @@
 
 .pagesNav {
   list-style: none;
-  color: blue;
-  paddgin: 0;
   display: flex;
   line-height: $nav-height;
   >li {
@@ -30,7 +28,7 @@
   }
 }
 
-$logo-width: 28px;
+$logo-width: 29px;
 .home {
   /* width: calc(width("./logo.png") / 2); */
   /* height: calc(width("./logo.png") / 2); */
@@ -51,11 +49,38 @@ $logo-width: 28px;
 
 .signsNav {
   display: flex;
-  align-self: flex-end;
+  justify-content: space-between;
   line-height: $nav-height;
   >li {
-    margin: 0 10px 0 0;
+
   }
   .signIn {
+    a {
+      color: #666;
+      text-decoration: none;
+      &:hover {
+        color: #333;
+      }
+    }
   }
 }
+
+.navItems {
+  li {
+    a:hover {
+      font-weight: 600;
+      color: #fff;
+      background-color: #428bca;
+    }
+  }
+}
+
+.icon {
+  color: #666;
+  line-height: $nav-height;
+  margin: 0 0 0 12px;
+  &:hover {
+    color: #333;
+  }
+}
+

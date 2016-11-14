@@ -9,6 +9,6 @@ export default ({ title }) => (
     <Link to="/" >
       <img className={Styles.logo} alt="cde logo" src={logo} />
     </Link>
-    <h3>{title}</h3>
+    <h2>{title}</h2>
   </div>
 )

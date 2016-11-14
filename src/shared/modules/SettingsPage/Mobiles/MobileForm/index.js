@@ -24,7 +24,7 @@ class MobileForm extends Component {
     const { handleSubmit, pristine, submitting } = this.props
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={Styles.MobileForm}>
         <Field
           styles={{ input: Styles.input }}
           name="mobile"
@@ -33,7 +33,7 @@ class MobileForm extends Component {
           component={FormInputField}
           label="手机号码"
         />
-        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添加手机</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添加手机</Button>
       </form>
     )
   }

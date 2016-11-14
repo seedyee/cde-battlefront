@@ -33,26 +33,26 @@ class RegisterForm extends Component {
           type="email"
           id="email"
           component={FormInputField}
-          label="Email (phone for mobile accounts)"
+          label="邮箱 / 手机"
         />
         <Field
           name="username"
           type="text"
           id="username"
           component={FormInputField}
-          label="Username"
+          label="用户名"
         />
         <Field
           name="password"
           id="password"
           component={FormInputField}
-          label="Password"
+          label="密 码"
           type="password"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>Sigin up</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>注&nbsp;&nbsp;册</Button>
         <p className={Styles.signIn}>
-          Already have an account?
-          <button type="button" disabled={submitting} onClick={this.redirectTo}>Sign in</button>
+          已注册 ?
+          <button type="button" disabled={submitting} onClick={this.redirectTo}>登&nbsp;录</button>
         </p>
       </form>
     )

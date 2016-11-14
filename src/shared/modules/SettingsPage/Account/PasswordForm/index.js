@@ -24,7 +24,7 @@ class PasswordForm extends Component {
     const { handleSubmit, pristine, submitting } = this.props
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={Styles.PasswordForm}>
         <Field
           styles={{ input: Styles.input }}
           name="oldPassword"
@@ -49,7 +49,7 @@ class PasswordForm extends Component {
           component={FormInputField}
           label="确认密码"
         />
-        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更新密码</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更新密码</Button>
       </form>
     )
   }

@@ -1,3 +1,11 @@
+.Security {
+  width: 750px;
+  color: #333;
+  padding-bottom: 8px;
+  border: 1px solid #d8d8d8;
+  border-radius: 3px;
+}
+
 /*Area of adding one email*/
 
 h3 {

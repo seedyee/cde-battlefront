@@ -65,7 +65,7 @@ class ProfileForm extends Component {
           component={FormInputField}
           label="公司地址"
         />
-        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更新</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更&nbsp;&nbsp;新</Button>
       </form>
     )
   }

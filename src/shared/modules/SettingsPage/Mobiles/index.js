@@ -30,9 +30,7 @@ class Mobiles extends Component {
             </tbody>
           </table>
         </div>
-        <div className={Styles.addMobile}>
-          <MobileForm />
-        </div>
+        <MobileForm />
       </div>
     )
   }

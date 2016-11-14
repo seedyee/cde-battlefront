@@ -24,7 +24,7 @@ class EmailForm extends Component {
     const { handleSubmit, pristine, submitting } = this.props
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={Styles.EmailForm}>
         <Field
           styles={{ input: Styles.input }}
           name="email"

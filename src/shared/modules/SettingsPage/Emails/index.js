@@ -30,9 +30,7 @@ class Emails extends Component {
             </tbody>
           </table>
         </div>
-        <div className={Styles.addEmail}>
-          <EmailForm />
-        </div>
+        <EmailForm />
       </div>
     )
   }

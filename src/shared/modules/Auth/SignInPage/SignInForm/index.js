@@ -32,7 +32,7 @@ class SignInForm extends Component {
           labelFor="email"
           id="email"
           component={FormInputField}
-          label="Email/Phone"
+          label="邮箱 / 手机"
           type="email"
         />
         <Field
@@ -40,12 +40,12 @@ class SignInForm extends Component {
           id="password"
           labelFor="password"
           component={FormInputField}
-          label="Password"
+          label="密 码"
           type="password"
-          forgetPassword="Forget your password ?"
+          forgetPassword="忘记密码 ?"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>Submit</Button>
-        <button className={Styles.signUp} disabled={submitting} type="button" onClick={this.redirectTo}>Sign up</button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>登 录</Button>
+        <button className={Styles.signUp} disabled={submitting} type="button" onClick={this.redirectTo}>注 册</button>
       </form>
     )
   }

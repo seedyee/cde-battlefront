@@ -1,9 +1,12 @@
 .signInForm {
   width: 400px;
-  border: 1px solid #aaa;
   padding: 30px;
+  margin-bottom: 80px;
   display: flex;
   flex-direction: column;
+  border: 1px solid #d8d8d8;
+  border-radius: 6px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
 }
 
 .submitBtn {
