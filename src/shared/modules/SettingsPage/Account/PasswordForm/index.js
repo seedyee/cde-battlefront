@@ -21,7 +21,7 @@ class PasswordForm extends Component {
         />
         <Field
           styles={{ input: Styles.input }}
-          name="newPassword"
+          name="password"
           type="text"
           id="newPassword"
           component={FormInputField}
@@ -29,7 +29,7 @@ class PasswordForm extends Component {
         />
         <Field
           styles={{ input: Styles.input }}
-          name="newPasswordConfirm"
+          name="newPassword"
           type="text"
           id="newPasswordConfirm"
           component={FormInputField}

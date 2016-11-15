@@ -62,5 +62,5 @@ export const updatePassword = ({ id, ...rest }) => post(`/accounts/${id}/passwor
 export const updateEmails = ({ id, email }) => post(`/accounts/${id}/emails/${id}`, { id, email })
 export const updateMobiles = ({ id, mobile }) => post(`/accounts/${id}/mobiles/${id}`, { id, mobile })
 
-export const addEmail = ({ id, email }) => post(`/accounts/${id}/email`, { id, email })
-export const addMobile = ({ id, mobile }) => post(`/accounts/${id}/mobile`, { id, mobile })
+export const addEmail = ({ id, email }) => post(`/accounts/${id}/emails`, { id, email })
+export const addMobile = ({ id, mobile }) => post(`/accounts/${id}/mobiles`, { id, mobile })
