@@ -5,4 +5,24 @@
 .RegisterForm {
   letter-spacing: $letter-spacing;
   padding-left: $content-padding-left;
+  border:1px solid red;
+}
+
+.textarea {
+  width: 460px;
+  height: 80px;
+  font-size: $normal-font-size;
+  color: $normal-color;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: $border-radius_3px;
+  box-shadow: $box-shadow;
+  &:hover {
+    border: 1px solid #ccc;
+    box-shadow: $box-shadow;
+  }
+  &:focus {
+    background: #fff;
+  }
+  text-indent: 6px;
 }

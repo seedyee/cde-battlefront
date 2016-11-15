@@ -20,11 +20,6 @@ const fields = {
   Security: '安全',
 }
 
-const find = (arr, predcateField, prop) => {
-  const obj = arr.filter(i => i[predcateField])[0] || {}
-  return obj[prop]
-}
-
 class SettingsPage extends React.Component {
 
   constructor() {
@@ -45,26 +40,20 @@ class SettingsPage extends React.Component {
   ))
 
   getCountent = () => {
-    const user = this.props.user
-    const { basicInformation, emails = [], mobiles = [] } = user
-    const initialProfile = {
-      ...basicInformation,
-      email: find(emails, 'isPublic', 'email'),
-      mobile: find(mobiles, 'isPublic', 'mobile'),
-    }
+    const { user, emails, mobiles } = this.props
     switch (this.props.params.name) {
       case 'Profile':
-        return <Profile initialValues={initialProfile} />
+        return <Profile initialValues={user} />
       case 'Emails':
-        return <Emails user={emails} />
+        return <Emails emails={emails} />
       case 'Account':
-        return <Account initialValues={basicInformation} />
+        return <Account initialValues={user} />
       case 'Mobiles':
-        return <Mobiles user={mobiles} />
+        return <Mobiles mobiles={mobiles} />
       case 'Security':
         return <Security user={user} />
       default:
-        return <Profile initialValues={initialProfile} />
+        return <Profile initialValues={user} />
     }
   }
   render() {
@@ -85,9 +74,11 @@ class SettingsPage extends React.Component {
   }
 }
 
-import { selectUser } from './selectors'
+import { selectUser, selectEmails, selectMobiles } from './selectors'
 const mapStateToProps = state => ({
   user: selectUser(state),
+  emails: selectEmails(state),
+  mobiles: selectMobiles(state),
 })
 
 export default connect(mapStateToProps)(SettingsPage)

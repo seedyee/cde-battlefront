@@ -17,25 +17,25 @@ class Mobiles extends Component {
   getIcon = (name) => <Glyphicon glyph={name} className={Styles.icon} />
 
   isVerified = (s) => (
-    s === 1 ? <Label bsStyle="success">Verified</Label> : <Label bsStyle="warning">Unverified</Label>
+    s === true ? <Label bsStyle="success">Verified</Label> : <Label bsStyle="warning">Unverified</Label>
   )
 
   isDefault = (s) => (
-    s === 1 ? <Label bsStyle="success">Primary</Label> : ''
+    s === true ? <Label bsStyle="success">Primary</Label> : ''
   )
 
   isPublic = (s) => (
-    s === 1 ? <Label bsStyle="success">Public</Label> : <Label bsStyle="default">Private</Label>
+    s === true ? <Label bsStyle="success">Public</Label> : <Label bsStyle="default">Private</Label>
   )
 
   render() {
-    const { ...mobiles } = this.props.user
+    const { ...mobiles } = this.props.mobiles
     return (
       <div className={Styles.Mobiles}>
-        <h3>查看手机{console.log(JSON.stringify(mobiles, null, 2))}</h3>
+        <h3>查看手机</h3>
         <div className={Styles.mobilesTable}>
           <table>
-            {this.getMobiles(mobiles)}
+            <tbody>{this.getMobiles(mobiles)}</tbody>
           </table>
         </div>
         <MobileForm />

@@ -13,6 +13,24 @@ const user = (state = {}, action) => {
   }
 }
 
+const emails = (state = {}, action) => {
+  switch (action.type) {
+    case userActions.loadEmailsActions.SUCCESS:
+      return action.payload
+    default:
+      return state
+  }
+}
+
+const mobiles = (state = {}, action) => {
+  switch (action.type) {
+    case userActions.loadMobilesActions.SUCCESS:
+      return action.payload
+    default:
+      return state
+  }
+}
+
 const password = (state = {}, action) => {
   switch (action.type) {
     case userActions.updatePasswordActions.SUCCESS:
@@ -42,6 +60,8 @@ const mobile = (state = {}, action) => {
 
 export default combineReducers({
   user,
+  emails,
+  mobiles,
   password,
   email,
   mobile,

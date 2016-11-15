@@ -2,7 +2,7 @@ import { take, put, call, fork, select } from 'redux-saga/effects'
 
 import * as api from '../api'
 import { selectUser } from './selectors'
-import { loadUserActions, updateUserActions, updatePasswordActions, addEmailActions, updateMobileActions } from './actions'
+import { loadUserActions, updateUserActions, updatePasswordActions, addEmailActions, updateMobileActions, loadEmailsActions, loadMobilesActions } from './actions'
 import { isEmptyObj } from '../utils'
 
 // We are using SSR(server-side-rendering), if everything goes well we should have users in our
@@ -19,6 +19,33 @@ function* loadUser() {
     yield put(loadUserActions.success(response))
   } catch (e) {
     yield put(loadUserActions.failure(e))
+  }
+}
+
+function* loadEmails() {
+  const user = yield select(selectUser)
+  // If user is not empty
+  if (!isEmptyObj(user)) return
+  yield put(loadEmailsActions.request())
+  try {
+    const response = yield call(api.loadEmails, 'fakeId')
+    console.log(response)
+    yield put(loadEmailsActions.success(response))
+  } catch (e) {
+    yield put(loadEmailsActions.failure(e))
+  }
+}
+
+function* loadMobiles() {
+  const user = yield select(selectUser)
+  // If user is not empty
+  if (!isEmptyObj(user)) return
+  yield put(loadMobilesActions.request())
+  try {
+    const response = yield call(api.loadMobiles, 'fakeId')
+    yield put(loadMobilesActions.success(response))
+  } catch (e) {
+    yield put(loadMobilesActions.failure(e))
   }
 }
 
@@ -102,6 +129,8 @@ function* addMobile() {
 export default function* settingsSaga() {
   yield [
     fork(loadUser),
+    fork(loadEmails),
+    fork(loadMobiles),
     fork(updateUser),
     fork(updatePassword),
     fork(addEmail),

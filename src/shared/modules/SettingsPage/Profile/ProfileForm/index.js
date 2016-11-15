@@ -1,28 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
 import Styles from './index.css'
 import FormInputField from '../../../FormInputField'
 import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
 import { Button } from 'react-bootstrap'
 
 class ProfileForm extends Component {
-  constructor() {
-    super()
-    this.state = {
-      redirectTo: null,
-    }
-  }
-
-  redirectTo = () => {
-    this.setState({ redirectTo: '/settings/profile' })
-  }
-
   render() {
-    const { redirectTo } = this.state
     const { handleSubmit, pristine, submitting } = this.props
-    if (redirectTo) return <Redirect to={redirectTo} />
     return (
       <form onSubmit={handleSubmit} className={Styles.RegisterForm}>
         <Field
@@ -31,7 +17,7 @@ class ProfileForm extends Component {
           type="text"
           id="username"
           component={FormInputField}
-          label="用户名"
+          label="姓名"
         />
         <Field
           styles={{ input: Styles.input }}
@@ -64,6 +50,15 @@ class ProfileForm extends Component {
           id="companyAddress"
           component={FormInputField}
           label="公司地址"
+        />
+        <Field
+          styles={{ input: Styles.textarea }}
+          name="personal"
+          type="text"
+          id="personal"
+          component={FormInputField}
+          label="个人简介"
+          textarea="true"
         />
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更&nbsp;&nbsp;新</Button>
       </form>
