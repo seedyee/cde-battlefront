@@ -3,3 +3,16 @@ $site-content-width: 1000px;
 
 $nav-height: 49px;
 $primary: red;
+
+
+
+$settings-content-width: 750px;
+$content-padding-left: 10px;
+
+
+$letter-spacing: 0.8px;
+$border-style: 1px solid #d8d8d8;
+$box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+$border-radius_3px: 3px;
+$normal-color: #212121;
+$normal-font-size: 14px;

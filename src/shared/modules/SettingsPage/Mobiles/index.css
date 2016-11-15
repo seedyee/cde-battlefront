@@ -1,21 +1,9 @@
-.Mobiles {
-  width: 750px;
-  color: #333;
-  padding-bottom: 8px;
-  border: 1px solid #d8d8d8;
-  border-radius: 3px;
-  h3 {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 17px;
-    letter-spacing: 1px;
-    margin: 0;
-    padding: 9px 10px 10px;
-    background: #f5f5f5;
-    border-bottom: 1px solid #d8d8d8;
-  }
-}
+@import '../../styles/variables.css';
+@import '../../styles/content-title.css';
 
+.Mobiles {
+  @include content-title();
+}
 
 .mark {
   margin-right: 10px;

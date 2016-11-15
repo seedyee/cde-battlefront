@@ -21,7 +21,7 @@ class Mobiles extends Component {
   )
 
   isDefault = (s) => (
-    s === 1 ? <Label bsStyle="success" className={Styles.mark}>Primary</Label> : ''
+    s === 1 ? <Label bsStyle="success">Primary</Label> : ''
   )
 
   isPublic = (s) => (

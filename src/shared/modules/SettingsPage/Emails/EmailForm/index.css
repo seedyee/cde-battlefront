@@ -1,38 +1,11 @@
+@import '../../../styles/variables.css';
+@import '../../../styles/input.css';
+@import '../../../styles/submitBtn.css';
+
 .EmailForm {
-  letter-spacing: 0.8px;
-  padding-left: 10px;
+  letter-spacing: $letter-spacing;
+  padding-left: $content-padding-left;
 
-  width: 100%;
-  padding-bottom: 8px;
-  border-top: 1px solid #d8d8d8;
-  border-radius: 3px 3px 0 0;
-}
-
-.input {
-  width: 440px;
-  font-size: 14px;
-  color: #333;
-  background-color: #fafafa;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
-  &:hover {
-    border: 1px solid #ccc;
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
-  }
-  &:focus {
-    background: #fff;
-  }
-}
-
-.submitBtn {
-  width: 120px;
-  color: #fff;
-  font-weight: 600;
-  background: linear-gradient(#91dd70, #55ae2e);
-  text-shadow: 0 -1px 0 rgba(0,0,0,0.15);
-  &:hover {
-    background: #55ae2e;
-  }
+  border-top: $border-style;
 }
 

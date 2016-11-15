@@ -1,28 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router'
 import Styles from './index.css'
 import FormInputField from '../../../FormInputField'
 import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
 import { Button } from 'react-bootstrap'
 
 class MobileForm extends Component {
-  constructor() {
-    super()
-    this.state = {
-      redirectTo: null,
-    }
-  }
-
-  redirectTo = () => {
-    this.setState({ redirectTo: '/settings/profile' })
-  }
-
   render() {
-    const { redirectTo } = this.state
     const { handleSubmit, pristine, submitting } = this.props
-    if (redirectTo) return <Redirect to={redirectTo} />
     return (
       <form onSubmit={handleSubmit} className={Styles.MobileForm}>
         <Field
@@ -33,7 +19,7 @@ class MobileForm extends Component {
           component={FormInputField}
           label="添加手机"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添加</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添&nbsp;加</Button>
       </form>
     )
   }

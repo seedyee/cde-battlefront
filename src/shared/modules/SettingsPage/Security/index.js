@@ -2,13 +2,6 @@ import React, { Component } from 'react'
 import Styles from './index.css'
 
 class Security extends Component {
-  constructor() {
-    super()
-    this.state = {
-      redirectTo: null,
-    }
-  }
-
   render() {
     return (
       <div className={Styles.Security}>

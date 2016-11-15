@@ -1,0 +1,18 @@
+@import './variables.css';
+
+.input {
+  width: 440px;
+  font-size: $normal-font-size;
+  color: $normal-color;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: $border-radius_3px;
+  box-shadow: $box-shadow;
+  &:hover {
+    border: 1px solid #ccc;
+    box-shadow: $box-shadow;
+  }
+  &:focus {
+    background: #fff;
+  }
+}

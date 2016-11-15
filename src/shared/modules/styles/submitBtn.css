@@ -1,0 +1,10 @@
+.submitBtn {
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 40px;
+  background: linear-gradient(#91dd70, #55ae2e);
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.15);
+  &:hover {
+    background: #55ae2e;
+  }
+}
