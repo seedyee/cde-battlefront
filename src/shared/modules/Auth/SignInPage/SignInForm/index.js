@@ -28,6 +28,7 @@ class SignInForm extends Component {
     return (
       <form onSubmit={handleSubmit} className={Styles.signInForm}>
         <Field
+          styles={{ input: Styles.input }}
           name="email"
           labelFor="email"
           id="email"
@@ -36,6 +37,7 @@ class SignInForm extends Component {
           type="email"
         />
         <Field
+          styles={{ input: Styles.input }}
           name="password"
           id="password"
           labelFor="password"
@@ -45,7 +47,10 @@ class SignInForm extends Component {
           forgetPassword="忘记密码 ?"
         />
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>登 录</Button>
-        <button className={Styles.signUp} disabled={submitting} type="button" onClick={this.redirectTo}>注 册</button>
+        <p className={Styles.signIn}>
+          无账号 ?
+          <button disabled={submitting} type="button" onClick={this.redirectTo}>注 册</button>
+        </p>
       </form>
     )
   }

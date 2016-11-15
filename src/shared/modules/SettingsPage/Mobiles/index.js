@@ -2,14 +2,31 @@ import React, { Component } from 'react'
 import Styles from './index.css'
 import MobileForm from './MobileForm/index'
 
+import { Label, Glyphicon } from 'react-bootstrap'
+
 class Mobiles extends Component {
   getMobiles = (mobiles) => Object.values(mobiles).map(mobile => (
     <tr key={mobile.id}>
       <th>{mobile.mobile}</th>
-      <th>{mobile.isVerified}</th>
-      <th>{`${mobile.isDefault}_${mobile.isPublic}`}</th>
+      <th>{this.isVerified(mobile.isVerified)}</th>
+      <th>{this.isDefault(mobile.isDefault)} {this.isPublic(mobile.isPublic)}</th>
+      <th>{this.getIcon('trash')}</th>
     </tr>
   ))
+
+  getIcon = (name) => <Glyphicon glyph={name} className={Styles.icon} />
+
+  isVerified = (s) => (
+    s === 1 ? <Label bsStyle="success">Verified</Label> : <Label bsStyle="warning">Unverified</Label>
+  )
+
+  isDefault = (s) => (
+    s === 1 ? <Label bsStyle="success" className={Styles.mark}>Primary</Label> : ''
+  )
+
+  isPublic = (s) => (
+    s === 1 ? <Label bsStyle="success">Public</Label> : <Label bsStyle="default">Private</Label>
+  )
 
   render() {
     const { ...mobiles } = this.props.user
@@ -18,16 +35,7 @@ class Mobiles extends Component {
         <h3>查看手机{console.log(JSON.stringify(mobiles, null, 2))}</h3>
         <div className={Styles.mobilesTable}>
           <table>
-            <thead>
-              <tr>
-                <th>手机</th>
-                <th>状态</th>
-                <th>标识</th>
-              </tr>
-            </thead>
-            <tbody>
-              { this.getMobiles(mobiles) }
-            </tbody>
+            {this.getMobiles(mobiles)}
           </table>
         </div>
         <MobileForm />

@@ -26,9 +26,24 @@ const find = (arr, predcateField, prop) => {
 }
 
 class SettingsPage extends React.Component {
+
+  constructor() {
+    super()
+    this.state = {
+      activeKey: '',
+    }
+  }
+
+  setActiveNav = (activeKey) => () => {
+    this.setState({ activeKey })
+  }
+
   getSidebarItems = () => Object.keys(fields).map(key => (
-    <li key={key}> <Link to={`${pathPrefix}${key}`}>{fields[key]}</Link> </li>
+    <li key={key} onClick={this.setActiveNav(key)} className={this.state.activeKey === key ? Styles.activeNav : ''}>
+      <Link to={`${pathPrefix}${key}`}>{fields[key]}</Link>
+    </li>
   ))
+
   getCountent = () => {
     const user = this.props.user
     const { basicInformation, emails = [], mobiles = [] } = user

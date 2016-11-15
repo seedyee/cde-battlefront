@@ -29,6 +29,7 @@ class RegisterForm extends Component {
       <form onSubmit={handleSubmit} className={Styles.signUpForm}>
         <h2> 开发平台 | 注册 </h2>
         <Field
+          styles={{ input: Styles.input }}
           name="email"
           type="email"
           id="email"
@@ -36,6 +37,7 @@ class RegisterForm extends Component {
           label="邮箱 / 手机"
         />
         <Field
+          styles={{ input: Styles.input }}
           name="username"
           type="text"
           id="username"
@@ -43,6 +45,7 @@ class RegisterForm extends Component {
           label="用户名"
         />
         <Field
+          styles={{ input: Styles.input }}
           name="password"
           id="password"
           component={FormInputField}
@@ -50,7 +53,7 @@ class RegisterForm extends Component {
           type="password"
         />
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>注&nbsp;&nbsp;册</Button>
-        <p className={Styles.signIn}>
+        <p className={Styles.signUp}>
           已注册 ?
           <button type="button" disabled={submitting} onClick={this.redirectTo}>登&nbsp;录</button>
         </p>

@@ -41,7 +41,7 @@ class ProfilePage extends React.Component {
           <Button bsStyle="default" className={Styles.profileEditBtn} type="button" onClick={this.redirectTo}>账户设置</Button>
         </div>
         <div className={Styles.userContent}>
-        userContent
+
         </div>
       </div>
     )

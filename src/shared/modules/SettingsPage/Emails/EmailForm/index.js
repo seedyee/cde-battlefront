@@ -31,9 +31,9 @@ class EmailForm extends Component {
           type="text"
           id="email"
           component={FormInputField}
-          label="邮箱地址"
+          label="添加邮箱"
         />
-        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添加邮箱</Button>
+        <Button bsStyle="default" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添加</Button>
       </form>
     )
   }

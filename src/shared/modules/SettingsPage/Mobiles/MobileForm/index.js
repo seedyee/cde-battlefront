@@ -31,9 +31,9 @@ class MobileForm extends Component {
           type="text"
           id="mobile"
           component={FormInputField}
-          label="手机号码"
+          label="添加手机"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添加手机</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添加</Button>
       </form>
     )
   }
