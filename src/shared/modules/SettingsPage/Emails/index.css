@@ -8,20 +8,39 @@
 table {
   width: 100%;
   color: #666;
-  font-weight: normal !important;
-  margin: 30px 0 30px 0;
+  margin: 20px 0 40px 0;
   text-indent: 10px;
   tr {
-    letter-spacing: $letter-spacing;
     border-bottom: $border-style;
     th {
       height: 38px;
+      &:nth-child(1) {
+        width: 160px;
+      }
+      &:nth-child(2) {
+        width: 160px;
+      }
     }
   }
 }
 
+.th1 {
+  font-weight: normal;
+  letter-spacing: $letter-spacing;
+}
+
+.th4 {
+  text-align: right;
+}
+
+.th5 {
+  width: 20px;
+  text-align: right;
+}
+
 .icon {
   color: #B71C1C;
+  margin-right: 15px;
   &:hover {
     cursor: pointer;
   }

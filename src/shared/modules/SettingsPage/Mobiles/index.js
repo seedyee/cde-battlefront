@@ -2,31 +2,36 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Styles from './index.css'
 import MobileForm from './MobileForm/index'
-import { Label, Glyphicon } from 'react-bootstrap'
+import { Label, Glyphicon, Button } from 'react-bootstrap'
 import { deleteMobileActions } from '../actions'
 
 class Mobiles extends Component {
   getMobiles = (mobiles) => Object.values(mobiles).map(mobile => (
     <tr key={mobile.id}>
-      <th>{mobile.mobile}</th>
-      <th>{this.isVerified(mobile.isVerified)}</th>
+      <th className={Styles.th1}>{mobile.mobile}</th>
       <th>{this.isDefault(mobile.isDefault)} {this.isPublic(mobile.isPublic)}</th>
-      <th>{this.getIcon('trash')}</th>
+      <th>{this.isVerified(mobile.isVerified)}</th>
+      <th className={Styles.th4}>{this.showBtn(mobile.isVerified)}</th>
+      <th className={Styles.th5}>{this.getIcon('trash')}</th>
     </tr>
   ))
 
   getIcon = (name) => <Glyphicon glyph={name} className={Styles.icon} onClick={this.props.deleteMobile} />
 
   isVerified = (s) => (
-    s === true ? <Label bsStyle="success">Verified</Label> : <Label bsStyle="warning">Unverified</Label>
+    s === true ? <Label bsStyle="success">已认证</Label> : <Label bsStyle="warning">未认证</Label>
   )
 
   isDefault = (s) => (
-    s === true ? <Label bsStyle="success">Primary</Label> : ''
+    s === true ? <Label bsStyle="success">默认</Label> : ''
   )
 
   isPublic = (s) => (
-    s === true ? <Label bsStyle="success">Public</Label> : <Label bsStyle="default">Private</Label>
+    s === true ? <Label bsStyle="success">公开</Label> : <Label bsStyle="default">私有</Label>
+  )
+
+  showBtn = (s) => (
+    s === true ? '' : <Button bsStyle="link">认证电话</Button>
   )
 
   render() {

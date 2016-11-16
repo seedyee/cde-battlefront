@@ -51,16 +51,14 @@ $logo-width: 29px;
   display: flex;
   justify-content: space-between;
   line-height: $nav-height;
-  >li {
+}
 
-  }
-  .signIn {
-    a {
-      color: #666;
-      text-decoration: none;
-      &:hover {
-        color: #333;
-      }
+.signIn {
+  a {
+    color: #666;
+    text-decoration: none;
+    &:hover {
+      color: #333;
     }
   }
 }

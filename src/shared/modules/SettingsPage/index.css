@@ -31,6 +31,7 @@
       margin: 0;
       padding: 9px 10px 10px;
       background: #f5f5f5;
+      border-bottom: $border-style;
     }
     a {
       display: block;
@@ -53,6 +54,7 @@
   font-weight: bold;
   text-decoration: none;
   border-left: 2px solid #D32F2F;
+  background: #f5f5f5;
   a {
     color: black !important;
     font-weight: bold;
