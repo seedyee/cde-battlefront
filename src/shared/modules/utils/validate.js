@@ -14,25 +14,25 @@ const validate = ({ register } = { register: false }) => values => {
   const mobile = values.mobile
 
   if (!email) {
-    errors.email = 'Required'
+    errors.email = '必填 !'
   } else if (!validators.email.test(email)) {
-    errors.email = 'Invalid email address'
+    errors.email = '不是有效邮箱 ！'
   }
 
   if (!password) {
-    errors.password = 'Required'
+    errors.password = '必填 !'
   } else if (!validators.password.test(password)) {
-    errors.password = 'Minimum 8 characters at least 1 Alphabet and 1 Number'
+    errors.password = '最少8个字符且至少包括1个字母和1个数字 !'
   }
 
   if (register && !username) {
-    errors.username = 'Required'
+    errors.username = '必填 !'
   }
 
   if (!mobile) {
-    errors.mobile = 'Required'
+    errors.mobile = '必填 !'
   } else if (!validators.mobile.test(mobile)) {
-    errors.mobile = 'Invalid mobile!  The valid number include 11 numbers that starts with one'
+    errors.mobile = '不是有效手机 !'
   }
   return errors
 }

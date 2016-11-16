@@ -17,9 +17,19 @@ input {
 }
 
 .forgetPassword {
-  color: blue;
+  color: #666;
 }
 
 .error {
-  color: red;
+  color: #B71C1C;
+
+}
+
+.alertMessage {
+  padding-left: 4px;
+  margin-top: 5px;
+}
+
+.alertIcon {
+  margin-right: 5px;
 }

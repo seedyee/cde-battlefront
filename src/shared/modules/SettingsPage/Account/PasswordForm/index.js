@@ -8,7 +8,7 @@ import { Button } from 'react-bootstrap'
 
 class PasswordForm extends Component {
   render() {
-    const { handleSubmit, pristine, submitting } = this.props
+    const { handleSubmit, submitting } = this.props
     return (
       <form onSubmit={handleSubmit} className={Styles.PasswordForm}>
         <Field
@@ -35,7 +35,7 @@ class PasswordForm extends Component {
           component={FormInputField}
           label="确认密码"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更新密码</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={submitting}>更新密码</Button>
       </form>
     )
   }
@@ -44,7 +44,6 @@ class PasswordForm extends Component {
 PasswordForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
-  pristine: PropTypes.bool.isRequired,
 }
 
 import validate from '../../../utils/validate'

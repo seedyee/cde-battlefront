@@ -21,7 +21,7 @@ class SignInForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitting, pristine, logined } = this.props
+    const { handleSubmit, submitting, logined } = this.props
     const { redirectTo } = this.state
     if (logined) return <Redirect to="/dashboard" />
     if (redirectTo) return <Redirect to={redirectTo} />
@@ -46,10 +46,10 @@ class SignInForm extends Component {
           type="password"
           forgetPassword="忘记密码 ?"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>登 录</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={submitting}>登 录</Button>
         <p className={Styles.signIn}>
           无账号 ?
-          <button disabled={submitting} type="button" onClick={this.redirectTo}>注 册</button>
+          <button className={Styles.regBtn} disabled={submitting} type="button" onClick={this.redirectTo}>注 册</button>
         </p>
       </form>
     )
@@ -59,7 +59,6 @@ class SignInForm extends Component {
 SignInForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
-  pristine: PropTypes.bool.isRequired,
   logined: PropTypes.bool.isRequired,
 }
 

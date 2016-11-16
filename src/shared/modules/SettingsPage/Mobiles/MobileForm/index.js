@@ -8,7 +8,7 @@ import { Button } from 'react-bootstrap'
 
 class MobileForm extends Component {
   render() {
-    const { handleSubmit, pristine, submitting } = this.props
+    const { handleSubmit, submitting } = this.props
     return (
       <form onSubmit={handleSubmit} className={Styles.MobileForm}>
         <Field
@@ -19,7 +19,7 @@ class MobileForm extends Component {
           component={FormInputField}
           label="添加手机"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添&nbsp;加</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={submitting}>添&nbsp;加</Button>
       </form>
     )
   }
@@ -28,7 +28,6 @@ class MobileForm extends Component {
 MobileForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
-  pristine: PropTypes.bool.isRequired,
 }
 
 import validate from '../../../utils/validate'
