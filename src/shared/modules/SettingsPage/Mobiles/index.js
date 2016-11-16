@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Styles from './index.css'
 import MobileForm from './MobileForm/index'
-
 import { Label, Glyphicon } from 'react-bootstrap'
+import { deleteMobileActions } from '../actions'
 
 class Mobiles extends Component {
   getMobiles = (mobiles) => Object.values(mobiles).map(mobile => (
@@ -14,7 +15,7 @@ class Mobiles extends Component {
     </tr>
   ))
 
-  getIcon = (name) => <Glyphicon glyph={name} className={Styles.icon} />
+  getIcon = (name) => <Glyphicon glyph={name} className={Styles.icon} onClick={this.props.deleteMobile} />
 
   isVerified = (s) => (
     s === true ? <Label bsStyle="success">Verified</Label> : <Label bsStyle="warning">Unverified</Label>
@@ -44,5 +45,5 @@ class Mobiles extends Component {
   }
 }
 
-export default Mobiles
+export default connect(null, { deleteMobile: deleteMobileActions.request })(Mobiles)
 

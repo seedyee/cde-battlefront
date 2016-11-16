@@ -2,7 +2,7 @@ import { take, put, call, fork, select } from 'redux-saga/effects'
 
 import * as api from '../api'
 import { selectUser } from './selectors'
-import { loadUserActions, updateUserActions, updatePasswordActions, addEmailActions, updateMobileActions, loadEmailsActions, loadMobilesActions } from './actions'
+import { loadUserActions, loadEmailsActions, loadMobilesActions, updateUserActions, updatePasswordActions, addEmailActions, addMobileActions, deleteEmailActions, deleteMobileActions } from './actions'
 import { isEmptyObj } from '../utils'
 
 // We are using SSR(server-side-rendering), if everything goes well we should have users in our
@@ -108,23 +108,60 @@ function* addEmail() {
 
 function* addMobile() {
   while (true) {
-    const { payload } = yield take(updateMobileActions.REQUEST)
+    const { payload } = yield take(addMobileActions.REQUEST)
     try {
       const { error, ...rest } = yield call(api.addMobile, payload)
       if (error) {
-        yield put(updateMobileActions.failure(error.text))
+        yield put(addMobileActions.failure(error.text))
         alert(error.text)
       } else {
-        yield put(updateMobileActions.success(rest))
+        yield put(addMobileActions.success(rest))
         alert('手机添加成功 !')
       }
     } catch (e) {
-      yield put(updateMobileActions.failure(e))
+      yield put(addMobileActions.failure(e))
       alert(e)
     }
   }
 }
 
+function* deleteEmail() {
+  while (true) {
+    const { payload } = yield take(deleteEmailActions.REQUEST)
+    try {
+      const { error, ...rest } = yield call(api.addMobile, payload)
+      if (error) {
+        yield put(deleteEmailActions.failure(error.text))
+        alert(error.text)
+      } else {
+        yield put(deleteEmailActions.success(rest))
+        alert('邮箱删除成功 !')
+      }
+    } catch (e) {
+      yield put(deleteEmailActions.failure(e))
+      alert(e)
+    }
+  }
+}
+
+function* deleteMobile() {
+  while (true) {
+    const { payload } = yield take(deleteMobileActions.REQUEST)
+    try {
+      const { error, ...rest } = yield call(api.addMobile, payload)
+      if (error) {
+        yield put(deleteMobileActions.failure(error.text))
+        alert(error.text)
+      } else {
+        yield put(deleteMobileActions.success(rest))
+        alert('手机删除成功 !')
+      }
+    } catch (e) {
+      yield put(deleteMobileActions.failure(e))
+      alert(e)
+    }
+  }
+}
 
 export default function* settingsSaga() {
   yield [
@@ -135,5 +172,7 @@ export default function* settingsSaga() {
     fork(updatePassword),
     fork(addEmail),
     fork(addMobile),
+    fork(deleteEmail),
+    fork(deleteMobile),
   ]
 }

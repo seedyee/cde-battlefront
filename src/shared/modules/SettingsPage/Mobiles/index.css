@@ -7,4 +7,7 @@
 
 .icon {
   color: #B71C1C;
+  &:hover {
+    cursor: pointer;
+  }
 }

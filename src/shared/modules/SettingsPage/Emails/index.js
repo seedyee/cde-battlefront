@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Styles from './index.css'
 import EmailForm from './EmailForm/index'
-
 import { Label, Glyphicon } from 'react-bootstrap'
+import { deleteEmailActions } from '../actions'
 
 class Emails extends Component {
   getEmails = (emails) => Object.values(emails).map(email => (
@@ -14,7 +15,7 @@ class Emails extends Component {
     </tr>
   ))
 
-  getIcon = (name) => <Glyphicon glyph={name} className={Styles.icon} />
+  getIcon = (name) => <Glyphicon glyph={name} className={Styles.icon} onClick={this.props.deleteEmail} />
 
   isVerified = (s) => (
     s === true ? <Label bsStyle="success">Verified</Label> : <Label bsStyle="warning">Unverified</Label>
@@ -32,7 +33,7 @@ class Emails extends Component {
     const { ...emails } = this.props.emails
     return (
       <div className={Styles.Emails}>
-        <h3>查看邮箱</h3>
+        <h3>查看邮箱{console.log(this.props.deleteEmail)}</h3>
         <div className={Styles.emailTable}>
           <table>
             <tbody>{this.getEmails(emails)}</tbody>
@@ -44,5 +45,4 @@ class Emails extends Component {
   }
 }
 
-export default Emails
-
+export default connect(null, { deleteEmail: deleteEmailActions.request })(Emails)

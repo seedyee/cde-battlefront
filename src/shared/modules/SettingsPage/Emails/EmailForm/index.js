@@ -40,11 +40,5 @@ const comp = reduxForm({
   onSubmit: onSubmitActions(addEmailActions),
 })(EmailForm)
 
-const initialValues = {}
-
-const mapStateToProps = () => ({
-  initialValues,
-})
-
-export default connect(mapStateToProps)(comp)
+export default connect()(comp)
 

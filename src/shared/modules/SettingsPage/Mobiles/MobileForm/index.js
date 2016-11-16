@@ -32,19 +32,13 @@ MobileForm.propTypes = {
 }
 
 import validate from '../../../utils/validate'
-import { updateMobileActions } from '../../actions'
+import { addMobileActions } from '../../actions'
 
 const comp = reduxForm({
   form: 'mobileForm',
   validate: validate({ register: true }),
-  onSubmit: onSubmitActions(updateMobileActions),
+  onSubmit: onSubmitActions(addMobileActions),
 })(MobileForm)
 
-const initialValues = {}
-
-const mapStateToProps = () => ({
-  initialValues,
-})
-
-export default connect(mapStateToProps)(comp)
+export default connect()(comp)
 
