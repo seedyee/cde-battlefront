@@ -23,7 +23,7 @@ export function* loginFlow() {
         alert(error.text)
       } else {
         yield put(loginActions.success(rest))
-        alert('login success !')
+        alert('登录成功 !')
       }
     } catch (e) {
       yield put(loginActions.failure(e))
@@ -59,7 +59,7 @@ export function* registerFlow() {
         alert(error.text)
       } else {
         yield put(registerActions.success(rest))
-        alert('register sucess !')
+        alert('注册成功 !')
       }
     } catch (e) {
       yield put(registerActions.failure(e))

@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Styles from './index.css'
 import { logoutActions } from '../Auth/actions'
-import { selectLogined } from '../Auth/selectors'
+import { selectLogined, selectUser } from '../Auth/selectors'
 import { Link } from 'react-router'
 import withRouter from '../utils/withRouter'
 import logo from './logo.png'
@@ -19,14 +19,14 @@ class Nav extends React.Component {
   }
 
   getDropdown = () => {
-    const { logined, logoutRequest } = this.props
+    const { user, logined, logoutRequest } = this.props
     /* if (!logined) return null*/
     return (
       <NavDropdown className={Styles.navItems} pullRight onSelect={this.onSelected} title={this.getIcon('user')} id="user">
         <MenuItem eventKey="/profile">基本信息</MenuItem>
         <MenuItem divider />
         <MenuItem eventKey="/settings/profile">设 置</MenuItem>
-        {logined ? <MenuItem eventKey="/" onClick={() => logoutRequest()}> 注 销 </MenuItem> : ''}
+        {logined ? <MenuItem eventKey="/" onClick={() => logoutRequest(user.id)}> 注 销 </MenuItem> : ''}
       </NavDropdown>
     )
   }
@@ -63,6 +63,7 @@ Nav.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
+  user: selectUser(state),
   logined: selectLogined(state),
 })
 

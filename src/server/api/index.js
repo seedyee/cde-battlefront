@@ -3,16 +3,18 @@ import express from 'express'
 const router = express.Router() // eslint-disable-line new-cap
 
 const users = [
-  { username: 'seedyee', email: 'seedyee@mail.com', password: 'aaaaaaa1' },
-  { username: 'jundo', email: 'jundo@mail.com', password: 'aaaaaaa1' },
+  { id: '7dg0te6o9bylvxu9bmzt98jjor', username: 'seedyee', email: 'seedyee@mail.com', password: 'aaaaaaa1' },
+  { id: '9c2lz3zlxses168th4goav2t9', username: 'jundo', email: 'jundo@mail.com', password: 'aaaaaaa1' },
 ]
+
+const id = Math.random().toString(36).substr(2);
 
 router.post('/login', (req, res) => {
   const { principal, password } = req.body
   if (!(users.some(user => user.username === principal) || users.some(user => user.email === principal))) {
-    res.json({ error: { text: `${principal} doesn't exisit !` } })
+    res.json({ error: { text: `${principal} 不存在 !` } })
   } else if (!users.some(user => user.password === password)) {
-    res.json({ error: { text: 'Password incorrect' } })
+    res.json({ error: { text: '密码错误 !' } })
   } else {
     const currentUser = users.find(user => user.email === principal)
     res.json(currentUser)
@@ -22,10 +24,10 @@ router.post('/login', (req, res) => {
 router.post('/register', (req, res) => {
   const { email, username, password } = req.body
   if (users.some(user => user.email === email)) {
-    res.json({ error: { text: `${email} already exisits !` } })
+    res.json({ error: { text: `${email} 已存在 !` } })
   } else {
-    users.push({ username, email, password })
-    res.json({ username, email })
+    users.push({ id, username, email, password })
+    res.json({ id, username, email })
   }
 })
 
