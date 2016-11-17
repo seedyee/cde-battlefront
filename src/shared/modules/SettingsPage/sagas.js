@@ -29,7 +29,6 @@ function* loadEmails() {
   yield put(loadEmailsActions.request())
   try {
     const response = yield call(api.loadEmails, 'fakeId')
-    console.log(response)
     yield put(loadEmailsActions.success(response))
   } catch (e) {
     yield put(loadEmailsActions.failure(e))

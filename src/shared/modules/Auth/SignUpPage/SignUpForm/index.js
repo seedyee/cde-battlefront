@@ -34,7 +34,7 @@ class RegisterForm extends Component {
           type="email"
           id="email"
           component={FormInputField}
-          label="邮箱 / 手机"
+          label="邮 箱"
         />
         <Field
           styles={{ input: Styles.input }}

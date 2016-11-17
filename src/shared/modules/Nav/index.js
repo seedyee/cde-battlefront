@@ -26,9 +26,7 @@ class Nav extends React.Component {
         <MenuItem eventKey="/profile">基本信息</MenuItem>
         <MenuItem divider />
         <MenuItem eventKey="/settings/profile">设 置</MenuItem>
-        <MenuItem>
-          {logined ? <p onClick={() => logoutRequest()}> 注 销 </p> : ''}
-        </MenuItem>
+        {logined ? <MenuItem eventKey="/" onClick={() => logoutRequest()}> 注 销 </MenuItem> : ''}
       </NavDropdown>
     )
   }
@@ -51,7 +49,7 @@ class Nav extends React.Component {
           </ul>
           <ul className={Styles.signsNav}>
             {logined ? '' : <li className={Styles.signIn}><Link to="/signIn">{this.getIcon('log-in')}&nbsp;登录</Link></li>}
-            {this.getDropdown()}
+            {logined ? this.getDropdown() : ''}
           </ul>
         </div>
       </div>

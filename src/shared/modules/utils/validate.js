@@ -8,11 +8,16 @@ const validators = {
 
 const validate = ({ register } = { register: false }) => values => {
   const errors = {}
+  const principal = values.principal
   const email = values.email
   const password = values.password
   const username = values.username
   const realName = values.realName
   const mobile = values.mobile
+
+  if (!principal) {
+    errors.principal = '必填 !'
+  }
 
   if (!email) {
     errors.email = '必填 !'

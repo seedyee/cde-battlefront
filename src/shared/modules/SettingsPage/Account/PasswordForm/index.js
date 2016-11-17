@@ -17,7 +17,7 @@ class PasswordForm extends Component {
           type="text"
           id="password"
           component={FormInputField}
-          label="当前密码"
+          label="原密码"
         />
         <Field
           styles={{ input: Styles.input }}

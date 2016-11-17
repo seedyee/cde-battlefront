@@ -29,12 +29,12 @@ class SignInForm extends Component {
       <form onSubmit={handleSubmit} className={Styles.signInForm}>
         <Field
           styles={{ input: Styles.input }}
-          name="email"
-          labelFor="email"
-          id="email"
+          name="principal"
+          labelFor="principal"
+          id="principal"
           component={FormInputField}
-          label="邮箱 / 手机"
-          type="email"
+          label="用户名 / 邮箱"
+          type="text"
         />
         <Field
           styles={{ input: Styles.input }}

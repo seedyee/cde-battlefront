@@ -2,29 +2,30 @@ import express from 'express'
 
 const router = express.Router() // eslint-disable-line new-cap
 
-const emailMap = {
-  'seedyee@mail.com': 'aaaaaaa1',
-  'jundo@mail.com': 'aaaaaaa1',
-}
+const users = [
+  { username: 'seedyee', email: 'seedyee@mail.com', password: 'aaaaaaa1' },
+  { username: 'jundo', email: 'jundo@mail.com', password: 'aaaaaaa1' },
+]
 
 router.post('/login', (req, res) => {
-  const { email, password } = req.body
-  if (!emailMap[email]) {
-    res.json({ error: { text: `${email} doesn't exisit !` } })
-  } else if (emailMap[email] !== password) {
-    res.json({ error: { text: 'password incorrect' } })
+  const { principal, password } = req.body
+  if (!(users.some(user => user.username === principal) || users.some(user => user.email === principal))) {
+    res.json({ error: { text: `${principal} doesn't exisit !` } })
+  } else if (!users.some(user => user.password === password)) {
+    res.json({ error: { text: 'Password incorrect' } })
   } else {
-    res.json({ email })
+    const currentUser = users.find(user => user.email === principal)
+    res.json(currentUser)
   }
 })
 
 router.post('/register', (req, res) => {
-  const { email, password } = req.body
-  if (emailMap[email]) {
+  const { email, username, password } = req.body
+  if (users.some(user => user.email === email)) {
     res.json({ error: { text: `${email} already exisits !` } })
   } else {
-    emailMap[email] = password
-    res.json({ email })
+    users.push({ username, email, password })
+    res.json({ username, email })
   }
 })
 
