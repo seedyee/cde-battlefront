@@ -7,7 +7,7 @@ const validate = () => values => {
   const email = values.email
 
   if (email && !validators.email.test(email)) {
-    errors.email = '不是有效邮箱 !'
+    errors.email = '请输入正确格式的邮箱地址 !'
   }
 
   return errors

@@ -16,33 +16,33 @@ const validate = ({ register } = { register: false }) => values => {
   const mobile = values.mobile
 
   if (!principal) {
-    errors.principal = '必填 !'
+    errors.principal = '请输入您的用户名或邮箱 !'
   }
 
   if (!email) {
-    errors.email = '必填 !'
+    errors.email = '请输入您的邮箱 !'
   } else if (!validators.email.test(email)) {
-    errors.email = '不是有效邮箱 ！'
+    errors.email = '请输入正确格式的邮箱地址 !'
   }
 
   if (!password) {
-    errors.password = '必填 !'
+    errors.password = '请输入您的密码 !'
   } else if (!validators.password.test(password)) {
-    errors.password = '最少8个字符且至少包括1个字母和1个数字 !'
+    errors.password = '密码有效长度为8位以上，且至少包括1个字母和1个数字 !'
   }
 
   if (register && !username) {
-    errors.username = '必填 !'
+    errors.username = '请输入您的用户名 !'
   }
 
   if (register && !realName) {
-    errors.realName = '必填 !'
+    errors.realName = '请输入您的真实姓名 !'
   }
 
   if (!mobile) {
-    errors.mobile = '必填 !'
+    errors.mobile = '请输入您的手机号码 !'
   } else if (!validators.mobile.test(mobile)) {
-    errors.mobile = '不是有效手机 !'
+    errors.mobile = '请输入有效11位手机号码 !'
   }
 
   return errors

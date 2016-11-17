@@ -8,7 +8,7 @@ const validate = () => values => {
   const mobile = values.mobile
 
   if (mobile && !validators.mobile.test(mobile)) {
-    errors.mobile = '不是有效手机 !'
+    errors.mobile = '请输入有效11位手机号码 !'
   }
 
   return errors

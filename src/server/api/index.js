@@ -12,9 +12,9 @@ const id = Math.random().toString(36).substr(2);
 router.post('/login', (req, res) => {
   const { principal, password } = req.body
   if (!(users.some(user => user.username === principal) || users.some(user => user.email === principal))) {
-    res.json({ error: { text: `${principal} 不存在 !` } })
+    res.json({ error: { text: '您输入用户名或邮箱不存在，请重新输入' } })
   } else if (!users.some(user => user.password === password)) {
-    res.json({ error: { text: '密码错误 !' } })
+    res.json({ error: { text: '您输入的密码错误，请重新输入 !' } })
   } else {
     const currentUser = users.find(user => user.email === principal)
     res.json(currentUser)
@@ -24,7 +24,7 @@ router.post('/login', (req, res) => {
 router.post('/register', (req, res) => {
   const { email, username, password } = req.body
   if (users.some(user => user.email === email)) {
-    res.json({ error: { text: `${email} 已存在 !` } })
+    res.json({ error: { text: '用户名或邮箱已被使用，请重新输入 !' } })
   } else {
     users.push({ id, username, email, password })
     res.json({ id, username, email })
