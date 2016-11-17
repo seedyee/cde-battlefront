@@ -12,11 +12,11 @@ class Mobiles extends Component {
       <th>{this.isDefault(mobile.isDefault)} {this.isPublic(mobile.isPublic)}</th>
       <th>{this.isVerified(mobile.isVerified)}</th>
       <th className={Styles.th4}>{this.showBtn(mobile.isVerified)}</th>
-      <th className={Styles.th5}>{this.getIcon('trash')}</th>
+      <th className={Styles.th5}>{this.getIcon('trash', mobile.id)}</th>
     </tr>
   ))
 
-  getIcon = (name) => <Glyphicon glyph={name} className={Styles.icon} onClick={this.props.deleteMobile} />
+  getIcon = (name, id) => <Glyphicon glyph={name} className={Styles.icon} onClick={() => this.props.deleteMobile(id)} />
 
   isVerified = (s) => (
     s === true ? <Label bsStyle="success">已认证</Label> : <Label bsStyle="warning">未认证</Label>

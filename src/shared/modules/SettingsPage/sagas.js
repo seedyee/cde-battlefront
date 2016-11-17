@@ -1,8 +1,8 @@
 import { take, put, call, fork, select } from 'redux-saga/effects'
 
 import * as api from '../api'
-import { selectUser } from './selectors'
-import { loadUserActions, loadEmailsActions, loadMobilesActions, updateUserActions, updatePasswordActions, addEmailActions, addMobileActions, deleteEmailActions, deleteMobileActions } from './actions'
+import { selectUser, selectEmails, selectMobiles } from './selectors'
+import * as actions from './actions'
 import { isEmptyObj } from '../utils'
 
 // We are using SSR(server-side-rendering), if everything goes well we should have users in our
@@ -13,12 +13,12 @@ function* loadUser() {
   const user = yield select(selectUser)
   // If user is not empty
   if (!isEmptyObj(user)) return
-  yield put(loadUserActions.request())
+  yield put(actions.loadUserActions.request())
   try {
     const response = yield call(api.loadUser, 'fakeId')
-    yield put(loadUserActions.success(response))
+    yield put(actions.loadUserActions.success(response))
   } catch (e) {
-    yield put(loadUserActions.failure(e))
+    yield put(actions.loadUserActions.failure(e))
   }
 }
 
@@ -26,12 +26,12 @@ function* loadEmails() {
   const user = yield select(selectUser)
   // If user is not empty
   if (!isEmptyObj(user)) return
-  yield put(loadEmailsActions.request())
+  yield put(actions.loadEmailsActions.request())
   try {
     const response = yield call(api.loadEmails, 'fakeId')
-    yield put(loadEmailsActions.success(response))
+    yield put(actions.loadEmailsActions.success(response))
   } catch (e) {
-    yield put(loadEmailsActions.failure(e))
+    yield put(actions.loadEmailsActions.failure(e))
   }
 }
 
@@ -39,29 +39,29 @@ function* loadMobiles() {
   const user = yield select(selectUser)
   // If user is not empty
   if (!isEmptyObj(user)) return
-  yield put(loadMobilesActions.request())
+  yield put(actions.loadMobilesActions.request())
   try {
     const response = yield call(api.loadMobiles, 'fakeId')
-    yield put(loadMobilesActions.success(response))
+    yield put(actions.loadMobilesActions.success(response))
   } catch (e) {
-    yield put(loadMobilesActions.failure(e))
+    yield put(actions.loadMobilesActions.failure(e))
   }
 }
 
 function* updateUser() {
   while (true) {
-    const { payload } = yield take(updateUserActions.REQUEST)
+    const { payload } = yield take(actions.updateUserActions.REQUEST)
     try {
       const { error, ...rest } = yield call(api.updateUser, payload)
       if (error) {
-        yield put(updateUserActions.failure(error.text))
+        yield put(actions.updateUserActions.failure(error.text))
         alert(error.text)
       } else {
-        yield put(updateUserActions.success(rest))
+        yield put(actions.updateUserActions.success(rest))
         alert('更改用户名成功 !')
       }
     } catch (e) {
-      yield put(updateUserActions.failure(e))
+      yield put(actions.updateUserActions.failure(e))
       alert(e)
     }
   }
@@ -69,18 +69,18 @@ function* updateUser() {
 
 function* updatePassword() {
   while (true) {
-    const { payload } = yield take(updatePasswordActions.REQUEST)
+    const { payload } = yield take(actions.updatePasswordActions.REQUEST)
     try {
       const { error, ...rest } = yield call(api.updatePassword, payload)
       if (error) {
-        yield put(updatePasswordActions.failure(error.text))
+        yield put(actions.updatePasswordActions.failure(error.text))
         alert(error.text)
       } else {
-        yield put(updatePasswordActions.success(rest))
+        yield put(actions.updatePasswordActions.success(rest))
         alert('更新密码成功 ！')
       }
     } catch (e) {
-      yield put(updatePasswordActions.failure(e))
+      yield put(actions.updatePasswordActions.failure(e))
       alert(e)
     }
   }
@@ -88,18 +88,18 @@ function* updatePassword() {
 
 function* addEmail() {
   while (true) {
-    const { payload } = yield take(addEmailActions.REQUEST)
+    const { payload } = yield take(actions.addEmailActions.REQUEST)
     try {
       const { error, ...rest } = yield call(api.addEmail, payload)
       if (error) {
-        yield put(addEmailActions.failure(error.text))
+        yield put(actions.addEmailActions.failure(error.text))
         alert(error.text)
       } else {
-        yield put(addEmailActions.success(rest))
+        yield put(actions.addEmailActions.success(rest))
         alert('新增邮箱成功 !')
       }
     } catch (e) {
-      yield put(addEmailActions.failure(e))
+      yield put(actions.addEmailActions.failure(e))
       alert(e)
     }
   }
@@ -107,18 +107,18 @@ function* addEmail() {
 
 function* addMobile() {
   while (true) {
-    const { payload } = yield take(addMobileActions.REQUEST)
+    const { payload } = yield take(actions.addMobileActions.REQUEST)
     try {
       const { error, ...rest } = yield call(api.addMobile, payload)
       if (error) {
-        yield put(addMobileActions.failure(error.text))
+        yield put(actions.addMobileActions.failure(error.text))
         alert(error.text)
       } else {
-        yield put(addMobileActions.success(rest))
+        yield put(actions.addMobileActions.success(rest))
         alert('手机添加成功 !')
       }
     } catch (e) {
-      yield put(addMobileActions.failure(e))
+      yield put(actions.addMobileActions.failure(e))
       alert(e)
     }
   }
@@ -126,18 +126,20 @@ function* addMobile() {
 
 function* deleteEmail() {
   while (true) {
-    const { payload } = yield take(deleteEmailActions.REQUEST)
+    const { payload } = yield take(actions.deleteEmailActions.REQUEST)
+    const emails = yield select(selectEmails)
     try {
-      const { error, ...rest } = yield call(api.addMobile, payload)
+      const { error } = yield call(api.addMobile, payload)
       if (error) {
-        yield put(deleteEmailActions.failure(error.text))
+        yield put(actions.deleteEmailActions.failure(error.text))
         alert(error.text)
       } else {
-        yield put(deleteEmailActions.success(rest))
+        const newEmails = emails.filter(e => e.id !== payload)
+        yield put(actions.deleteEmailActions.success({ newEmails }))
         alert('邮箱删除成功 !')
       }
     } catch (e) {
-      yield put(deleteEmailActions.failure(e))
+      yield put(actions.deleteEmailActions.failure(e))
       alert(e)
     }
   }
@@ -145,18 +147,20 @@ function* deleteEmail() {
 
 function* deleteMobile() {
   while (true) {
-    const { payload } = yield take(deleteMobileActions.REQUEST)
+    const { payload } = yield take(actions.deleteMobileActions.REQUEST)
+    const mobiles = yield select(selectMobiles)
     try {
-      const { error, ...rest } = yield call(api.addMobile, payload)
+      const { error } = yield call(api.addMobile, payload)
       if (error) {
-        yield put(deleteMobileActions.failure(error.text))
+        yield put(actions.deleteMobileActions.failure(error.text))
         alert(error.text)
       } else {
-        yield put(deleteMobileActions.success(rest))
+        const newMobiles = mobiles.filter(e => e.id !== payload)
+        yield put(actions.deleteMobileActions.success({ newMobiles }))
         alert('手机删除成功 !')
       }
     } catch (e) {
-      yield put(deleteMobileActions.failure(e))
+      yield put(actions.deleteMobileActions.failure(e))
       alert(e)
     }
   }
