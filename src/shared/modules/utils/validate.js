@@ -11,6 +11,7 @@ const validate = ({ register } = { register: false }) => values => {
   const email = values.email
   const password = values.password
   const username = values.username
+  const realName = values.realName
   const mobile = values.mobile
 
   if (!email) {
@@ -29,11 +30,16 @@ const validate = ({ register } = { register: false }) => values => {
     errors.username = '必填 !'
   }
 
+  if (register && !realName) {
+    errors.realName = '必填 !'
+  }
+
   if (!mobile) {
     errors.mobile = '必填 !'
   } else if (!validators.mobile.test(mobile)) {
     errors.mobile = '不是有效手机 !'
   }
+
   return errors
 }
 

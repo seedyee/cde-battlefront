@@ -38,7 +38,7 @@ class Emails extends Component {
     const { ...emails } = this.props.emails
     return (
       <div className={Styles.Emails}>
-        <h3>查看邮箱{console.log(this.props.deleteEmail)}</h3>
+        <h3>查看邮箱</h3>
         <div className={Styles.emailTable}>
           <table>
             <tbody>{this.getEmails(emails)}</tbody>

@@ -8,17 +8,18 @@ import { Button } from 'react-bootstrap'
 
 class UserNameForm extends Component {
   render() {
-    const { handleSubmit, submitting } = this.props
+    const { handleSubmit, pristine, submitting } = this.props
+
     return (
       <form onSubmit={handleSubmit} className={Styles.UserNameForm}>
         <Field
           styles={{ input: Styles.input }}
-          name="realName"
+          name="username"
           type="text"
-          id="realName"
+          id="username"
           component={FormInputField}
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={submitting} >更新用户名</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting} >更新用户名</Button>
       </form>
     )
   }
@@ -26,13 +27,16 @@ class UserNameForm extends Component {
 
 UserNameForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
 }
 
+import validate from './validate'
 import { updateUserActions } from '../../actions'
 
 const comp = reduxForm({
   form: 'userNameForm',
+  validate: validate(),
   onSubmit: onSubmitActions(updateUserActions),
 })(UserNameForm)
 

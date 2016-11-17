@@ -8,20 +8,20 @@ import { Button } from 'react-bootstrap'
 
 class PasswordForm extends Component {
   render() {
-    const { handleSubmit, submitting } = this.props
+    const { handleSubmit, pristine, submitting } = this.props
     return (
       <form onSubmit={handleSubmit} className={Styles.PasswordForm}>
         <Field
           styles={{ input: Styles.input }}
-          name="oldPassword"
+          name="password"
           type="text"
-          id="oldPassword"
+          id="password"
           component={FormInputField}
           label="当前密码"
         />
         <Field
           styles={{ input: Styles.input }}
-          name="password"
+          name="newPassword"
           type="text"
           id="newPassword"
           component={FormInputField}
@@ -29,13 +29,13 @@ class PasswordForm extends Component {
         />
         <Field
           styles={{ input: Styles.input }}
-          name="newPassword"
+          name="newPasswordConfirm"
           type="text"
           id="newPasswordConfirm"
           component={FormInputField}
           label="确认密码"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={submitting}>更新密码</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更新密码</Button>
       </form>
     )
   }
@@ -43,15 +43,16 @@ class PasswordForm extends Component {
 
 PasswordForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
 }
 
-import validate from '../../../utils/validate'
+import validate from './validate'
 import { updatePasswordActions } from '../../actions'
 
 const comp = reduxForm({
   form: 'passwordForm',
-  validate: validate({ register: true }),
+  validate: validate(),
   onSubmit: onSubmitActions(updatePasswordActions),
 })(PasswordForm)
 
