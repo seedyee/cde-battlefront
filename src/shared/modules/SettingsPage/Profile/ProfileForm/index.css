@@ -22,6 +22,7 @@
   }
   &:focus {
     background: #fff;
+    outline: none;
   }
   text-indent: 6px;
 }

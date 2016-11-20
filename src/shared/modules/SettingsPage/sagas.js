@@ -58,7 +58,7 @@ function* updateUser() {
         alert(error.text)
       } else {
         yield put(actions.updateUserActions.success(rest))
-        alert('更改用户名成功 !')
+        alert('更新成功 !')
       }
     } catch (e) {
       yield put(actions.updateUserActions.failure(e))
