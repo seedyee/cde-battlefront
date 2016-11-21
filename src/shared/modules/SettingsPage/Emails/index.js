@@ -12,11 +12,11 @@ class Emails extends Component {
       <th>{this.isDefault(email.isDefault)} {this.isPublic(email.isPublic)}</th>
       <th>{this.isVerified(email.isVerified)}</th>
       <th className={Styles.th4}>{this.showBtn(email.isVerified)}</th>
-      <th className={Styles.th5}>{this.getIcon('trash', email.id)}</th>
+      <th className={Styles.th5}>{this.getIcon('trash', email.id, email.email)}</th>
     </tr>
   ))
 
-  getIcon = (name, id) => <Glyphicon glyph={name} className={Styles.icon} onClick={() => this.props.deleteEmail(id)} />
+  getIcon = (name, id, email) => <Glyphicon glyph={name} className={Styles.icon} onClick={() => (confirm(`您确定删除${email}吗？`) ? this.props.deleteEmail(id) : '')} />
 
   isVerified = (s) => (
     s === true ? <Label bsStyle="success">已认证</Label> : <Label bsStyle="warning">未认证</Label>

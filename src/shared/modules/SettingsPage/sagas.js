@@ -4,6 +4,7 @@ import * as api from '../api'
 import { selectUser, selectEmails, selectMobiles } from './selectors'
 import * as actions from './actions'
 import { isEmptyObj } from '../utils'
+import last from 'lodash/last'
 
 // We are using SSR(server-side-rendering), if everything goes well we should have users in our
 // initialState thus we don't need to request users on client side again.
@@ -52,12 +53,13 @@ function* updateUser() {
   while (true) {
     const { payload } = yield take(actions.updateUserActions.REQUEST)
     try {
-      const { error, ...rest } = yield call(api.updateUser, payload)
+      const { error } = yield call(api.updateUser, 'fakeId', payload)
       if (error) {
         yield put(actions.updateUserActions.failure(error.text))
         alert(error.text)
       } else {
-        yield put(actions.updateUserActions.success(rest))
+        const user = yield call(api.loadUser, 'fakeId')
+        yield put(actions.updateUserActions.success(user))
         alert('更新成功 !')
       }
     } catch (e) {
@@ -70,18 +72,23 @@ function* updateUser() {
 function* updatePassword() {
   while (true) {
     const { payload } = yield take(actions.updatePasswordActions.REQUEST)
-    try {
-      const { error, ...rest } = yield call(api.updatePassword, payload)
-      if (error) {
-        yield put(actions.updatePasswordActions.failure(error.text))
-        alert(error.text)
-      } else {
-        yield put(actions.updatePasswordActions.success(rest))
-        alert('更新密码成功 ！')
+    if (payload.password === payload.newPassword) {
+      yield put(actions.updatePasswordActions.failure())
+      alert('新密码跟原密码一致 !')
+    } else {
+      try {
+        const { error, ...rest } = yield call(api.updatePassword, 'fakeId', { password: payload.password, newPassword: payload.newPassword })
+        if (error) {
+          yield put(actions.updatePasswordActions.failure(error.text))
+          alert(error.text)
+        } else {
+          yield put(actions.updatePasswordActions.success(rest))
+          alert('更新密码成功 ！')
+        }
+      } catch (e) {
+        yield put(actions.updatePasswordActions.failure(e))
+        alert(e)
       }
-    } catch (e) {
-      yield put(actions.updatePasswordActions.failure(e))
-      alert(e)
     }
   }
 }
@@ -89,18 +96,32 @@ function* updatePassword() {
 function* addEmail() {
   while (true) {
     const { payload } = yield take(actions.addEmailActions.REQUEST)
-    try {
-      const { error, ...rest } = yield call(api.addEmail, payload)
-      if (error) {
-        yield put(actions.addEmailActions.failure(error.text))
-        alert(error.text)
-      } else {
-        yield put(actions.addEmailActions.success(rest))
-        alert('新增邮箱成功 !')
+    const emails = yield select(selectEmails)
+    if (emails.some(e => e.email === payload.email)) {
+      yield put(actions.addEmailActions.failure())
+      alert('不能添加相同邮箱 !')
+    } else {
+      try {
+        const { error } = yield call(api.addEmail, 'fakeId', { email: payload.email })
+        if (error) {
+          yield put(actions.addEmailActions.failure(error.text))
+          alert(error.text)
+        } else {
+          const newEmails = [...emails]
+          newEmails.push({
+            id: String(Number(last(emails).id) + 1),
+            email: payload.email,
+            isDefault: false,
+            isVerified: false,
+            isPublic: false,
+          })
+          yield put(actions.addEmailActions.success({ newEmails }))
+          alert('新增邮箱成功 !')
+        }
+      } catch (e) {
+        yield put(actions.addEmailActions.failure(e))
+        alert(e)
       }
-    } catch (e) {
-      yield put(actions.addEmailActions.failure(e))
-      alert(e)
     }
   }
 }
@@ -108,18 +129,32 @@ function* addEmail() {
 function* addMobile() {
   while (true) {
     const { payload } = yield take(actions.addMobileActions.REQUEST)
-    try {
-      const { error, ...rest } = yield call(api.addMobile, payload)
-      if (error) {
-        yield put(actions.addMobileActions.failure(error.text))
-        alert(error.text)
-      } else {
-        yield put(actions.addMobileActions.success(rest))
-        alert('手机添加成功 !')
+    const mobiles = yield select(selectMobiles)
+    if (mobiles.some(m => m.mobile === payload.mobile)) {
+      yield put(actions.addMobileActions.failure())
+      alert('不能添加相同手机 !')
+    } else {
+      try {
+        const { error } = yield call(api.addMobile, 'fakeId', { mobile: payload.mobile })
+        if (error) {
+          yield put(actions.addMobileActions.failure(error.text))
+          alert(error.text)
+        } else {
+          const newMobiles = [...mobiles]
+          newMobiles.push({
+            id: String(Number(last(mobiles).id) + 1),
+            mobile: payload.mobile,
+            isDefault: false,
+            isVerified: false,
+            isPublic: false,
+          })
+          yield put(actions.addMobileActions.success({ newMobiles }))
+          alert('手机添加成功 !')
+        }
+      } catch (e) {
+        yield put(actions.addMobileActions.failure(e))
+        alert(e)
       }
-    } catch (e) {
-      yield put(actions.addMobileActions.failure(e))
-      alert(e)
     }
   }
 }
@@ -129,7 +164,7 @@ function* deleteEmail() {
     const { payload } = yield take(actions.deleteEmailActions.REQUEST)
     const emails = yield select(selectEmails)
     try {
-      const { error } = yield call(api.addMobile, payload)
+      const { error } = yield call(api.deleteEmail, { id: 'fakeId', emailId: payload })
       if (error) {
         yield put(actions.deleteEmailActions.failure(error.text))
         alert(error.text)
@@ -150,7 +185,7 @@ function* deleteMobile() {
     const { payload } = yield take(actions.deleteMobileActions.REQUEST)
     const mobiles = yield select(selectMobiles)
     try {
-      const { error } = yield call(api.addMobile, payload)
+      const { error } = yield call(api.deleteMobile, { id: 'fakeId', mobileId: payload })
       if (error) {
         yield put(actions.deleteMobileActions.failure(error.text))
         alert(error.text)

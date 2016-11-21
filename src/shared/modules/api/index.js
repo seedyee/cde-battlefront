@@ -47,20 +47,24 @@ const request = ({ method, url, data }) => fetch(urlRoot + apiPrefix + url, {
 
 export const post = (url, data) => request({ method: 'POST', url, data })
 export const get = (url) => request({ method: 'GET', url })
+export const del = (url) => request({ method: 'DELETE', url })
 
 export const login = (data) => post('/login', data)
 export const register = (data) => post('/register', data)
 export const logout = (id) => get(`/logout?id=${id}`)
+
+// APIs about users
 export const loadUsers = () => get('/users')
-
 export const loadUser = (id) => get(`/accounts/${id}/basicInfo`)
+export const updateUser = (id, data) => post(`/accounts/${id}/basicInfo`, data)
+export const updatePassword = (id, data) => post(`/accounts/${id}/password`, data)
+
+// APIs about Emails
 export const loadEmails = (id) => get(`/accounts/${id}/emails`)
+export const addEmail = (id, email) => post(`/accounts/${id}/emails`, email)
+export const deleteEmail = ({ id, emailId }) => del(`/accounts/${id}/emails/${emailId}`)
+
+// APIs about Mobiles
 export const loadMobiles = (id) => get(`/accounts/${id}/mobiles`)
-
-export const updateUser = ({ id, ...rest }) => post(`/accounts/${id}/basicInfo`, { id, ...rest })
-export const updatePassword = ({ id, ...rest }) => post(`/accounts/${id}/password`, { id, ...rest })
-export const updateEmails = ({ id, email }) => post(`/accounts/${id}/emails/${id}`, { id, email })
-export const updateMobiles = ({ id, mobile }) => post(`/accounts/${id}/mobiles/${id}`, { id, mobile })
-
-export const addEmail = ({ id, email }) => post(`/accounts/${id}/emails`, { id, email })
-export const addMobile = ({ id, mobile }) => post(`/accounts/${id}/mobiles`, { id, mobile })
+export const addMobile = (id, mobile) => post(`/accounts/${id}/mobiles`, mobile)
+export const deleteMobile = ({ id, mobileId }) => del(`/accounts/${id}/mobiles/${mobileId}`)

@@ -3,7 +3,7 @@ import express from 'express'
 const router = express.Router() // eslint-disable-line new-cap
 
 const users = [
-  { id: '7dg0te6o9bylvxu9bmzt98jjor', username: 'seedyee', email: 'seedyee@mail.com', password: 'aaaaaaa1' },
+  { id: '7dg0te6o9bylvxu9bmzt98jjor', username: 'Seedyee', email: 'seedyee@mail.com', password: 'aaaaaaa1' },
   { id: '9c2lz3zlxses168th4goav2t9', username: 'jundo', email: 'jundo@mail.com', password: 'aaaaaaa1' },
 ]
 
@@ -36,7 +36,7 @@ router.get('/logout', (req, res) => {
 })
 
 const basicInfo = {
-  id: '123456',
+  id: '7dg0te6o9bylvxu9bmzt98jjor',
   username: 'Seedyee',
   avatar: '用户头像',
   company: '跃考恩信息科技',
@@ -62,7 +62,7 @@ const emails = [
   },
   {
     id: '2',
-    email: 'vimniky@mail.com',
+    email: 'leapcorn@mail.com',
     isDefault: false,
     isVerified: true,
     isPublic: false,
@@ -86,14 +86,14 @@ const mobiles = [
   },
   {
     id: '2',
-    mobile: '123456789110',
+    mobile: '15766256651',
     isDefault: false,
     isVerified: true,
     isPublic: false,
   },
   {
     id: '3',
-    mobile: '123456789110',
+    mobile: '18027822322',
     isDefault: false,
     isVerified: false,
     isPublic: false,

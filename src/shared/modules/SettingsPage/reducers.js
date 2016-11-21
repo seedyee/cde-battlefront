@@ -7,7 +7,7 @@ const user = (state = {}, action) => {
     case userActions.loadUserActions.SUCCESS:
       return action.payload
     case userActions.updateUserActions.SUCCESS:
-      return { username: action.payload }
+      return action.payload
     default:
       return state
   }
@@ -17,6 +17,8 @@ const emails = (state = {}, action) => {
   switch (action.type) {
     case userActions.loadEmailsActions.SUCCESS:
       return action.payload
+    case userActions.addEmailActions.SUCCESS:
+      return action.payload.newEmails
     case userActions.deleteEmailActions.SUCCESS:
       return action.payload.newEmails
     default:
@@ -28,6 +30,8 @@ const mobiles = (state = {}, action) => {
   switch (action.type) {
     case userActions.loadMobilesActions.SUCCESS:
       return action.payload
+    case userActions.addMobileActions.SUCCESS:
+      return action.payload.newMobiles
     case userActions.deleteMobileActions.SUCCESS:
       return action.payload.newMobiles
     default:
