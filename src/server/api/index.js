@@ -85,8 +85,11 @@ router.post('/login', (req, res) => {
     res.json({ error: { text: '您输入用户名或邮箱不存在，请重新输入' } })
   } else if (!users.some(user => user.password === password)) {
     res.json({ error: { text: '您输入的密码错误，请重新输入 !' } })
-  } else {
+  } else if (principal.indexOf('@') > 0) {
     const currentUser = users.find(user => user.email === principal)
+    res.json(currentUser)
+  } else {
+    const currentUser = users.find(user => user.username === principal)
     res.json(currentUser)
   }
 })

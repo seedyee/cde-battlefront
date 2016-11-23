@@ -74,10 +74,12 @@ ProfileForm.propTypes = {
 
 import { updateUserActions } from '../../actions'
 import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
-import validate from '../../../utils/validate'
+import validate from './validate'
 
 const comp = reduxForm({
   form: 'profileForm',
+  enableReinitialize: true,
+  keepDirtyOnReinitialize: true,
   validate: validate({ register: true }),
   onSubmit: onSubmitActions(updateUserActions),
 })(ProfileForm)

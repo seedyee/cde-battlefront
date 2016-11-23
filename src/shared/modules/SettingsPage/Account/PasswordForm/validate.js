@@ -21,6 +21,14 @@ const validate = () => values => {
     errors.newPasswordConfirm = '密码不一致 !'
   }
 
+  if (password && !newPassword) {
+    errors.newPassword = '请填写新密码 !'
+  }
+
+  if (newPassword && newPasswordConfirm && !password) {
+    errors.password = '请填写原密码 !'
+  }
+
   return errors
 }
 

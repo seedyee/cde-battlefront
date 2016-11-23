@@ -4,6 +4,7 @@
   width: 440px;
   height: 36px;
   font-size: $normal-font-size;
+  letter-spacing: 0.5px;
   color: $normal-color;
   background-color: #fafafa;
   border: 1px solid #ddd;

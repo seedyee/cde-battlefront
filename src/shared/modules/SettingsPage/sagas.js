@@ -163,7 +163,6 @@ function* deleteEmail() {
       } else {
         const newEmails = emails.filter(e => e.id !== payload)
         yield put(actions.deleteEmailActions.success({ newEmails }))
-        alert('邮箱删除成功 !')
       }
     } catch (e) {
       yield put(actions.deleteEmailActions.failure(e))
@@ -184,7 +183,6 @@ function* deleteMobile() {
       } else {
         const newMobiles = mobiles.filter(e => e.id !== payload)
         yield put(actions.deleteMobileActions.success({ newMobiles }))
-        alert('手机删除成功 !')
       }
     } catch (e) {
       yield put(actions.deleteMobileActions.failure(e))

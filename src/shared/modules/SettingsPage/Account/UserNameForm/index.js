@@ -37,6 +37,8 @@ import validate from './validate'
 
 const comp = reduxForm({
   form: 'userNameForm',
+  enableReinitialize: true,
+  keepDirtyOnReinitialize: true,
   validate: validate(),
   onSubmit: onSubmitActions(updateUserActions),
 })(UserNameForm)

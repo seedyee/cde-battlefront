@@ -9,3 +9,7 @@
     background: #55ae2e;
   }
 }
+
+button:disabled {
+  opacity: 1 !important;
+}

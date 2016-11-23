@@ -20,7 +20,7 @@ class RegisterForm extends Component {
   }
 
   render() {
-    const { handleSubmit, submitting, logined } = this.props
+    const { handleSubmit, pristine, submitting, logined } = this.props
     const { redirectTo } = this.state
     if (logined) return <Redirect to="/dashboard" />
     if (redirectTo) return <Redirect to={redirectTo} />
@@ -51,7 +51,7 @@ class RegisterForm extends Component {
           label="密 码"
           type="password"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={submitting}>注&nbsp;&nbsp;册</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>注&nbsp;&nbsp;册</Button>
         <p className={Styles.signUp}>
           已注册 ?
           <button className={Styles.regBtn} type="button" disabled={submitting} onClick={this.redirectTo}>登&nbsp;录</button>
@@ -74,7 +74,7 @@ import validate from '../../../utils/validate'
 
 const comp = reduxForm({
   form: 'RegisterForm',
-  validate: validate({ register: true }),
+  validate: validate(),
   onSubmit: onSubmitActions(registerActions),
 })(RegisterForm)
 
