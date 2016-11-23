@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import Styles from './index.css'
-import FormInputField from '../../../FormInputField'
-import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
 import { Button } from 'react-bootstrap'
+
+import FormInputField from '../../../FormInputField'
+import Styles from './index.css'
 
 class ProfileForm extends Component {
   render() {
@@ -72,8 +72,9 @@ ProfileForm.propTypes = {
   submitting: PropTypes.bool.isRequired,
 }
 
-import validate from '../../../utils/validate'
 import { updateUserActions } from '../../actions'
+import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
+import validate from '../../../utils/validate'
 
 const comp = reduxForm({
   form: 'profileForm',

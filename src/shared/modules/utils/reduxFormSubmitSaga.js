@@ -1,5 +1,6 @@
 import { put, take, race, call } from 'redux-saga/effects'
 import { SubmissionError } from 'redux-form'
+
 const identity = f => f
 export const SUBMIT_FORM = '$$/SUBMIT_FORM'
 
@@ -18,7 +19,7 @@ export const onSubmitActions = (actions, valuesTransform = identity) =>
   })
 
 export default function* reduxFormSubmitSaga() {
-  while (true) { // eslint-disable-line no-constant-condition
+  while (true) {
     const { actions: { REQUEST, SUCCESS, FAILURE }, resolve, reject, payload } = yield take(SUBMIT_FORM)
     yield put({ type: REQUEST, payload })
 

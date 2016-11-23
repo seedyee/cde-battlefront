@@ -1,6 +1,6 @@
 import React from 'react'
 
-class NotFound extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class NotFound extends React.Component {
   render() {
     return (
       <h1>

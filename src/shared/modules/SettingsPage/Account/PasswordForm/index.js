@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import Styles from './index.css'
-import FormInputField from '../../../FormInputField'
-import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
 import { Button } from 'react-bootstrap'
+
+import FormInputField from '../../../FormInputField'
+import Styles from './index.css'
 
 class PasswordForm extends Component {
   render() {
@@ -47,8 +47,9 @@ PasswordForm.propTypes = {
   submitting: PropTypes.bool.isRequired,
 }
 
-import validate from './validate'
 import { updatePasswordActions } from '../../actions'
+import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
+import validate from './validate'
 
 const comp = reduxForm({
   form: 'passwordForm',
@@ -56,11 +57,4 @@ const comp = reduxForm({
   onSubmit: onSubmitActions(updatePasswordActions),
 })(PasswordForm)
 
-const initialValues = {}
-
-const mapStateToProps = () => ({
-  initialValues,
-})
-
-export default connect(mapStateToProps)(comp)
-
+export default connect()(comp)

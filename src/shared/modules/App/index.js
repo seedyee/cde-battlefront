@@ -4,17 +4,14 @@ import { camelCase } from 'lodash'
 import { Match, Miss } from 'react-router'
 
 import 'bootstrap/dist/css/bootstrap.css'
-/* import 'bootstrap/dist/css/bootstrap-watch.min.css'*/
 import 'sanitize.css/sanitize.css'
-
 import './fonts.css'
-import Styles from './index.css'
 import './reset.css'
+import Styles from './index.css'
 
 import Nav from '../Nav'
 import HomePage from '../HomePage'
 import DashboardPage from '../DashboardPage'
-import AboutPage from '../AboutPage'
 import SignInPage from '../Auth/SignInPage'
 import SignUpPage from '../Auth/SignUpPage'
 import NotFoundPage from '../NotFoundPage'
@@ -45,7 +42,6 @@ const App = () => (
       <div className={Styles.content}>
         <Match exactly pattern="/" component={HomePage} />
         <Match pattern="/home" component={HomePage} />
-        <Match pattern="/about" component={AboutPage} />
         <Match pattern="/dashboard" component={DashboardPage} />
         <Match pattern="/signIn" component={SignInPage} />
         <Match pattern="/signUp" component={SignUpPage} />

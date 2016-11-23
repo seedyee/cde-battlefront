@@ -1,4 +1,5 @@
 const status = ['REQUEST', 'SUCCESS', 'FAILURE']
+
 const defaultActionCrator = (type) => (payload, meta = {}) => {
   if (typeof payload === 'undefined') {
     return { type, ...meta }

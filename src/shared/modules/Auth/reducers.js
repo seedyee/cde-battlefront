@@ -1,6 +1,7 @@
 import { loginActions, logoutActions, registerActions } from './actions'
 
 const initialAuthState = { logined: false, user: {} }
+
 const auth = (state = initialAuthState, action) => {
   switch (action.type) {
     case loginActions.SUCCESS:

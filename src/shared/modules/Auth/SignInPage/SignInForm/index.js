@@ -2,11 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-import validate from '../../../utils/validate'
-import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
-import Styles from './index.css'
-import FormInputField from '../../../FormInputField'
 import { Button } from 'react-bootstrap'
+
+import FormInputField from '../../../FormInputField'
+import Styles from './index.css'
 
 class SignInForm extends Component {
   constructor() {
@@ -65,18 +64,16 @@ SignInForm.propTypes = {
 
 import { selectLogined } from '../../selectors'
 import { loginActions } from '../../actions'
+import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
+import validate from '../../../utils/validate'
 
 const comp = reduxForm({
-  form: 'LoginForm', // a unique name for this form
+  form: 'LoginForm',
   validate: validate(),
   onSubmit: onSubmitActions(loginActions),
 })(SignInForm)
 
-const initialValues = {
-}
-
-const mapStateToProps = (state) => ({ // eslint-disable-line no-unused-vars
-  initialValues,
+const mapStateToProps = (state) => ({
   logined: selectLogined(state),
 })
 

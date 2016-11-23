@@ -5,7 +5,6 @@
   @include content-title();
 }
 
-/*Area of modifying the user's password*/
 .passwordEdit {
   @include content-title();
   margin: 40px 0;

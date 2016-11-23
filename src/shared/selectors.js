@@ -1,9 +1,9 @@
-export const selectLocationState = () => { // eslint-disable-line
+export const selectLocationState = () => {
   let prevRoutingState
   let prevRoutingStateJS
 
   return (state) => {
-    const routingState = state.get('routing') // or state.route
+    const routingState = state.get('routing')
 
     if (!routingState.equals(prevRoutingState)) {
       prevRoutingState = routingState

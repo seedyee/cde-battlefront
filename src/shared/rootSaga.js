@@ -1,7 +1,5 @@
 import { fork, cancel, take } from 'redux-saga/effects'
-
 import reduxFormSubmitSaga from './modules/utils/reduxFormSubmitSaga'
-
 import authSaga from './modules/Auth/sagas'
 import settingsSaga from './modules/SettingsPage/sagas'
 import profileSaga from './modules/ProfilePage/sagas'

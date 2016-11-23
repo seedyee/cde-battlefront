@@ -1,7 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
-import SignUpForm from './SignUpForm/index'
+import SignUpForm from './SignUpForm'
 import Styles from './index.css'
 import Logo from '../Logo'
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
-import logo from '../../assets/logo.png'
 
 import Styles from './index.css'
+import logo from '../../assets/logo.png'
 
 export default ({ title }) => (
   <div className={Styles.header}>

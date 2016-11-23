@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import Styles from './index.css'
 
 class Security extends Component {
@@ -14,7 +15,6 @@ class Security extends Component {
       </div>
     )
   }
-
 }
 
 export default Security

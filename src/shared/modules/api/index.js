@@ -53,18 +53,18 @@ export const login = (data) => post('/login', data)
 export const register = (data) => post('/register', data)
 export const logout = (id) => get(`/logout?id=${id}`)
 
-// APIs about users
+// APIs about user
 export const loadUsers = () => get('/users')
 export const loadUser = (id) => get(`/accounts/${id}/basicInfo`)
 export const updateUser = (id, data) => post(`/accounts/${id}/basicInfo`, data)
 export const updatePassword = (id, data) => post(`/accounts/${id}/password`, data)
 
-// APIs about Emails
+// APIs about Email
 export const loadEmails = (id) => get(`/accounts/${id}/emails`)
 export const addEmail = (id, email) => post(`/accounts/${id}/emails`, email)
 export const deleteEmail = ({ id, emailId }) => del(`/accounts/${id}/emails/${emailId}`)
 
-// APIs about Mobiles
+// APIs about Mobile
 export const loadMobiles = (id) => get(`/accounts/${id}/mobiles`)
 export const addMobile = (id, mobile) => post(`/accounts/${id}/mobiles`, mobile)
 export const deleteMobile = ({ id, mobileId }) => del(`/accounts/${id}/mobiles/${mobileId}`)

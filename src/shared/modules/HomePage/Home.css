@@ -15,7 +15,6 @@ $textColor: orange;
 
   a{
     padding-left: calc(2px + 3px);
-
     &:hover{
       @include scale;
       background: blue;

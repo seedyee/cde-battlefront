@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux'
-
 import * as userActions from './actions'
 
 const user = (state = {}, action) => {

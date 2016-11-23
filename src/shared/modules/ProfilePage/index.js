@@ -1,12 +1,11 @@
 import React from 'react'
-import { connect } from 'react-redux'
-
 import Helmet from 'react-helmet'
-import Styles from './index.css'
-import leapcorn from './leapcorn.png'
-
+import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router'
 import { Button } from 'react-bootstrap'
+
+import Styles from './index.css'
+import leapcorn from './leapcorn.png'
 
 class ProfilePage extends React.Component {
   constructor() {
@@ -47,6 +46,7 @@ class ProfilePage extends React.Component {
 }
 
 import { selectCurrentUser } from './selectors'
+
 const mapStateToProps = state => ({
   user: selectCurrentUser(state),
 })

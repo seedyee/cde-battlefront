@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Styles from './index.css'
-import ProfileForm from './ProfileForm/index'
 
+import ProfileForm from './ProfileForm'
+import Styles from './index.css'
 import logo from '../../assets/logo.png'
 
 class Profile extends Component {
@@ -12,10 +12,10 @@ class Profile extends Component {
         <div className={Styles.content}>
           <ProfileForm initialValues={this.props.initialValues} />
           <div className={Styles.avatar}>
-            <p>用户头像</p>
-            <img className={Styles.img} alt="your avatar" src={logo} />
-            <a href="javascript:;" className={Styles.file}>上传头像
-              <input type="file" name="" id="" />
+            <p className={Styles.avatarTitle}>用户头像</p>
+            <img className={Styles.avatarImg} alt="your avatar" src={logo} />
+            <a href="javascript:;" className={Styles.uploadFile}>上传头像
+              <input className={Styles.avatarInput} type="file" name="" id="" />
             </a>
           </div>
         </div>

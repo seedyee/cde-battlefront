@@ -1,13 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Styles from './index.css'
-import { logoutActions } from '../Auth/actions'
-import { selectLogined, selectUser } from '../Auth/selectors'
 import { Link } from 'react-router'
-import withRouter from '../utils/withRouter'
-import logo from './logo.png'
-
 import { NavDropdown, MenuItem, Glyphicon } from 'react-bootstrap'
+
+import withRouter from '../utils/withRouter'
+import Styles from './index.css'
+import logo from './logo.png'
 
 const paths = ['/login', '/register']
 const contains = (pathname) => paths.some(path => pathname.startsWith(path))
@@ -20,7 +18,6 @@ class Nav extends React.Component {
 
   getDropdown = () => {
     const { user, logined, logoutRequest } = this.props
-    /* if (!logined) return null*/
     return (
       <NavDropdown className={Styles.navItems} pullRight onSelect={this.onSelected} title={this.getIcon('user')} id="user">
         <MenuItem eventKey="/profile">基本信息</MenuItem>
@@ -61,6 +58,9 @@ Nav.propTypes = {
   logoutRequest: React.PropTypes.func,
   logined: React.PropTypes.bool,
 }
+
+import { logoutActions } from '../Auth/actions'
+import { selectLogined, selectUser } from '../Auth/selectors'
 
 const mapStateToProps = (state) => ({
   user: selectUser(state),

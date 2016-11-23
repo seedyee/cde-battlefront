@@ -2,11 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-import validate from '../../../utils/validate'
-import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
-import Styles from './index.css'
 import { Button } from 'react-bootstrap'
+
 import FormInputField from '../../../FormInputField'
+import Styles from './index.css'
 
 class RegisterForm extends Component {
   constructor() {
@@ -70,9 +69,11 @@ RegisterForm.propTypes = {
 
 import { selectLogined } from '../../selectors'
 import { registerActions } from '../../actions'
+import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
+import validate from '../../../utils/validate'
 
 const comp = reduxForm({
-  form: 'RegisterForm', // a unique name for this form
+  form: 'RegisterForm',
   validate: validate({ register: true }),
   onSubmit: onSubmitActions(registerActions),
 })(RegisterForm)

@@ -1,17 +1,17 @@
 import React from 'react'
-import { connect } from 'react-redux'
-
 import Helmet from 'react-helmet'
+import { connect } from 'react-redux'
+import { Link } from 'react-router'
+
 import Profile from './Profile'
 import Emails from './Emails'
 import Account from './Account'
 import Mobiles from './Mobiles'
 import Security from './Security'
-
-import { Link } from 'react-router'
 import Styles from './index.css'
 
 const pathPrefix = '/settings/'
+
 const fields = {
   Profile: '基本信息',
   Account: '账户',
@@ -61,7 +61,7 @@ class SettingsPage extends React.Component {
       <div className={Styles.Settings}>
         <Helmet title="settings" />
         <div className={Styles.sidebar}>
-          <ul>
+          <ul className={Styles.sidebarUl}>
             <li>个人信息设置</li>
             {this.getSidebarItems()}
           </ul>
@@ -75,6 +75,7 @@ class SettingsPage extends React.Component {
 }
 
 import { selectUser, selectEmails, selectMobiles } from './selectors'
+
 const mapStateToProps = state => ({
   user: selectUser(state),
   emails: selectEmails(state),

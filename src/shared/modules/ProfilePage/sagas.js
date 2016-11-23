@@ -1,8 +1,8 @@
 import { call, put, fork, select } from 'redux-saga/effects'
-import * as api from '../api'
 import { loadUserActions } from './actions'
 import { selectCurrentUser } from './selectors'
 import { isEmptyObj } from '../utils'
+import * as api from '../api'
 
 function* loadUser() {
   const user = yield select(selectCurrentUser)

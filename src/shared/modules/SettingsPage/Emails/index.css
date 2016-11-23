@@ -4,36 +4,34 @@
 .Emails {
   @include content-title();
 }
-/* emails and mobiles table style*/
-table {
+
+.table {
   width: 100%;
   color: #666;
   margin: 20px 0 40px 0;
   text-indent: 10px;
-  tr {
-    border-bottom: $border-style;
-    th {
-      height: 38px;
-      &:nth-child(1) {
-        width: 160px;
-      }
-      &:nth-child(2) {
-        width: 160px;
-      }
-    }
-  }
 }
 
-.th1 {
+.table_tr {
+  height: 38px;
+  border-bottom: $border-style;
+}
+
+.table_th1 {
+  width: 160px;
   font-weight: normal;
   letter-spacing: $letter-spacing;
 }
 
-.th4 {
+.table_th2 {
+  width: 160px;
+}
+
+.table_th4 {
   text-align: right;
 }
 
-.th5 {
+.table_th5 {
   width: 20px;
   text-align: right;
 }

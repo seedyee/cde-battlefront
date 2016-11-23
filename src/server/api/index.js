@@ -7,34 +7,6 @@ const users = [
   { id: '9c2lz3zlxses168th4goav2t9', username: 'jundo', email: 'jundo@mail.com', password: 'aaaaaaa1' },
 ]
 
-const id = Math.random().toString(36).substr(2);
-
-router.post('/login', (req, res) => {
-  const { principal, password } = req.body
-  if (!(users.some(user => user.username === principal) || users.some(user => user.email === principal))) {
-    res.json({ error: { text: '您输入用户名或邮箱不存在，请重新输入' } })
-  } else if (!users.some(user => user.password === password)) {
-    res.json({ error: { text: '您输入的密码错误，请重新输入 !' } })
-  } else {
-    const currentUser = users.find(user => user.email === principal)
-    res.json(currentUser)
-  }
-})
-
-router.post('/register', (req, res) => {
-  const { email, username, password } = req.body
-  if (users.some(user => user.email === email)) {
-    res.json({ error: { text: '用户名或邮箱已被使用，请重新输入 !' } })
-  } else {
-    users.push({ id, username, email, password })
-    res.json({ id, username, email })
-  }
-})
-
-router.get('/logout', (req, res) => {
-  res.json({})
-})
-
 const basicInfo = {
   id: '7dg0te6o9bylvxu9bmzt98jjor',
   username: 'Seedyee',
@@ -100,9 +72,43 @@ const mobiles = [
   },
 ]
 
-const success = { error: null }
+const success = {
+  error: null,
+}
 
-// 查询用户信息
+
+const id = Math.random().toString(36).substr(2);
+
+router.post('/login', (req, res) => {
+  const { principal, password } = req.body
+  if (!(users.some(user => user.username === principal) || users.some(user => user.email === principal))) {
+    res.json({ error: { text: '您输入用户名或邮箱不存在，请重新输入' } })
+  } else if (!users.some(user => user.password === password)) {
+    res.json({ error: { text: '您输入的密码错误，请重新输入 !' } })
+  } else {
+    const currentUser = users.find(user => user.email === principal)
+    res.json(currentUser)
+  }
+})
+
+router.post('/register', (req, res) => {
+  const { email, username, password } = req.body
+  if (users.some(user => user.email === email)) {
+    res.json({ error: { text: '用户名或邮箱已被使用，请重新输入 !' } })
+  } else {
+    users.push({ id, username, email, password })
+    res.json({ id, username, email })
+  }
+})
+
+router.get('/logout', (req, res) => {
+  res.json({})
+})
+
+/*
+ * 查询用户信息
+ */
+
 router.get('/accounts/:id/basicInfo', (req, res) => {
   res.json(basicInfo)
 })
@@ -115,7 +121,10 @@ router.get('/accounts/:id/mobiles', (req, res) => {
   res.json(mobiles)
 })
 
-// 修改用户信息
+/*
+ * 修改用户信息
+ */
+
 router.post('/accounts/:id/basicInfo', (req, res) => {
   res.json(success)
 })
@@ -132,7 +141,10 @@ router.post('/accounts/:id/mobiles/:id', (req, res) => {
   res.json(success)
 })
 
-// 新增邮箱或手机
+/*
+ * 新增邮箱或手机
+ */
+
 router.post('/accounts/:id/emails', (req, res) => {
   res.json(success)
 })
@@ -141,7 +153,10 @@ router.post('/accounts/:id/mobiles', (req, res) => {
   res.json(success)
 })
 
-// 删除邮箱或手机
+/*
+ * 删除邮箱或手机
+ */
+
 router.delete('/accounts/:id/emails/:id', (req, res) => {
   res.json(success)
 })
@@ -149,7 +164,6 @@ router.delete('/accounts/:id/emails/:id', (req, res) => {
 router.delete('/accounts/:id/mobiles/:id', (req, res) => {
   res.json(success)
 })
-
 
 export default router
 

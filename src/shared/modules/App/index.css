@@ -1,11 +1,11 @@
 @import '../styles/variables.css';
 
 .App {
-  margin: 0 auto;
+  margin: $horizontal-center;
   margin-top: $nav-height;
 }
 
 .content {
   width: $site-content-width;
-  margin: 0 auto;
+  margin: $horizontal-center;
 }

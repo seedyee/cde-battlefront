@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { propTypes } from 'react-router'
 
 // The routerContext type exported from react-router v4

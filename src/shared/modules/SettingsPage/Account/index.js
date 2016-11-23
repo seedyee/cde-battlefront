@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+
+import UserNameForm from './UserNameForm'
+import PasswordForm from './PasswordForm'
 import Styles from './index.css'
-import UserNameForm from './UserNameForm/index'
-import PasswordForm from './PasswordForm/index'
 
 class Account extends Component {
   render() {

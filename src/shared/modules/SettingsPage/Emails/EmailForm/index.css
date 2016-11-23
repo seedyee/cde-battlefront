@@ -5,7 +5,6 @@
 .EmailForm {
   letter-spacing: $letter-spacing;
   padding-left: $content-padding-left;
-
   border-top: $border-style;
 }
 

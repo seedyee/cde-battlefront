@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Styles from './index.css'
-import EmailForm from './EmailForm/index'
 import { Label, Glyphicon, Button } from 'react-bootstrap'
+
 import { deleteEmailActions } from '../actions'
+import EmailForm from './EmailForm'
+import Styles from './index.css'
 
 class Emails extends Component {
   getEmails = (emails) => Object.values(emails).map(email => (
-    <tr key={email.id}>
-      <th className={Styles.th1}>{email.email}</th>
-      <th>{this.isDefault(email.isDefault)} {this.isPublic(email.isPublic)}</th>
+    <tr className={Styles.table_tr} key={email.id}>
+      <th className={Styles.table_th1}>{email.email}</th>
+      <th className={Styles.table_th2}>{this.isDefault(email.isDefault)} {this.isPublic(email.isPublic)}</th>
       <th>{this.isVerified(email.isVerified)}</th>
-      <th className={Styles.th4}>{this.showBtn(email.isVerified)}</th>
-      <th className={Styles.th5}>{this.getIcon('trash', email.id, email.email)}</th>
+      <th className={Styles.table_th4}>{this.showBtn(email.isVerified)}</th>
+      <th className={Styles.table_th5}>{this.getIcon('trash', email.id, email.email)}</th>
     </tr>
   ))
 
@@ -40,7 +41,7 @@ class Emails extends Component {
       <div className={Styles.Emails}>
         <h3>查看邮箱</h3>
         <div className={Styles.emailTable}>
-          <table>
+          <table className={Styles.table}>
             <tbody>{this.getEmails(emails)}</tbody>
           </table>
         </div>

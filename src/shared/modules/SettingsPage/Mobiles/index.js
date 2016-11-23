@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Styles from './index.css'
-import MobileForm from './MobileForm/index'
 import { Label, Glyphicon, Button } from 'react-bootstrap'
+
+import MobileForm from './MobileForm'
 import { deleteMobileActions } from '../actions'
+import Styles from './index.css'
 
 class Mobiles extends Component {
   getMobiles = (mobiles) => Object.values(mobiles).map(mobile => (
-    <tr key={mobile.id}>
-      <th className={Styles.th1}>{mobile.mobile}</th>
-      <th>{this.isDefault(mobile.isDefault)} {this.isPublic(mobile.isPublic)}</th>
+    <tr className={Styles.table_tr} key={mobile.id}>
+      <th className={Styles.table_th1}>{mobile.mobile}</th>
+      <th className={Styles.table_th2}>{this.isDefault(mobile.isDefault)} {this.isPublic(mobile.isPublic)}</th>
       <th>{this.isVerified(mobile.isVerified)}</th>
-      <th className={Styles.th4}>{this.showBtn(mobile.isVerified)}</th>
-      <th className={Styles.th5}>{this.getIcon('trash', mobile.id)}</th>
+      <th className={Styles.ttable_h4}>{this.showBtn(mobile.isVerified)}</th>
+      <th className={Styles.table_th5}>{this.getIcon('trash', mobile.id)}</th>
     </tr>
   ))
 
@@ -40,7 +41,7 @@ class Mobiles extends Component {
       <div className={Styles.Mobiles}>
         <h3>查看手机</h3>
         <div className={Styles.mobilesTable}>
-          <table>
+          <table className={Styles.table}>
             <tbody>{this.getMobiles(mobiles)}</tbody>
           </table>
         </div>
