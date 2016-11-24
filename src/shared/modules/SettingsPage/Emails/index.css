@@ -5,35 +5,37 @@
   @include content-title();
 }
 
-.table {
+.emailTable {
   width: 100%;
   color: #666;
   margin: 20px 0 40px 0;
   text-indent: 10px;
+  tr {
+    height: 38px;
+    border-bottom: $border-style;
+    th {
+      &:nth-child(1) {
+        padding-right: 10px;
+        font-weight: normal;
+        letter-spacing: $letter-spacing;
+      }
+      &:nth-child(2) {
+        width: 160px;
+      }
+      &:nth-child(4) {
+        text-align: right;
+      }
+      &:nth-child(5) {
+        width: 20px;
+        text-align: right;
+      }
+    }
+  }
 }
 
-.table_tr {
-  height: 38px;
-  border-bottom: $border-style;
-}
-
-.table_th1 {
-  width: 160px;
-  font-weight: normal;
-  letter-spacing: $letter-spacing;
-}
-
-.table_th2 {
-  width: 160px;
-}
-
-.table_th4 {
-  text-align: right;
-}
-
-.table_th5 {
-  width: 20px;
-  text-align: right;
+.defaultIcon {
+  letter-spacing: 0.5px;
+  padding: 3px 18px;
 }
 
 .icon {

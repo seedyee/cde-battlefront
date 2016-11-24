@@ -7,32 +7,37 @@ import { deleteMobileActions } from '../actions'
 import Styles from './index.css'
 
 class Mobiles extends Component {
-  getMobiles = (mobiles) => Object.values(mobiles).map(mobile => (
-    <tr className={Styles.table_tr} key={mobile.id}>
-      <th className={Styles.table_th1}>{mobile.mobile}</th>
-      <th className={Styles.table_th2}>{this.isDefault(mobile.isDefault)} {this.isPublic(mobile.isPublic)}</th>
-      <th>{this.isVerified(mobile.isVerified)}</th>
-      <th className={Styles.table_th4}>{this.showBtn(mobile.isVerified)}</th>
-      <th className={Styles.table_th5}>{this.getIcon('trash', mobile.id, mobile.mobile)}</th>
+  getMobiles = (mobiles) => Object.values(mobiles).map(m => (
+    <tr key={m.id}>
+      <th>{m.mobile}</th>
+      <th>{this.isDefault(m.isDefault)} {this.isPublic(m.isPublic)}</th>
+      <th>{this.isVerified(m.isVerified)}</th>
+      <th>{this.showResendBtn(m.isDefault, m.isVerified)} {this.showDedaultBtn(m.isDefault, m.isVerified)}</th>
+      <th>{this.getIcon('trash', m.id, m.mobile)}</th>
     </tr>
   ))
 
   getIcon = (name, id, mobile) => <Glyphicon glyph={name} className={Styles.icon} onClick={() => (confirm(`您确定删除${mobile}吗？`) ? this.props.deleteMobile(id) : '')} />
 
-  isVerified = (s) => (
-    s === true ? <Label bsStyle="success">已认证</Label> : <Label bsStyle="warning">未认证</Label>
+  isDefault = (isDefault) => (
+    isDefault === true ? <Label bsStyle="success" className={Styles.defaultIcon}>默认</Label> : ''
   )
 
-  isDefault = (s) => (
-    s === true ? <Label bsStyle="success">默认</Label> : ''
+  isPublic = (isPublic) => (
+    isPublic === true ? <Label bsStyle="success" className={Styles.defaultIcon}>公开</Label> : <Label bsStyle="default" className={Styles.defaultIcon}>私有</Label>
   )
 
-  isPublic = (s) => (
-    s === true ? <Label bsStyle="success">公开</Label> : <Label bsStyle="default">私有</Label>
+  isVerified = (isVerified) => (
+    isVerified === true ? <Label bsStyle="success" className={Styles.defaultIcon}>已认证</Label> : <Label bsStyle="warning" className={Styles.defaultIcon}>未认证</Label>
   )
 
-  showBtn = (s) => (
-    s === true ? '' : <Button bsStyle="link">认证电话</Button>
+  showDedaultBtn = (isDefault, isVerified) => (
+    isDefault === false && isVerified === true ? <Button bsStyle="link">设为默认</Button> : ''
+  )
+
+  showResendBtn = (isDefault, isVerified) => (
+    isDefault === false && isVerified === false ? <Button bsStyle="link">重新发送</Button> : ''
+
   )
 
   render() {
@@ -40,8 +45,8 @@ class Mobiles extends Component {
     return (
       <div className={Styles.Mobiles}>
         <h3>查看手机</h3>
-        <div className={Styles.mobilesTable}>
-          <table className={Styles.table}>
+        <div>
+          <table className={Styles.mobilesTable}>
             <tbody>{this.getMobiles(mobiles)}</tbody>
           </table>
         </div>

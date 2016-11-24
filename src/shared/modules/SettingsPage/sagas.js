@@ -101,7 +101,7 @@ function* addEmail() {
         } else {
           const newEmails = [...emails]
           newEmails.push({
-            id: String(Number(last(emails).id) + 1),
+            id: emails.length === 0 ? '1' : String(Number(last(emails).id) + 1),
             email: payload.email,
             isDefault: false,
             isVerified: false,
@@ -134,7 +134,7 @@ function* addMobile() {
         } else {
           const newMobiles = [...mobiles]
           newMobiles.push({
-            id: String(Number(last(mobiles).id) + 1),
+            id: mobiles.length === 0 ? '1' : String(Number(last(mobiles).id) + 1),
             mobile: payload.mobile,
             isDefault: false,
             isVerified: false,
