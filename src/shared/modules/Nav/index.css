@@ -64,9 +64,11 @@ $logo-width: 29px;
 
 /* only get className to <a> can't control it's styles */
 .navItems {
+  padding: 0 10px;
   li {
     a {
       color: #212121;
+      margin: 4px 0;
       &:hover {
         font-weight: bold;
         color: #fff;

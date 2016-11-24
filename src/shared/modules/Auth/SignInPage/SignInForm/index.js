@@ -26,6 +26,7 @@ class SignInForm extends Component {
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
       <form onSubmit={handleSubmit} className={Styles.signInForm}>
+        <h2> 开发平台 | 登录 </h2>
         <Field
           styles={{ input: Styles.input }}
           name="principal"

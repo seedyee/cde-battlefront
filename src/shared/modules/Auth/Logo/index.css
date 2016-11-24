@@ -1,8 +1,7 @@
 .header {
   img{
-    width: 60px;
-    height: 60px;
-    border-radius: 100px;
+    width: 287px;
+    height: 186px;
     display: block;
     margin: 20px auto 0;
     cursor: pointer;
@@ -12,4 +11,8 @@
     color: #333;
     text-align: center;
   }
+}
+
+.logo {
+   background: #55ae2e;
 }

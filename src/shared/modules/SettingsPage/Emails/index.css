@@ -15,7 +15,7 @@
     border-bottom: $border-style;
     th {
       &:nth-child(1) {
-        padding-right: 10px;
+        width: 150px;
         font-weight: normal;
         letter-spacing: $letter-spacing;
       }

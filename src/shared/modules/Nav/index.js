@@ -38,7 +38,7 @@ class Nav extends React.Component {
         <div className={Styles.content}>
           <ul className={Styles.pagesNav}>
             <li>
-              <Link className={Styles.home} to="/"><img alt="site logo" src={logo} /></Link>
+              <Link className={Styles.home} to="/"><img className={Styles.logo} alt="site logo" src={logo} /></Link>
             </li>
             <li>
               <Link to="/dashboard">Dashboard</Link>
