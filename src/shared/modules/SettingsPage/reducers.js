@@ -20,6 +20,8 @@ const emails = (state = {}, action) => {
       return action.payload.newEmails
     case userActions.deleteEmailActions.SUCCESS:
       return action.payload.newEmails
+    case userActions.updateEmailActions.SUCCESS:
+      return action.payload.newEmails
     default:
       return state
   }
@@ -32,6 +34,8 @@ const mobiles = (state = {}, action) => {
     case userActions.addMobileActions.SUCCESS:
       return action.payload.newMobiles
     case userActions.deleteMobileActions.SUCCESS:
+      return action.payload.newMobiles
+    case userActions.updateMobileActions.SUCCESS:
       return action.payload.newMobiles
     default:
       return state

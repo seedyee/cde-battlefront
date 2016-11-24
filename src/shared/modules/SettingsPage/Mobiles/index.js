@@ -3,16 +3,15 @@ import { connect } from 'react-redux'
 import { Label, Glyphicon, Button } from 'react-bootstrap'
 
 import MobileForm from './MobileForm'
-import { deleteMobileActions } from '../actions'
 import Styles from './index.css'
 
 class Mobiles extends Component {
   getMobiles = (mobiles) => Object.values(mobiles).map(m => (
     <tr key={m.id}>
       <th>{m.mobile}</th>
-      <th>{this.isDefault(m.isDefault)} {this.isPublic(m.isPublic)}</th>
+      <th>{this.isDefault(m.isDefault)} {m.isDefault === true ? this.isPublic(m.isPublic) : ''}</th>
       <th>{this.isVerified(m.isVerified)}</th>
-      <th>{this.showResendBtn(m.isDefault, m.isVerified)} {this.showDedaultBtn(m.isDefault, m.isVerified)}</th>
+      <th>{this.showResendBtn(m.isDefault, m.isVerified, m.id)} {this.showDedaultBtn(m.isDefault, m.isVerified, m.mobile)}</th>
       <th>{this.getIcon('trash', m.id, m.mobile)}</th>
     </tr>
   ))
@@ -24,20 +23,19 @@ class Mobiles extends Component {
   )
 
   isPublic = (isPublic) => (
-    isPublic === true ? <Label bsStyle="success" className={Styles.defaultIcon}>公开</Label> : <Label bsStyle="default" className={Styles.defaultIcon}>私有</Label>
+    isPublic === true ? <Label bsStyle="default" className={Styles.defaultIcon}>公开</Label> : <Label bsStyle="default" className={Styles.defaultIcon}>私有</Label>
   )
 
   isVerified = (isVerified) => (
     isVerified === true ? <Label bsStyle="success" className={Styles.defaultIcon}>已认证</Label> : <Label bsStyle="warning" className={Styles.defaultIcon}>未认证</Label>
   )
 
-  showDedaultBtn = (isDefault, isVerified) => (
-    isDefault === false && isVerified === true ? <Button bsStyle="link">设为默认</Button> : ''
+  showDedaultBtn = (isDefault, isVerified, mobile) => (
+    isDefault === false && isVerified === true ? <Button bsStyle="link" onClick={() => (confirm(`您确定设${mobile}为默认手机号码吗？`) ? this.props.setMobile({ mobile }) : '')}>设为默认</Button> : ''
   )
 
-  showResendBtn = (isDefault, isVerified) => (
-    isDefault === false && isVerified === false ? <Button bsStyle="link">重新发送</Button> : ''
-
+  showResendBtn = (isDefault, isVerified, id) => (
+    isDefault === false && isVerified === false ? <Button bsStyle="link" onClick={() => this.props.sendMobile({ id, isVerified })}>重新发送</Button> : ''
   )
 
   render() {
@@ -56,5 +54,14 @@ class Mobiles extends Component {
   }
 }
 
-export default connect(null, { deleteMobile: deleteMobileActions.request })(Mobiles)
+import { updateUserActions, deleteMobileActions, updateMobileActions } from '../actions'
+
+export default connect(
+  null,
+  {
+    deleteMobile: deleteMobileActions.request,
+    setMobile: updateUserActions.request,
+    sendMobile: updateMobileActions.request,
+  }
+)(Mobiles)
 

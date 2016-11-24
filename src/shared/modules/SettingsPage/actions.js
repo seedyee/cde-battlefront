@@ -6,9 +6,10 @@ export const loadUserActions = createActions(prefix, 'LOAD_USER')
 export const loadEmailsActions = createActions(prefix, 'LOAD_EMAILS')
 export const loadMobilesActions = createActions(prefix, 'LOAD_MOBILES')
 
-export const updateMobileActions = createActions(prefix, 'UPDATE_MOBILE')
 export const updateUserActions = createActions(prefix, 'UPDATE_USER')
 export const updatePasswordActions = createActions(prefix, 'UPDATE_PASSWORD')
+export const updateEmailActions = createActions(prefix, 'UPDATE_EMAIL')
+export const updateMobileActions = createActions(prefix, 'UPDATE_MOBILE')
 
 export const addEmailActions = createActions(prefix, 'ADD_EMAIL')
 export const addMobileActions = createActions(prefix, 'ADD_MOBILE')

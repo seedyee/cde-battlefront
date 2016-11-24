@@ -63,8 +63,10 @@ export const updatePassword = (id, data) => post(`/accounts/${id}/password`, dat
 export const loadEmails = (id) => get(`/accounts/${id}/emails`)
 export const addEmail = (id, email) => post(`/accounts/${id}/emails`, email)
 export const deleteEmail = ({ id, emailId }) => del(`/accounts/${id}/emails/${emailId}`)
+export const updateEmail = ({ id, emailId }, data) => post(`/accounts/${id}/emails/${emailId}`, data)
 
 // APIs about Mobile
 export const loadMobiles = (id) => get(`/accounts/${id}/mobiles`)
 export const addMobile = (id, mobile) => post(`/accounts/${id}/mobiles`, mobile)
 export const deleteMobile = ({ id, mobileId }) => del(`/accounts/${id}/mobiles/${mobileId}`)
+export const updateMobile = ({ id, mobileId }, data) => post(`/accounts/${id}/mobiles/${mobileId}`, data)

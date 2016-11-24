@@ -191,6 +191,49 @@ function* deleteMobile() {
   }
 }
 
+function* updateEmail() {
+  while (true) {
+    const { payload } = yield take(actions.updateEmailActions.REQUEST)
+    console.log(payload)
+    const emails = yield select(selectEmails)
+    try {
+      const { error } = yield call(api.updateEmail, { id: 'fakeId', emailId: payload.id }, { isVerified: payload.isVerified })
+      if (error) {
+        yield put(actions.updateEmailActions.failure(error.text))
+        alert(error.text)
+      } else {
+        const newEmails = [...emails]
+        yield put(actions.updateEmailActions.success({ newEmails }))
+        alert('认证邮箱已发送，请登录该邮箱进行认证 !')
+      }
+    } catch (e) {
+      yield put(actions.updateEmailActions.failure(e))
+      alert(e)
+    }
+  }
+}
+
+function* updateMobile() {
+  while (true) {
+    const { payload } = yield take(actions.updateMobileActions.REQUEST)
+    const mobiles = yield select(selectMobiles)
+    try {
+      const { error } = yield call(api.updateMobile, { id: 'fakeId', mobileId: payload.id }, { isVerified: payload.isVerified })
+      if (error) {
+        yield put(actions.updateMobileActions.failure(error.text))
+        alert(error.text)
+      } else {
+        const newMobiles = [...mobiles]
+        yield put(actions.updateMobileActions.success({ newMobiles }))
+        alert('已发送手机认证短信 !')
+      }
+    } catch (e) {
+      yield put(actions.updateMobileActions.failure(e))
+      alert(e)
+    }
+  }
+}
+
 export default function* settingsSaga() {
   yield [
     fork(loadUser),
@@ -202,5 +245,7 @@ export default function* settingsSaga() {
     fork(addMobile),
     fork(deleteEmail),
     fork(deleteMobile),
+    fork(updateEmail),
+    fork(updateMobile),
   ]
 }
