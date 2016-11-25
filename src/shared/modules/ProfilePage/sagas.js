@@ -6,7 +6,6 @@ import * as api from '../api'
 
 function* loadUser() {
   const user = yield select(selectCurrentUser)
-  // If user is not empty
   if (!isEmptyObj(user)) return
   yield put(loadUserActions.request())
   try {

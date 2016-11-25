@@ -10,6 +10,7 @@
   border: 1px solid #ddd;
   border-radius: $border-radius_3px;
   box-shadow: $box-shadow;
+  outline: none;
   &:hover {
     border: 1px solid #ccc;
     box-shadow: $box-shadow;

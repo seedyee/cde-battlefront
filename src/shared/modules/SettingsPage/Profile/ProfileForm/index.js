@@ -4,11 +4,16 @@ import { connect } from 'react-redux'
 import { Button } from 'react-bootstrap'
 
 import FormInputField from '../../../FormInputField'
+import FormSelectField from '../../../FormSelectField'
 import Styles from './index.css'
 
 class ProfileForm extends Component {
   render() {
-    const { handleSubmit, pristine, submitting } = this.props
+    const { handleSubmit, pristine, submitting, emails, mobiles } = this.props
+    const emailOptions = []
+    const mobileOptions = []
+    Object.values(emails).map(e => emailOptions.push(e.email))
+    Object.values(mobiles).map(e => mobileOptions.push(e.mobile))
     return (
       <form onSubmit={handleSubmit} className={Styles.RegisterForm}>
         <Field
@@ -24,16 +29,18 @@ class ProfileForm extends Component {
           name="email"
           type="email"
           id="email"
-          component={FormInputField}
+          component={FormSelectField}
           label="邮箱"
+          options={emailOptions}
         />
         <Field
           styles={{ input: Styles.input }}
           name="mobile"
           type="mobile"
           id="mobile"
-          component={FormInputField}
+          component={FormSelectField}
           label="手机"
+          options={mobileOptions}
         />
         <Field
           styles={{ input: Styles.input }}
@@ -84,5 +91,12 @@ const comp = reduxForm({
   onSubmit: onSubmitActions(updateUserActions),
 })(ProfileForm)
 
-export default connect()(comp)
+import { selectEmails, selectMobiles } from '../../selectors'
+
+const mapStateToProps = state => ({
+  emails: selectEmails(state),
+  mobiles: selectMobiles(state),
+})
+
+export default connect(mapStateToProps)(comp)
 

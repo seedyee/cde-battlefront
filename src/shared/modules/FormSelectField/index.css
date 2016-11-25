@@ -1,0 +1,27 @@
+.field {
+  margin: 20px 0;
+}
+
+.labelContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3px;
+}
+
+.input {
+  margin-top: 10px;
+}
+
+.error {
+  color: #B71C1C;
+
+}
+
+.alertMessage {
+  padding-left: 4px;
+  margin-top: 5px;
+}
+
+.alertIcon {
+  margin-right: 5px;
+}
