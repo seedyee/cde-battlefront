@@ -5,6 +5,9 @@ import * as api from '../api'
 import { isEmptyObj } from '../utils'
 import last from 'lodash/last'
 
+/*
+ * sagas about user
+ */
 function* loadUser() {
   const user = yield select(selectUser)
   if (!isEmptyObj(user)) return
@@ -14,30 +17,6 @@ function* loadUser() {
     yield put(actions.loadUserActions.success(response))
   } catch (e) {
     yield put(actions.loadUserActions.failure(e))
-  }
-}
-
-function* loadEmails() {
-  const user = yield select(selectUser)
-  if (!isEmptyObj(user)) return
-  yield put(actions.loadEmailsActions.request())
-  try {
-    const response = yield call(api.loadEmails, 'fakeId')
-    yield put(actions.loadEmailsActions.success(response))
-  } catch (e) {
-    yield put(actions.loadEmailsActions.failure(e))
-  }
-}
-
-function* loadMobiles() {
-  const user = yield select(selectUser)
-  if (!isEmptyObj(user)) return
-  yield put(actions.loadMobilesActions.request())
-  try {
-    const response = yield call(api.loadMobiles, 'fakeId')
-    yield put(actions.loadMobilesActions.success(response))
-  } catch (e) {
-    yield put(actions.loadMobilesActions.failure(e))
   }
 }
 
@@ -61,6 +40,9 @@ function* updateUser() {
   }
 }
 
+/*
+ * sagas about password
+ */
 function* updatePassword() {
   while (true) {
     const { payload } = yield take(actions.updatePasswordActions.REQUEST)
@@ -82,6 +64,21 @@ function* updatePassword() {
         alert(e)
       }
     }
+  }
+}
+
+/*
+ * sagas about email
+ */
+function* loadEmails() {
+  const user = yield select(selectUser)
+  if (!isEmptyObj(user)) return
+  yield put(actions.loadEmailsActions.request())
+  try {
+    const response = yield call(api.loadEmails, 'fakeId')
+    yield put(actions.loadEmailsActions.success(response))
+  } catch (e) {
+    yield put(actions.loadEmailsActions.failure(e))
   }
 }
 
@@ -118,6 +115,63 @@ function* addEmail() {
   }
 }
 
+function* deleteEmail() {
+  while (true) {
+    const { payload } = yield take(actions.deleteEmailActions.REQUEST)
+    const emails = yield select(selectEmails)
+    try {
+      const { error } = yield call(api.deleteEmail, { id: 'fakeId', emailId: payload })
+      if (error) {
+        yield put(actions.deleteEmailActions.failure(error.text))
+        alert(error.text)
+      } else {
+        const newEmails = emails.filter(e => e.id !== payload)
+        yield put(actions.deleteEmailActions.success({ newEmails }))
+      }
+    } catch (e) {
+      yield put(actions.deleteEmailActions.failure(e))
+      alert(e)
+    }
+  }
+}
+
+function* updateEmail() {
+  while (true) {
+    const { payload } = yield take(actions.updateEmailActions.REQUEST)
+    console.log(payload)
+    const emails = yield select(selectEmails)
+    try {
+      const { error } = yield call(api.updateEmail, { id: 'fakeId', emailId: payload.id }, { isVerified: payload.isVerified })
+      if (error) {
+        yield put(actions.updateEmailActions.failure(error.text))
+        alert(error.text)
+      } else {
+        const newEmails = [...emails]
+        yield put(actions.updateEmailActions.success({ newEmails }))
+        alert('认证邮箱已发送，请登录该邮箱进行认证 !')
+      }
+    } catch (e) {
+      yield put(actions.updateEmailActions.failure(e))
+      alert(e)
+    }
+  }
+}
+
+/*
+ * sagas about mobile
+ */
+function* loadMobiles() {
+  const user = yield select(selectUser)
+  if (!isEmptyObj(user)) return
+  yield put(actions.loadMobilesActions.request())
+  try {
+    const response = yield call(api.loadMobiles, 'fakeId')
+    yield put(actions.loadMobilesActions.success(response))
+  } catch (e) {
+    yield put(actions.loadMobilesActions.failure(e))
+  }
+}
+
 function* addMobile() {
   while (true) {
     const { payload } = yield take(actions.addMobileActions.REQUEST)
@@ -151,26 +205,6 @@ function* addMobile() {
   }
 }
 
-function* deleteEmail() {
-  while (true) {
-    const { payload } = yield take(actions.deleteEmailActions.REQUEST)
-    const emails = yield select(selectEmails)
-    try {
-      const { error } = yield call(api.deleteEmail, { id: 'fakeId', emailId: payload })
-      if (error) {
-        yield put(actions.deleteEmailActions.failure(error.text))
-        alert(error.text)
-      } else {
-        const newEmails = emails.filter(e => e.id !== payload)
-        yield put(actions.deleteEmailActions.success({ newEmails }))
-      }
-    } catch (e) {
-      yield put(actions.deleteEmailActions.failure(e))
-      alert(e)
-    }
-  }
-}
-
 function* deleteMobile() {
   while (true) {
     const { payload } = yield take(actions.deleteMobileActions.REQUEST)
@@ -191,27 +225,6 @@ function* deleteMobile() {
   }
 }
 
-function* updateEmail() {
-  while (true) {
-    const { payload } = yield take(actions.updateEmailActions.REQUEST)
-    console.log(payload)
-    const emails = yield select(selectEmails)
-    try {
-      const { error } = yield call(api.updateEmail, { id: 'fakeId', emailId: payload.id }, { isVerified: payload.isVerified })
-      if (error) {
-        yield put(actions.updateEmailActions.failure(error.text))
-        alert(error.text)
-      } else {
-        const newEmails = [...emails]
-        yield put(actions.updateEmailActions.success({ newEmails }))
-        alert('认证邮箱已发送，请登录该邮箱进行认证 !')
-      }
-    } catch (e) {
-      yield put(actions.updateEmailActions.failure(e))
-      alert(e)
-    }
-  }
-}
 
 function* updateMobile() {
   while (true) {
@@ -237,15 +250,16 @@ function* updateMobile() {
 export default function* settingsSaga() {
   yield [
     fork(loadUser),
-    fork(loadEmails),
-    fork(loadMobiles),
     fork(updateUser),
     fork(updatePassword),
+    fork(loadEmails),
     fork(addEmail),
-    fork(addMobile),
     fork(deleteEmail),
-    fork(deleteMobile),
     fork(updateEmail),
+    fork(loadMobiles),
+    fork(updateUser),
+    fork(addMobile),
+    fork(deleteMobile),
     fork(updateMobile),
   ]
 }

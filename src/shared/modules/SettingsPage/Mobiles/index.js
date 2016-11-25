@@ -16,26 +16,36 @@ class Mobiles extends Component {
     </tr>
   ))
 
-  getIcon = (name, id, mobile) => <Glyphicon glyph={name} className={Styles.icon} onClick={() => (confirm(`您确定删除${mobile}吗？`) ? this.props.deleteMobile(id) : '')} />
+  getIcon = (name, id, mobile) => (
+    <Glyphicon
+      glyph={name}
+      className={Styles.icon}
+      onClick={() => (confirm(`您确定删除${mobile}吗？`) ? this.props.deleteMobile(id) : '')}
+    />
+  )
 
   isDefault = (isDefault) => (
     isDefault === true ? <Label bsStyle="success" className={Styles.defaultIcon}>默认</Label> : ''
   )
 
   isPublic = (isPublic) => (
-    isPublic === true ? <Label bsStyle="default" className={Styles.defaultIcon}>公开</Label> : <Label bsStyle="default" className={Styles.defaultIcon}>私有</Label>
+    isPublic === true ? <Label bsStyle="default" className={Styles.defaultIcon}>公开</Label>
+                      : <Label bsStyle="default" className={Styles.defaultIcon}>私有</Label>
   )
 
   isVerified = (isVerified) => (
-    isVerified === true ? <Label bsStyle="success" className={Styles.defaultIcon}>已认证</Label> : <Label bsStyle="warning" className={Styles.defaultIcon}>未认证</Label>
+    isVerified === true ? <Label bsStyle="success" className={Styles.defaultIcon}>已认证</Label>
+                        : <Label bsStyle="warning" className={Styles.defaultIcon}>未认证</Label>
   )
 
   showDedaultBtn = (isDefault, isVerified, mobile) => (
-    isDefault === false && isVerified === true ? <Button bsStyle="link" onClick={() => (confirm(`您确定设${mobile}为默认手机号码吗？`) ? this.props.setMobile({ mobile }) : '')}>设为默认</Button> : ''
+    isDefault === false && isVerified === true ?
+      <Button bsStyle="link" onClick={() => (confirm(`您确定设${mobile}为默认手机号码吗？`) ? this.props.setMobile({ mobile }) : '')} >设为默认</Button> : ''
   )
 
   showResendBtn = (isDefault, isVerified, id) => (
-    isDefault === false && isVerified === false ? <Button bsStyle="link" onClick={() => this.props.sendMobile({ id, isVerified })}>重新发送</Button> : ''
+    isDefault === false && isVerified === false ?
+      <Button bsStyle="link" onClick={() => this.props.sendMobile({ id, isVerified })}>重新发送</Button> : ''
   )
 
   render() {

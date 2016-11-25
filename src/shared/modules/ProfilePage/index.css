@@ -6,45 +6,6 @@
   margin-top: 70px;
 }
 
-.userInfo {
-  width: 230px;
-  height: 600px;
-  a {
-    display: block;
-    width: 230px;
-    height: 230px;
-  }
-  img {
-    display: block;
-    width: 230px;
-    height: 230px;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  p {
-    width: 230px;
-    margin-top: 20px;
-    font-size: 14px;
-  }
-
-}
-
-.userName {
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.profileEditBtn {
-  width: 230px;
-  font-size: 16px;
-  font-weight: bold;
-  background: linear-gradient(#fcfcfc, #eee);
-  &:hover {
-    background: #ddd;
-  }
-}
-
 .userContent {
   width: $settings-content-width;
   border: $border-style;

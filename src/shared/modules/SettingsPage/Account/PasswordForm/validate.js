@@ -10,11 +10,11 @@ const validate = () => values => {
   const newPasswordConfirm = values.newPasswordConfirm
 
   if (password && !validators.password.test(password)) {
-    errors.password = '密码有效长度为8位以上，且至少包括1个字母和1个数字 !'
+    errors.password = '密码有效长度为8位以上，且至少包含1个字母和1个数字 !'
   }
 
   if (newPassword && !validators.newPassword.test(newPassword)) {
-    errors.newPassword = '密码有效长度为8位以上，且至少包括1个字母和1个数字 !'
+    errors.newPassword = '密码有效长度为8位以上，且至少包含1个字母和1个数字 !'
   }
 
   if (newPassword !== newPasswordConfirm) {

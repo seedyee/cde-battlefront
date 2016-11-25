@@ -16,18 +16,26 @@ class Emails extends Component {
     </tr>
   ))
 
-  getIcon = (name, id, email) => <Glyphicon glyph={name} className={Styles.icon} onClick={() => (confirm(`您确定删除${email}吗？`) ? this.props.deleteEmail(id) : '')} />
+  getIcon = (name, id, email) => (
+    <Glyphicon
+      glyph={name}
+      className={Styles.icon}
+      onClick={() => (confirm(`您确定删除${email}吗？`) ? this.props.deleteEmail(id) : '')}
+    />
+  )
 
   isDefault = (isDefault) => (
     isDefault === true ? <Label bsStyle="success" className={Styles.defaultIcon}>默认</Label> : ''
   )
 
   isPublic = (isPublic) => (
-    isPublic === true ? <Label bsStyle="default" className={Styles.defaultIcon}>公开</Label> : <Label bsStyle="default" className={Styles.defaultIcon}>私有</Label>
+    isPublic === true ? <Label bsStyle="default" className={Styles.defaultIcon}>公开</Label>
+                      : <Label bsStyle="default" className={Styles.defaultIcon}>私有</Label>
   )
 
   isVerified = (isVerified) => (
-    isVerified === true ? <Label bsStyle="success" className={Styles.defaultIcon}>已认证</Label> : <Label bsStyle="warning" className={Styles.defaultIcon}>未认证</Label>
+    isVerified === true ? <Label bsStyle="success" className={Styles.defaultIcon}>已认证</Label>
+                        : <Label bsStyle="warning" className={Styles.defaultIcon}>未认证</Label>
   )
 
   showDedaultBtn = (isDefault, isVerified, email) => (
@@ -37,7 +45,6 @@ class Emails extends Component {
   showResendBtn = (isDefault, isVerified, id) => (
     isDefault === false && isVerified === false ? <Button bsStyle="link" onClick={() => this.props.sendEmail({ id, isVerified })}>重新发送</Button> : ''
   )
-
 
   render() {
     const { ...emails } = this.props.emails

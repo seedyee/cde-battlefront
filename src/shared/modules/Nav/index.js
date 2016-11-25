@@ -46,6 +46,7 @@ class Nav extends React.Component {
           </ul>
           <ul className={Styles.signsNav}>
             {logined ? '' : <li className={Styles.signIn}><Link to="/signIn">{this.getIcon('log-in')}&nbsp;登录</Link></li>}
+            {logined ? '' : <li className={Styles.signIn}><Link to="/signUp">{this.getIcon('user')}&nbsp;注册</Link></li>}
             {logined ? this.getDropdown() : ''}
           </ul>
         </div>
