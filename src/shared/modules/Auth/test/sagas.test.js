@@ -2,7 +2,7 @@ import test from 'ava'
 import { take, call, put } from 'redux-saga/effects'
 import { loginFlow, logoutFlow, registerFlow } from '../sagas'
 import { loginActions, logoutActions, registerActions } from '../actions'
-import * as api from '../../../api'
+import * as api from '../../api'
 
 const payload = { email: 'seedyee', password: 'abcdefg' }
 const response = { email: 'seedyee@mail.com' }

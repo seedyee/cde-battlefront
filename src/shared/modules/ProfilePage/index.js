@@ -13,7 +13,7 @@ class ProfilePage extends React.Component {
         <Helmet title="profile" />
         <UserInfo user={user} />
         <div className={Styles.userContent}>
-
+          seedyee
         </div>
       </div>
     )

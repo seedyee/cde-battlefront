@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import ProfileForm from './ProfileForm'
 import Styles from './index.css'
 import logo from '../../assets/logo.png'
+import Avatar from './AvatarForm'
 
 class Profile extends Component {
   render() {
@@ -14,9 +15,10 @@ class Profile extends Component {
           <div className={Styles.avatar}>
             <p className={Styles.avatarTitle}>用户头像</p>
             <img className={Styles.avatarImg} alt="your avatar" src={logo} />
-            <a href="javascript:;" className={Styles.uploadFile}>上传头像
+            <a href=" " className={Styles.uploadFile}>上传头像
               <input className={Styles.avatarInput} type="file" name="" id="" />
             </a>
+            <Avatar />
           </div>
         </div>
       </div>

@@ -31,16 +31,16 @@ class AvatarForm extends Component {
     e.preventDefault()
 
     const reader = new FileReader()
-    const file = e.target.files[0]
+    const firstFile = e.target.files[0]
 
     reader.onloadend = () => {
       this.setState({
-        file: file,
+        file: firstFile,
         imagePreviewUrl: reader.result,
       })
     }
 
-    reader.readAsDataURL(file)
+    reader.readAsDataURL(firstFile)
   }
 
   render() {
@@ -49,7 +49,7 @@ class AvatarForm extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <a href="javascript:;" className={Styles.file}>选择头像
+          <a href="" className={Styles.file} >选择头像
             <input type="file" onChange={this.handleImageChange} />
           </a>
           <Button bsStyle="primary" className={Styles.fileBtn} type="submit" onClick={this.handleSubmit}>上传头像</Button>
