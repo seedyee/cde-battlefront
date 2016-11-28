@@ -21,7 +21,7 @@ const password = (state = {}, action) => {
   }
 }
 
-const emails = (state = {}, action) => {
+const emails = (state = [], action) => {
   switch (action.type) {
     case userActions.loadEmailsActions.SUCCESS:
       return action.payload
@@ -31,12 +31,14 @@ const emails = (state = {}, action) => {
       return action.payload.newEmails
     case userActions.updateEmailActions.SUCCESS:
       return action.payload.newEmails
+    case userActions.sendEmailActions.SUCCESS:
+      return action.payload.newEmails
     default:
       return state
   }
 }
 
-const mobiles = (state = {}, action) => {
+const mobiles = (state = [], action) => {
   switch (action.type) {
     case userActions.loadMobilesActions.SUCCESS:
       return action.payload
@@ -45,6 +47,8 @@ const mobiles = (state = {}, action) => {
     case userActions.deleteMobileActions.SUCCESS:
       return action.payload.newMobiles
     case userActions.updateMobileActions.SUCCESS:
+      return action.payload.newMobiles
+    case userActions.sendMobileActions.SUCCESS:
       return action.payload.newMobiles
     default:
       return state

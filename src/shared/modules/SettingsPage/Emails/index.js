@@ -6,13 +6,20 @@ import EmailForm from './EmailForm'
 import Styles from './index.css'
 
 class Emails extends Component {
-  getEmails = (emails) => Object.values(emails).map(e => (
+  constructor(props) {
+    super(props)
+    this.state = {
+      checked: this.props.user.isPublicEmail,
+    }
+  }
+
+  getEmails = (emails, checked) => Object.values(emails).map(e => (
     <tr key={e.id}>
-      <th>{e.email}</th>
-      <th>{this.isDefault(e.isDefault)} {e.isDefault === true ? this.isPublic(e.isPublic) : ''}</th>
-      <th>{this.isVerified(e.isVerified)}</th>
-      <th>{this.showResendBtn(e.isDefault, e.isVerified, e.id)} {this.showDedaultBtn(e.isDefault, e.isVerified, e.email)}</th>
-      <th>{this.getIcon('trash', e.id, e.email)}</th>
+      <td>{e.email}</td>
+      <td>{this.isDefault(e.isDefault)} {e.isDefault === true ? this.isPublic(e.isPublic) : ''}</td>
+      <td>{this.isVerified(e.isVerified)}</td>
+      <td>{this.showResendBtn(e.isDefault, e.isVerified, e.id)} {this.showDedaultBtn(e.isDefault, e.isVerified, e.email, checked)}</td>
+      <td>{this.getIcon('trash', e.id, e.email)}</td>
     </tr>
   ))
 
@@ -23,6 +30,11 @@ class Emails extends Component {
       onClick={() => (confirm(`您确定删除${email}吗？`) ? this.props.deleteEmail(id) : '')}
     />
   )
+
+  setPubilic = (event) => {
+    this.setState({ checked: event.target.checked })
+    this.props.updateEmail({ isPublicEmail: event.target.checked })
+  }
 
   isDefault = (isDefault) => (
     isDefault === true ? <Label bsStyle="success" className={Styles.defaultIcon}>默认</Label> : ''
@@ -38,8 +50,8 @@ class Emails extends Component {
                         : <Label bsStyle="warning" className={Styles.defaultIcon}>未认证</Label>
   )
 
-  showDedaultBtn = (isDefault, isVerified, email) => (
-    isDefault === false && isVerified === true ? <Button bsStyle="link" onClick={() => (confirm(`您确定设${email}为默认邮箱吗？`) ? this.props.setEmail({ email }) : '')}>设为默认</Button> : ''
+  showDedaultBtn = (isDefault, isVerified, email, checked) => (
+    isDefault === false && isVerified === true ? <Button bsStyle="link" onClick={() => (confirm(`您确定设${email}为默认邮箱吗？`) ? this.props.updateEmail({ email, checked }) : '')}>设为默认</Button> : ''
   )
 
   showResendBtn = (isDefault, isVerified, id) => (
@@ -51,24 +63,32 @@ class Emails extends Component {
     return (
       <div className={Styles.Emails}>
         <h3>查看邮箱</h3>
-        <div>
-          <table className={Styles.emailTable}>
-            <tbody>{this.getEmails(emails)}</tbody>
-          </table>
-        </div>
+        {this.props.emails.length === 0 ? '' :
+          <div>
+            <table className={Styles.emailTable}>
+              <tbody>{this.getEmails(emails, this.state.checked)}</tbody>
+              {this.props.emails.some(email => email.isDefault === true) ?
+                <tfoot>
+                  <tr><td>公开默认邮箱：<input type="checkbox" onChange={this.setPubilic} checked={this.state.checked} /></td></tr>
+                </tfoot>
+                : null
+              }
+            </table>
+          </div>
+        }
         <EmailForm />
       </div>
     )
   }
 }
 
-import { updateUserActions, deleteEmailActions, updateEmailActions } from '../actions'
+import { deleteEmailActions, updateEmailActions, sendEmailActions } from '../actions'
 
 export default connect(
   null,
   {
     deleteEmail: deleteEmailActions.request,
-    setEmail: updateUserActions.request,
-    sendEmail: updateEmailActions.request,
+    updateEmail: updateEmailActions.request,
+    sendEmail: sendEmailActions.request,
   }
 )(Emails)

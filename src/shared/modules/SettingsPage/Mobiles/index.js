@@ -6,13 +6,20 @@ import MobileForm from './MobileForm'
 import Styles from './index.css'
 
 class Mobiles extends Component {
-  getMobiles = (mobiles) => Object.values(mobiles).map(m => (
+  constructor(props) {
+    super(props)
+    this.state = {
+      checked: this.props.user.isPublicMobile,
+    }
+  }
+
+  getMobiles = (mobiles, checked) => Object.values(mobiles).map(m => (
     <tr key={m.id}>
-      <th>{m.mobile}</th>
-      <th>{this.isDefault(m.isDefault)} {m.isDefault === true ? this.isPublic(m.isPublic) : ''}</th>
-      <th>{this.isVerified(m.isVerified)}</th>
-      <th>{this.showResendBtn(m.isDefault, m.isVerified, m.id)} {this.showDedaultBtn(m.isDefault, m.isVerified, m.mobile)}</th>
-      <th>{this.getIcon('trash', m.id, m.mobile)}</th>
+      <td>{m.mobile}</td>
+      <td>{this.isDefault(m.isDefault)} {m.isDefault === true ? this.isPublic(m.isPublic) : ''}</td>
+      <td>{this.isVerified(m.isVerified)}</td>
+      <td>{this.showResendBtn(m.isDefault, m.isVerified, m.id)} {this.showDedaultBtn(m.isDefault, m.isVerified, m.mobile, checked)}</td>
+      <td>{this.getIcon('trash', m.id, m.mobile)}</td>
     </tr>
   ))
 
@@ -23,6 +30,11 @@ class Mobiles extends Component {
       onClick={() => (confirm(`您确定删除${mobile}吗？`) ? this.props.deleteMobile(id) : '')}
     />
   )
+
+  setPubilic = (event) => {
+    this.setState({ checked: event.target.checked })
+    this.props.updateMobile({ isPublicMobile: event.target.checked })
+  }
 
   isDefault = (isDefault) => (
     isDefault === true ? <Label bsStyle="success" className={Styles.defaultIcon}>默认</Label> : ''
@@ -38,9 +50,9 @@ class Mobiles extends Component {
                         : <Label bsStyle="warning" className={Styles.defaultIcon}>未认证</Label>
   )
 
-  showDedaultBtn = (isDefault, isVerified, mobile) => (
+  showDedaultBtn = (isDefault, isVerified, mobile, checked) => (
     isDefault === false && isVerified === true ?
-      <Button bsStyle="link" onClick={() => (confirm(`您确定设${mobile}为默认手机号码吗？`) ? this.props.setMobile({ mobile }) : '')} >设为默认</Button> : ''
+      <Button bsStyle="link" onClick={() => (confirm(`您确定设${mobile}为默认手机号码吗？`) ? this.props.updateMobile({ mobile, checked }) : '')} >设为默认</Button> : ''
   )
 
   showResendBtn = (isDefault, isVerified, id) => (
@@ -53,25 +65,33 @@ class Mobiles extends Component {
     return (
       <div className={Styles.Mobiles}>
         <h3>查看手机</h3>
-        <div>
-          <table className={Styles.mobilesTable}>
-            <tbody>{this.getMobiles(mobiles)}</tbody>
-          </table>
-        </div>
+        {this.props.mobiles.length === 0 ? '' :
+          <div>
+            <table className={Styles.mobilesTable}>
+              <tbody>{this.getMobiles(mobiles, this.state.checked)}</tbody>
+              {this.props.mobiles.some(mobile => mobile.isDefault === true) ?
+                <tfoot>
+                  <tr><td>公开默认手机：<input type="checkbox" onChange={this.setPubilic} checked={this.state.checked} /></td></tr>
+                </tfoot>
+                : null
+              }
+            </table>
+          </div>
+        }
         <MobileForm />
       </div>
     )
   }
 }
 
-import { updateUserActions, deleteMobileActions, updateMobileActions } from '../actions'
+import { deleteMobileActions, updateMobileActions, sendMobileActions } from '../actions'
 
 export default connect(
   null,
   {
     deleteMobile: deleteMobileActions.request,
-    setMobile: updateUserActions.request,
-    sendMobile: updateMobileActions.request,
+    updateMobile: updateMobileActions.request,
+    sendMobile: sendMobileActions.request,
   }
 )(Mobiles)
 

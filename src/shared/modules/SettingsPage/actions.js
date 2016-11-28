@@ -14,9 +14,11 @@ export const loadEmailsActions = createActions(prefix, 'LOAD_EMAILS')
 export const addEmailActions = createActions(prefix, 'ADD_EMAIL')
 export const deleteEmailActions = createActions(prefix, 'DELETE_EMAIL')
 export const updateEmailActions = createActions(prefix, 'UPDATE_EMAIL')
+export const sendEmailActions = createActions(prefix, 'SEND_EMAIL')
 
 // Actions about mobile
 export const loadMobilesActions = createActions(prefix, 'LOAD_MOBILES')
 export const addMobileActions = createActions(prefix, 'ADD_MOBILE')
 export const deleteMobileActions = createActions(prefix, 'DELETE_MOBILE')
 export const updateMobileActions = createActions(prefix, 'UPDATE_MOBILE')
+export const sendMobileActions = createActions(prefix, 'SEND_MOBILE')

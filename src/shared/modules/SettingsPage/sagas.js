@@ -138,20 +138,48 @@ function* deleteEmail() {
 function* updateEmail() {
   while (true) {
     const { payload } = yield take(actions.updateEmailActions.REQUEST)
-    console.log(payload)
     const emails = yield select(selectEmails)
+    const newEmails = [...emails]
     try {
-      const { error } = yield call(api.updateEmail, { id: 'fakeId', emailId: payload.id }, { isVerified: payload.isVerified })
+      const { error } = yield call(api.updateEmail, 'fakeId', payload)
       if (error) {
         yield put(actions.updateEmailActions.failure(error.text))
         alert(error.text)
-      } else {
-        const newEmails = [...emails]
+      } else if (payload.email === undefined) {
+        newEmails.find(email => email.isDefault === true).isPublic = payload.isPublicEmail
         yield put(actions.updateEmailActions.success({ newEmails }))
-        alert('认证邮箱已发送，请登录该邮箱进行认证 !')
+        alert('更新邮箱成功 !')
+      } else {
+        newEmails.map(email => email.isDefault = false)  // eslint-disable-line no-return-assign, no-param-reassign
+        newEmails.find(email => email.email === payload.email).isDefault = true
+        newEmails.find(email => email.isDefault === true).isPublic = payload.checked
+        yield put(actions.updateEmailActions.success({ newEmails }))
+        alert('更新邮箱成功 !')
       }
     } catch (e) {
       yield put(actions.updateEmailActions.failure(e))
+      alert(e)
+    }
+  }
+}
+
+function* sendEmail() {
+  while (true) {
+    const { payload } = yield take(actions.sendEmailActions.REQUEST)
+    const emails = yield select(selectEmails)
+    console.log(payload)
+    try {
+      const { error } = yield call(api.sendEmail, { id: 'fakeId', emailId: payload.id }, { isVerified: payload.isVerified })
+      if (error) {
+        yield put(actions.sendEmailActions.failure(error.text))
+        alert(error.text)
+      } else {
+        const newEmails = [...emails]
+        yield put(actions.sendEmailActions.success({ newEmails }))
+        alert('认证邮箱已发送，请登录该邮箱进行认证 !')
+      }
+    } catch (e) {
+      yield put(actions.sendEmailActions.failure(e))
       alert(e)
     }
   }
@@ -230,18 +258,46 @@ function* updateMobile() {
   while (true) {
     const { payload } = yield take(actions.updateMobileActions.REQUEST)
     const mobiles = yield select(selectMobiles)
+    const newMobiles = [...mobiles]
     try {
-      const { error } = yield call(api.updateMobile, { id: 'fakeId', mobileId: payload.id }, { isVerified: payload.isVerified })
+      const { error } = yield call(api.updateMobile, 'fakeId', payload)
       if (error) {
         yield put(actions.updateMobileActions.failure(error.text))
         alert(error.text)
-      } else {
-        const newMobiles = [...mobiles]
+      } else if (payload.mobile === undefined) {
+        newMobiles.find(mobile => mobile.isDefault === true).isPublic = payload.isPublicMobile
         yield put(actions.updateMobileActions.success({ newMobiles }))
-        alert('已发送手机认证短信 !')
+        alert('更新手机成功 !')
+      } else {
+        newMobiles.map(mobile => mobile.isDefault = false)  // eslint-disable-line no-return-assign, no-param-reassign
+        newMobiles.find(mobile => mobile.mobile === payload.mobile).isDefault = true
+        newMobiles.find(mobile => mobile.isDefault === true).isPublic = payload.checked
+        yield put(actions.updateMobileActions.success({ newMobiles }))
+        alert('更新手机成功 !')
       }
     } catch (e) {
       yield put(actions.updateMobileActions.failure(e))
+      alert(e)
+    }
+  }
+}
+
+function* sendMobile() {
+  while (true) {
+    const { payload } = yield take(actions.sendMobileActions.REQUEST)
+    const mobiles = yield select(selectMobiles)
+    try {
+      const { error } = yield call(api.sendMobile, { id: 'fakeId', mobileId: payload.id }, { isVerified: payload.isVerified })
+      if (error) {
+        yield put(actions.sendMobileActions.failure(error.text))
+        alert(error.text)
+      } else {
+        const newMobiles = [...mobiles]
+        yield put(actions.sendMobileActions.success({ newMobiles }))
+        alert('已发送手机认证短信 !')
+      }
+    } catch (e) {
+      yield put(actions.sendMobileActions.failure(e))
       alert(e)
     }
   }
@@ -256,10 +312,11 @@ export default function* settingsSaga() {
     fork(addEmail),
     fork(deleteEmail),
     fork(updateEmail),
+    fork(sendEmail),
     fork(loadMobiles),
-    fork(updateUser),
     fork(addMobile),
     fork(deleteMobile),
     fork(updateMobile),
+    fork(sendMobile),
   ]
 }

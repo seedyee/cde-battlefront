@@ -45,11 +45,11 @@ class SettingsPage extends React.Component {
       case 'Profile':
         return <Profile initialValues={user} />
       case 'Emails':
-        return <Emails emails={emails} />
+        return <Emails emails={emails} user={user} />
       case 'Account':
         return <Account initialValues={user} />
       case 'Mobiles':
-        return <Mobiles mobiles={mobiles} />
+        return <Mobiles mobiles={mobiles} user={user} />
       case 'Security':
         return <Security user={user} />
       default:

@@ -77,13 +77,6 @@ const mobiles = [
     isVerified: false,
     isPublic: false,
   },
-  {
-    id: '4',
-    mobile: '15622372949',
-    isDefault: false,
-    isVerified: false,
-    isPublic: false,
-  },
 ]
 
 const success = {

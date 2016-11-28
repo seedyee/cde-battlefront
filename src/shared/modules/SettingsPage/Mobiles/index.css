@@ -11,25 +11,31 @@
   color: #666;
   margin: 20px 0 40px 0;
   text-indent: 10px;
-  tr {
-    height: 38px;
-    border-bottom: $border-style;
-    th {
-      &:nth-child(1) {
-        width: 150px;
-        font-weight: normal;
-        letter-spacing: $letter-spacing;
+  tbody {
+    tr {
+      height: 38px;
+      border-bottom: $border-style;
+      td {
+        &:nth-child(1) {
+          width: 150px;
+          letter-spacing: 0.5px;
+        }
+        &:nth-child(2) {
+          width: 160px;
+        }
+        &:nth-child(4) {
+          text-align: right;
+        }
+        &:nth-child(5) {
+          width: 20px;
+          text-align: right;
+        }
       }
-      &:nth-child(2) {
-        width: 160px;
-      }
-      &:nth-child(4) {
-        text-align: right;
-      }
-      &:nth-child(5) {
-        width: 20px;
-        text-align: right;
-      }
+    }
+  }
+  tfoot {
+    td {
+      padding-top: 15px;
     }
   }
 }

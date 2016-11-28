@@ -87,7 +87,7 @@ const comp = reduxForm({
   form: 'profileForm',
   enableReinitialize: true,
   keepDirtyOnReinitialize: true,
-  validate: validate({ register: true }),
+  validate: validate(),
   onSubmit: onSubmitActions(updateUserActions),
 })(ProfileForm)
 
