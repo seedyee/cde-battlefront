@@ -3,9 +3,11 @@
 
 .userName {
   @include content-title();
+  padding-bottom: $padding-bottom;
 }
 
 .passwordEdit {
   @include content-title();
+  padding-bottom: $padding-bottom;
   margin: 40px 0;
 }

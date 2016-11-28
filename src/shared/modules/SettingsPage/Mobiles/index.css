@@ -3,6 +3,7 @@
 
 .Mobiles {
   @include content-title();
+  padding-bottom: $padding-bottom;
 }
 
 

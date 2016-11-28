@@ -3,6 +3,7 @@
 
 .Emails {
   @include content-title();
+  padding-bottom: $padding-bottom;
 }
 
 .emailTable {

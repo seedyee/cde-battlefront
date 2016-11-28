@@ -3,7 +3,7 @@
 
 .Profile {
   @include content-title();
-  padding-bottom: 30px;
+  padding-bottom: $padding-bottom;
   margin-bottom: 30px;
 }
 
