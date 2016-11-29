@@ -21,7 +21,6 @@ const fields = {
 }
 
 class SettingsPage extends React.Component {
-
   constructor() {
     super()
     this.state = {

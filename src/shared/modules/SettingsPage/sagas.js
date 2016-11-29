@@ -148,13 +148,12 @@ function* updateEmail() {
       } else if (payload.email === undefined) {
         newEmails.find(email => email.isDefault === true).isPublic = payload.isPublicEmail
         yield put(actions.updateEmailActions.success({ newEmails }))
-        alert('更新邮箱成功 !')
+        alert('设置成功 !')
       } else {
         newEmails.map(email => email.isDefault = false)  // eslint-disable-line no-return-assign, no-param-reassign
         newEmails.find(email => email.email === payload.email).isDefault = true
         newEmails.find(email => email.isDefault === true).isPublic = payload.checked
         yield put(actions.updateEmailActions.success({ newEmails }))
-        alert('更新邮箱成功 !')
       }
     } catch (e) {
       yield put(actions.updateEmailActions.failure(e))
@@ -267,13 +266,12 @@ function* updateMobile() {
       } else if (payload.mobile === undefined) {
         newMobiles.find(mobile => mobile.isDefault === true).isPublic = payload.isPublicMobile
         yield put(actions.updateMobileActions.success({ newMobiles }))
-        alert('更新手机成功 !')
+        alert('设置成功 !')
       } else {
         newMobiles.map(mobile => mobile.isDefault = false)  // eslint-disable-line no-return-assign, no-param-reassign
         newMobiles.find(mobile => mobile.mobile === payload.mobile).isDefault = true
         newMobiles.find(mobile => mobile.isDefault === true).isPublic = payload.checked
         yield put(actions.updateMobileActions.success({ newMobiles }))
-        alert('更新手机成功 !')
       }
     } catch (e) {
       yield put(actions.updateMobileActions.failure(e))

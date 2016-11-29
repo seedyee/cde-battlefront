@@ -1,6 +1,5 @@
 const validators = {
-  password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-  newPassword: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+  password: /((?=.*\d)(?=.*\D)|(?=.*[a-zA-Z])(?=.*[^a-zA-Z]))^.{6,24}$/,
 }
 
 const validate = () => values => {
@@ -10,11 +9,11 @@ const validate = () => values => {
   const newPasswordConfirm = values.newPasswordConfirm
 
   if (password && !validators.password.test(password)) {
-    errors.password = '密码有效长度为8位以上，且至少包含1个字母和1个数字 !'
+    errors.password = '密码有效长度为6-24位，且数字、字母、字符至少包含两种 !'
   }
 
-  if (newPassword && !validators.newPassword.test(newPassword)) {
-    errors.newPassword = '密码有效长度为8位以上，且至少包含1个字母和1个数字 !'
+  if (newPassword && !validators.password.test(newPassword)) {
+    errors.newPassword = '密码有效长度为6-24位，且数字、字母、字符至少包含两种 !'
   }
 
   if (newPassword !== newPasswordConfirm) {

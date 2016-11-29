@@ -1,0 +1,48 @@
+@import '../../../styles/variables.css';
+
+.mobilesTable {
+  width: 100%;
+  color: #666;
+  margin: 20px 0 40px 0;
+  text-indent: 10px;
+  tbody {
+    tr {
+      height: 38px;
+      border-bottom: $border-style;
+      td {
+        &:nth-child(1) {
+          width: 150px;
+          letter-spacing: 0.5px;
+        }
+        &:nth-child(2) {
+          width: 160px;
+        }
+        &:nth-child(4) {
+          text-align: right;
+        }
+        &:nth-child(5) {
+          width: 20px;
+          text-align: right;
+        }
+      }
+    }
+  }
+  tfoot {
+    td {
+      padding-top: 15px;
+    }
+  }
+}
+
+.labelIcon {
+  letter-spacing: 0.5px;
+  padding: 3px 18px;
+}
+
+.trashIcon {
+  color: #B71C1C;
+  margin-right: 15px;
+  &:hover {
+    cursor: pointer;
+  }
+}

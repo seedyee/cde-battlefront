@@ -13,10 +13,11 @@ class MobileForm extends Component {
       <form onSubmit={handleSubmit} className={Styles.MobileForm}>
         <Field
           styles={{ input: Styles.input }}
-          name="mobile"
-          type="text"
-          id="mobile"
           component={FormInputField}
+          type="mobile"
+          name="mobile"
+          id="mobile"
+          labelFor="mobile"
           label="添加手机"
         />
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添&nbsp;加</Button>

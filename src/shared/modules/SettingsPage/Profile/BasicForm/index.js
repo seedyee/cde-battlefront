@@ -7,65 +7,68 @@ import FormInputField from '../../../FormInputField'
 import FormSelectField from '../../../FormSelectField'
 import Styles from './index.css'
 
-class ProfileForm extends Component {
+class BasicForm extends Component {
   render() {
-    const { handleSubmit, pristine, submitting, emails, mobiles } = this.props
+    const { handleSubmit, pristine, submitting, emails } = this.props
     const emailOptions = []
-    const mobileOptions = []
-    Object.values(emails).map(e => emailOptions.push(e.email))
-    Object.values(mobiles).map(e => mobileOptions.push(e.mobile))
+    emails.map(e => emailOptions.push(e.email))
     return (
       <form onSubmit={handleSubmit} className={Styles.RegisterForm}>
         <Field
           styles={{ input: Styles.input }}
-          name="realName"
-          type="text"
-          id="realName"
           component={FormInputField}
+          type="text"
+          name="realName"
+          id="realName"
+          labelFor="realName"
           label="姓名"
         />
         <Field
           styles={{ input: Styles.input }}
-          name="email"
-          type="email"
-          id="email"
           component={FormSelectField}
+          type="email"
+          name="email"
+          id="email"
+          labelFor="email"
           label="邮箱"
           options={emailOptions}
         />
         <Field
           styles={{ input: Styles.input }}
-          name="mobile"
+          component={FormInputField}
           type="mobile"
+          name="mobile"
           id="mobile"
-          component={FormSelectField}
+          labelFor="mobile"
           label="手机"
-          options={mobileOptions}
         />
         <Field
           styles={{ input: Styles.input }}
-          name="company"
-          type="text"
-          id="company"
           component={FormInputField}
+          type="text"
+          name="company"
+          id="company"
+          labelFor="company"
           label="公司"
         />
         <Field
           styles={{ input: Styles.input }}
-          name="companyAddress"
-          type="text"
-          id="companyAddress"
           component={FormInputField}
+          type="text"
+          name="companyAddress"
+          id="companyAddress"
+          labelFor="companyAddress"
           label="公司地址"
         />
         <Field
           styles={{ input: Styles.textarea }}
-          name="personal"
-          type="text"
-          id="personal"
           component={FormInputField}
-          label="个人简介"
           textarea="true"
+          type="text"
+          name="personal"
+          id="personal"
+          labelFor="personal"
+          label="个人简介"
         />
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更&nbsp;&nbsp;新</Button>
       </form>
@@ -73,7 +76,7 @@ class ProfileForm extends Component {
   }
 }
 
-ProfileForm.propTypes = {
+BasicForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
@@ -84,18 +87,17 @@ import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
 import validate from './validate'
 
 const comp = reduxForm({
-  form: 'profileForm',
+  form: 'basicForm',
   enableReinitialize: true,
   keepDirtyOnReinitialize: true,
   validate: validate(),
   onSubmit: onSubmitActions(updateUserActions),
-})(ProfileForm)
+})(BasicForm)
 
-import { selectEmails, selectMobiles } from '../../selectors'
+import { selectEmails } from '../../selectors'
 
 const mapStateToProps = state => ({
   emails: selectEmails(state),
-  mobiles: selectMobiles(state),
 })
 
 export default connect(mapStateToProps)(comp)

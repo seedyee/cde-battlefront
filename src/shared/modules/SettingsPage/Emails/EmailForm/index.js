@@ -13,10 +13,11 @@ class EmailForm extends Component {
       <form onSubmit={handleSubmit} className={Styles.EmailForm}>
         <Field
           styles={{ input: Styles.input }}
-          name="email"
-          type="text"
-          id="email"
           component={FormInputField}
+          type="email"
+          name="email"
+          id="email"
+          labelFor="email"
           label="添加邮箱"
         />
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添&nbsp;加</Button>

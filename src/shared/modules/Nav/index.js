@@ -44,11 +44,13 @@ class Nav extends React.Component {
               <Link to="/dashboard">Dashboard</Link>
             </li>
           </ul>
-          <ul className={Styles.signsNav}>
-            {logined ? '' : <li className={Styles.signIn}><Link to="/signIn">{this.getIcon('log-in')}&nbsp;登录</Link></li>}
-            {logined ? '' : <li className={Styles.signIn}><Link to="/signUp">{this.getIcon('user')}&nbsp;注册</Link></li>}
-            {logined ? this.getDropdown() : ''}
-          </ul>
+          {logined ? '' :
+            <ul className={Styles.signsNav}>
+              <li className={Styles.signIn}><Link to="/signIn">{this.getIcon('log-in')}&nbsp;登录</Link></li>
+              <li className={Styles.signIn}><Link to="/signUp">{this.getIcon('user')}&nbsp;注册</Link></li>
+            </ul>
+          }
+          {logined ? this.getDropdown() : ''}
         </div>
       </div>
     )

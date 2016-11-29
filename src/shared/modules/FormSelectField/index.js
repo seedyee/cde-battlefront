@@ -9,12 +9,12 @@ const alertMessage = (error) => (
   </div>
 )
 
-export default ({ labelFor, label, styles = {}, input, id, type, options, meta: { touched, error, warning } }) => (
+export default ({ labelFor, label, styles = {}, input, id, options, meta: { touched, error, warning } }) => (
   <div className={Styles.field}>
     <div className={Styles.labelContainer}>
       <label htmlFor={labelFor}> {label} </label>
     </div>
-    <select className={styles.input} {...input} id={id} type={type}>
+    <select className={styles.input} {...input} id={id}>
       {options.map(option => <option value={option} key={option}>{option}</option>)}
     </select>
     <div className={Styles.error}>

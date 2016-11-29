@@ -1,7 +1,7 @@
 const validators = {
   email: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-  // Minimum 8 characters at least 1 Alphabet and 1 Number:
-  password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
+  // 8 to 24 characters include at least two types that alphabet, numbers and symbols
+  password: /((?=.*\d)(?=.*\D)|(?=.*[a-zA-Z])(?=.*[^a-zA-Z]))^.{6,24}$/,
   // 11 numbers that starts with one
   mobile: /^1[0-9]{10}$/,
 }
@@ -22,7 +22,7 @@ const validate = () => values => {
   }
 
   if (password && !validators.password.test(password)) {
-    errors.password = '密码有效长度为8位以上，且至少包含1个字母和1个数字 !'
+    errors.password = '密码有效长度为6-24位，且数字、字母、字符至少包含两种 !'
   }
 
   if (email && !validators.email.test(email)) {

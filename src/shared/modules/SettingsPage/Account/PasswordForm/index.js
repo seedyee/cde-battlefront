@@ -13,26 +13,29 @@ class PasswordForm extends Component {
       <form onSubmit={handleSubmit} className={Styles.PasswordForm}>
         <Field
           styles={{ input: Styles.input }}
-          name="password"
-          type="password"
-          id="password"
           component={FormInputField}
+          type="password"
+          name="password"
+          id="password"
+          labelFor="password"
           label="原密码"
         />
         <Field
           styles={{ input: Styles.input }}
-          name="newPassword"
-          type="password"
-          id="newPassword"
           component={FormInputField}
+          type="password"
+          name="newPassword"
+          id="newPassword"
+          labelFor="newPassword"
           label="新密码"
         />
         <Field
           styles={{ input: Styles.input }}
-          name="newPasswordConfirm"
-          type="password"
-          id="newPasswordConfirm"
           component={FormInputField}
+          type="password"
+          name="newPasswordConfirm"
+          id="newPasswordConfirm"
+          labelFor="newPasswordConfirm"
           label="确认密码"
         />
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更新密码</Button>

@@ -29,27 +29,30 @@ class RegisterForm extends Component {
         <h2> 开发平台 | 注册 </h2>
         <Field
           styles={{ input: Styles.input }}
-          name="email"
-          type="email"
-          id="email"
           component={FormInputField}
+          type="email"
+          name="email"
+          id="email"
+          labelFor="email"
           label="邮 箱"
         />
         <Field
           styles={{ input: Styles.input }}
-          name="username"
-          type="text"
-          id="username"
           component={FormInputField}
+          type="text"
+          name="username"
+          id="username"
+          labelFor="username"
           label="用户名"
         />
         <Field
           styles={{ input: Styles.input }}
+          component={FormInputField}
+          type="password"
           name="password"
           id="password"
-          component={FormInputField}
+          labelFor="password"
           label="密 码"
-          type="password"
         />
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>注&nbsp;&nbsp;册</Button>
         <p className={Styles.signUp}>
@@ -63,6 +66,7 @@ class RegisterForm extends Component {
 
 RegisterForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   logined: PropTypes.bool.isRequired,
 }

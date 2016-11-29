@@ -29,21 +29,21 @@ class SignInForm extends Component {
         <h2> 开发平台 | 登录 </h2>
         <Field
           styles={{ input: Styles.input }}
-          name="principal"
-          labelFor="principal"
-          id="principal"
           component={FormInputField}
-          label="用户名 / 邮箱"
           type="text"
+          name="principal"
+          id="principal"
+          labelFor="principal"
+          label="用户名 / 邮箱"
         />
         <Field
           styles={{ input: Styles.input }}
+          component={FormInputField}
+          type="password"
           name="password"
           id="password"
           labelFor="password"
-          component={FormInputField}
           label="密 码"
-          type="password"
           forgetPassword="忘记密码 ?"
         />
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>登 录</Button>
