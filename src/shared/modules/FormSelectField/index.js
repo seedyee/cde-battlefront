@@ -9,7 +9,7 @@ const alertMessage = (error) => (
   </div>
 )
 
-export default ({ labelFor, label, styles = {}, input, id, options, meta: { touched, error, warning } }) => (
+export default ({ styles = {}, labelFor, label, id, options, input, meta: { touched, error, warning } }) => (
   <div className={Styles.field}>
     <div className={Styles.labelContainer}>
       <label htmlFor={labelFor}> {label} </label>

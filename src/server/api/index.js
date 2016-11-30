@@ -10,7 +10,7 @@ const users = [
 const basicInfo = {
   id: '7dg0te6o9bylvxu9bmzt98jjor',
   username: 'Seedyee',
-  avatar: '用户头像',
+  avatar: '../../../assets/logo.png',
   company: '跃考恩信息科技',
   companyAddress: '深圳',
   companyBusiness: '互联网',
@@ -172,6 +172,14 @@ router.delete('/accounts/:id/emails/:id', (req, res) => {
 })
 
 router.delete('/accounts/:id/mobiles/:id', (req, res) => {
+  res.json(success)
+})
+
+/*
+ * 上传文件
+ */
+
+router.post('/upload', (req, res) => {
   res.json(success)
 })
 

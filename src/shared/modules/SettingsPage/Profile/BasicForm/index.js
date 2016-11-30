@@ -9,9 +9,11 @@ import Styles from './index.css'
 
 class BasicForm extends Component {
   render() {
-    const { handleSubmit, pristine, submitting, emails } = this.props
+    const { handleSubmit, pristine, submitting, emails, mobiles } = this.props
     const emailOptions = []
+    const mobileOptions = []
     emails.map(e => emailOptions.push(e.email))
+    mobiles.map(m => mobileOptions.push(m.mobile))
     return (
       <form onSubmit={handleSubmit} className={Styles.RegisterForm}>
         <Field
@@ -35,12 +37,13 @@ class BasicForm extends Component {
         />
         <Field
           styles={{ input: Styles.input }}
-          component={FormInputField}
+          component={FormSelectField}
           type="mobile"
           name="mobile"
           id="mobile"
           labelFor="mobile"
           label="手机"
+          options={mobileOptions}
         />
         <Field
           styles={{ input: Styles.input }}
@@ -94,10 +97,11 @@ const comp = reduxForm({
   onSubmit: onSubmitActions(updateUserActions),
 })(BasicForm)
 
-import { selectEmails } from '../../selectors'
+import { selectEmails, selectMobiles } from '../../selectors'
 
 const mapStateToProps = state => ({
   emails: selectEmails(state),
+  mobiles: selectMobiles(state),
 })
 
 export default connect(mapStateToProps)(comp)

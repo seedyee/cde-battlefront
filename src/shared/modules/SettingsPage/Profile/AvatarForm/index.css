@@ -1,11 +1,22 @@
+@import '../../../styles/variables.css';
 
-.img{
-  width: 200px;
-  height: 200px;
+.avatar {
+  padding-left: 50px;
 }
 
+.img {
+  width: 200px;
+  height: 200px;
+  border-radius: 6px;
+}
 
-.file {
+.title {
+  margin-top: 20px;
+  font-weight: 600;
+  color: $normal-color;
+}
+
+.upload {
     position: relative;
     display: inline-block;
     width: 200px;
@@ -29,19 +40,21 @@
       cursor: pointer;
     }
 }
-.file input {
+.upload input {
   position: absolute;
-  font-size: 100px;
-  font-weight: bold;
   right: 0;
   top: 0;
   opacity: 0;
   &:hover {
-    cursor: pointer !important;
+    cursor: pointer;
   }
 }
 
+.modalBody {
+  text-align: center;
+}
+
 .fileBtn {
-  width: 200px;
-  height: 34px;
+  padding: 5px 16px;
+  margin-right: 5px;
 }
