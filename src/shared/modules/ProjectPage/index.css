@@ -1,0 +1,91 @@
+@import '../styles/variables.css';
+
+.ProjectPage {
+  position: fixed;
+  left: -1px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.firstSidebar {
+  width: 80px;
+  height: 570px;
+  border-left: $border-style;
+  border-bottom: $border-style;
+  padding-top: 20px;
+  background: #424242;
+  a {
+    color: #d5d5d5;
+    text-align: center;
+    &:hover {
+      color: #fff;
+      border-radius: 0px;
+      background: #55ae2e !important;
+    }
+  }
+}
+
+.SecondSidebar {
+  width: 250px;
+  height: 570px;
+  color: $normal-color;
+  background: #fafafa;
+  border-right: $border-style;
+  border-bottom: $border-style;
+  padding-top: 20px;
+  overflow: auto;
+  h3 {
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-indent: 20px;
+  }
+}
+
+.nav {
+  width: 100%;
+  height: 580px;
+  li {
+    width: 100%;
+    font-size: 14px;
+    letter-spacing: $letter-spacing;
+    text-indent: 20px;
+    a {
+      color: #666;
+      padding: 8px 0;
+      &:hover {
+        color: #fff;
+        border-radius: 0px;
+        background: #55ae2e;
+      }
+    }
+  }
+}
+
+.navTop {
+  border-bottom: $border-style;
+  padding: 20px 0;
+  margin: 20px 0;
+}
+
+.activeNav {
+  a {
+    color: #fff !important;
+    border-radius: 0px !important;
+    background: #55ae2e !important;
+  }
+}
+
+.icon {
+  text-indent: 4px;
+  margin-right: 10px;
+}
+
+.content {
+  width: 100%;
+  height: 570px;
+  background: #fafafa;
+  padding-left: 50px;
+  margin-right: 1px;
+}

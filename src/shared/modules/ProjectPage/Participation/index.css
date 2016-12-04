@@ -1,0 +1,42 @@
+@import '../../styles/variables.css';
+
+.Participation {
+  width: 800px;
+  height: 300px;
+  border-radius: 3px;
+}
+
+.titleBar {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-bottom: $border-style;
+  h3 {
+    display: inline;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 40px;
+    color: #666;
+    margin-top: 0;
+  }
+}
+
+.form {
+  line-height: 40px;
+  vertical-align: middle;
+}
+
+.input {
+  width: 250px !important;
+  height: 30px;
+  font-size: 12px;
+  margin-top: 0px;
+  margin-right: 5px;
+}
+
+.submitBtn {
+  padding: 4px 30px;
+}
+

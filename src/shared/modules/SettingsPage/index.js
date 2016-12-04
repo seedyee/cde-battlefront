@@ -24,7 +24,7 @@ class SettingsPage extends React.Component {
   constructor() {
     super()
     this.state = {
-      activeKey: '',
+      activeKey: 'Profile',
     }
   }
 

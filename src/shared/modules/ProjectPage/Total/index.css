@@ -1,0 +1,77 @@
+@import '../../styles/variables.css';
+@import '../../styles/submitBtn.css';
+
+.Total {
+  width: 800px;
+  height: 300px;
+  border-radius: 3px;
+}
+
+.titleBar {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-bottom: $border-style;
+  h3 {
+    display: inline;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 40px;
+    color: #666;
+    margin-top: 0;
+  }
+}
+
+.form {
+  line-height: 40px;
+  vertical-align: middle;
+}
+
+.input {
+  width: 250px !important;
+  height: 30px;
+  font-size: 12px;
+  margin-top: 0px;
+  margin-right: 5px;
+}
+
+.submitBtn {
+  padding: 4px 30px;
+}
+
+.navUl {
+  li {
+    display: inline-block;
+    height: 30px;
+    margin-right: 8px;
+    a {
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+      line-height: 30px;
+      text-decoration: none;
+      text-align: center;
+      color: #999;
+      &:hover {
+        cursor: pointer;
+        border-bottom: 3px solid #55ae2e;
+      }
+    }
+  }
+}
+
+.activeNav {
+  border-bottom: 3px solid #55ae2e;
+}
+
+.content {
+  height: 400px;
+  margin-top: 20px;
+  background: #fff;
+}
+
+
+
+

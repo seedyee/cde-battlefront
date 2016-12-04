@@ -1,0 +1,20 @@
+@import '../../styles/variables.css';
+
+.Attention {
+  width: 800px;
+  height: 300px;
+  border-radius: 3px;
+}
+
+.titleBar {
+  height: 40px;
+  line-height: 40px;
+  margin: 20px 0 10px 0;
+  border-bottom: $border-style;
+  h3 {
+    font-size: 18px;
+    line-height: 40px;
+    color: #666;
+    margin-top: 0;
+  }
+}

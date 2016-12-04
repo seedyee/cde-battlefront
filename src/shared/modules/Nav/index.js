@@ -20,6 +20,7 @@ class Nav extends React.Component {
     const { user, logined, logoutRequest } = this.props
     return (
       <NavDropdown className={Styles.navItems} pullRight onSelect={this.onSelected} title={this.getIcon('user')} id="user">
+        <MenuItem eventKey="/project/total">项 目</MenuItem>
         <MenuItem eventKey="/profile">基本信息</MenuItem>
         <MenuItem divider />
         <MenuItem eventKey="/settings/profile">设 置</MenuItem>
@@ -38,19 +39,17 @@ class Nav extends React.Component {
         <div className={Styles.content}>
           <ul className={Styles.pagesNav}>
             <li>
-              <Link className={Styles.home} to="/"><img className={Styles.logo} alt="site logo" src={logo} /></Link>
+              {logined ? this.getIcon('align-left') : <Link className={Styles.home} to="/"><img className={Styles.logo} alt="site logo" src={logo} /></Link>}
             </li>
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
           </ul>
-          {logined ? '' :
-            <ul className={Styles.signsNav}>
-              <li className={Styles.signIn}><Link to="/signIn">{this.getIcon('log-in')}&nbsp;登录</Link></li>
-              <li className={Styles.signIn}><Link to="/signUp">{this.getIcon('user')}&nbsp;注册</Link></li>
-            </ul>
-          }
-          {logined ? this.getDropdown() : ''}
+          <ul className={Styles.signsNav}>
+            <li className={Styles.signIn}><Link to="/signIn">{this.getIcon('log-in')}&nbsp;登录</Link></li>
+            <li className={Styles.signIn}><Link to="/signUp">{this.getIcon('user')}&nbsp;注册</Link></li>
+            {this.getDropdown()}
+          </ul>
         </div>
       </div>
     )
