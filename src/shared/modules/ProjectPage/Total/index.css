@@ -2,7 +2,7 @@
 @import '../../styles/submitBtn.css';
 
 .Total {
-  width: 800px;
+  width: 900px;
   height: 300px;
   border-radius: 3px;
 }
@@ -53,7 +53,6 @@
       line-height: 30px;
       text-decoration: none;
       text-align: center;
-      color: #999;
       &:hover {
         cursor: pointer;
         border-bottom: 3px solid #55ae2e;
