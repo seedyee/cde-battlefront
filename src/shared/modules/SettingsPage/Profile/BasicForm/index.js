@@ -67,7 +67,6 @@ class BasicForm extends Component {
           styles={{ input: Styles.textarea }}
           component={FormInputField}
           textarea="true"
-          type="text"
           name="personal"
           id="personal"
           labelFor="personal"

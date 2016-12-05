@@ -1,0 +1,111 @@
+@import '../../../styles/variables.css';
+@import '../../../styles/input.css';
+@import '../../../styles/submitBtn.css';
+
+.AddForm {
+  letter-spacing: $letter-spacing;
+  padding-left: $content-padding-left;
+}
+
+.textarea {
+  width: 560px;
+  height: 56px;
+  font-size: $normal-font-size;
+  color: $normal-color;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: $border-radius_3px;
+  box-shadow: $box-shadow;
+  &:hover {
+    border: 1px solid #ccc;
+    box-shadow: $box-shadow;
+  }
+  &:focus {
+    background: #fff;
+    outline: none;
+  }
+  text-indent: 6px;
+}
+
+.input {
+  width: 220px;
+  height: 36px;
+  font-size: $normal-font-size;
+  letter-spacing: 0.5px;
+  color: $normal-color;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: $border-radius_3px;
+  box-shadow: $box-shadow;
+  outline: none;
+  &:hover {
+    border: 1px solid #ccc;
+    box-shadow: $box-shadow;
+  }
+  &:focus {
+    background: #fff;
+  }
+}
+
+.radioDiv {
+  border-top: $border-style;
+  border-bottom: $border-style;
+  padding: 20px 0 30px 0;
+}
+
+.radio {
+  padding: 0 20px 0 5px;
+}
+
+.checkboxDiv {
+  margin-top: 20px;
+}
+
+.selectDiv {
+  border-bottom: $border-style;
+  margin-bottom: 20px;
+}
+
+.select {
+  width: 160px;
+  height: 30px;
+  font-size: $normal-font-size;
+  letter-spacing: 0.5px;
+  color: $normal-color;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: $border-radius_3px;
+  box-shadow: $box-shadow;
+  outline: none;
+  margin: 15px 20px 25px 0;
+  &:focus {
+    background: #fff;
+  }
+}
+
+.membersDiv {
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  border-bottom: $border-style;
+}
+
+.membersInput {
+  width: 260px;
+  height: 30px;
+  font-size: $normal-font-size;
+  letter-spacing: 0.5px;
+  color: $normal-color;
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: $border-radius_3px;
+  box-shadow: $box-shadow;
+  outline: none;
+  margin: 15px 20px 25px 20px;;
+  &:focus {
+    background: #fff;
+  }
+}
+
+
+
+

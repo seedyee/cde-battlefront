@@ -1,5 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
+import { Link } from 'react-router'
 import {
   Nav,
   NavItem,
@@ -9,6 +10,7 @@ import {
 } from 'react-bootstrap'
 
 import withRouter from '../utils/withRouter'
+import Add from './Add'
 import Total from './Total'
 import Creation from './Creation'
 import Participation from './Participation'
@@ -54,6 +56,8 @@ class ProjectPage extends React.Component {
 
   getContent = () => {
     switch (this.props.params.name) {
+      case 'add':
+        return <Add />
       case 'total':
         return <Total />
       case 'creation':
@@ -72,7 +76,10 @@ class ProjectPage extends React.Component {
   firstSidebarItems = () => (
     <Nav bsStyle="pills" className={Styles.navBottom} stacked onSelect={this.onSelected}>
       {Object.values(firstFields).map(i => (
-        <NavItem>{this.getIcon(i.icon)}<strong>{i.name}</strong></NavItem>
+        <NavItem>
+          {this.getIcon(i.icon)}
+          <strong>{i.name}</strong>
+        </NavItem>
       ))}
     </Nav>
   )
@@ -116,7 +123,7 @@ class ProjectPage extends React.Component {
         <div className={Styles.SecondSidebar}>
           <h3>项目
             <OverlayTrigger placement="bottom" overlay={this.tooltip()}>
-              {this.getIcon('plus')}
+              <Link to="add" className={Styles.add}>{this.getIcon('plus')}</Link>
             </OverlayTrigger>
           </h3>
           {this.secondSidebarItems()}
