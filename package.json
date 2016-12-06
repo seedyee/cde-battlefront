@@ -145,6 +145,7 @@
     "hpp": "^0.2.1",
     "html-webpack-plugin": "^2.24.0",
     "http-proxy": "1.15.2",
+    "ip": "^1.1.4",
     "json-loader": "^0.5.4",
     "json-server": "0.8.22",
     "load-plugins": "^2.1.1",

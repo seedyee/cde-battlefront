@@ -2,6 +2,7 @@ import path from 'path'
 import dotenv from 'dotenv'
 // builtinModules is an array of builtin modules fetched from the running Node.js version
 import builtinModules from 'builtin-modules'
+import ip from 'ip'
 
 import {
   ifElse,
@@ -36,7 +37,7 @@ const problematicCommonJS = new Set(['helmet', 'express', 'commonmark', 'encodin
 
 // @see https://github.com/motdotla/dotenv
 dotenv.config()
-
+const APP_HOST = `http://${ip.address()}`
 
 function isLoaderSpecificFile(request) {
   return Boolean(/\.(eot|woff|woff2|ttf|otf|svg|png|jpg|jpeg|gif|webp|webm|ico|mp4|mp3|ogg|html|pdf|swf|css|scss|sass|sss|less)$/.exec(request))
@@ -71,7 +72,7 @@ function ConfigFactory(target, mode) {
     entry: removeEmptyKeys({
       main: removeEmpty([
         ifDevClient('react-hot-loader/patch'),
-        ifDevClient(`webpack-hot-middleware/client?reload=true&path=http://localhost:${process.env.CLIENT_DEVSERVER_PORT}/__webpack_hmr`),
+        ifDevClient(`webpack-hot-middleware/client?reload=true&path=${APP_HOST}:${process.env.CLIENT_DEVSERVER_PORT}/__webpack_hmr`),
         ifIsFile(`./src/${target}/index.js`),
       ]),
 
@@ -93,7 +94,7 @@ function ConfigFactory(target, mode) {
       publicPath: ifDev(
         // As we run a seperate server for our client and server bundles we
         // need to use an absolute http path for our assets public path.
-        `http://localhost:${process.env.CLIENT_DEVSERVER_PORT}${process.env.CLIENT_BUNDLE_HTTP_PATH}`,
+        `${APP_HOST}:${process.env.CLIENT_DEVSERVER_PORT}${process.env.CLIENT_BUNDLE_HTTP_PATH}`,
 
         // Otherwise we expect our bundled output to be served from this path.
         process.env.CLIENT_BUNDLE_HTTP_PATH

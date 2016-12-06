@@ -7,6 +7,7 @@ import ProgressBar from 'progress-bar-webpack-plugin'
 import HtmlPlugin from 'html-webpack-plugin'
 import WebpackDigestHash from './ChunkHash'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import ip from 'ip'
 
 // Waiting for Pull-Request being merged:
 // https://github.com/diurnalist/chunk-manifest-webpack-plugin/pull/13
@@ -97,7 +98,7 @@ const createPlugins = (target, mode) => {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 
       'process.env.APP_ROOT': JSON.stringify(path.resolve(root)),
-
+      'process.env.APP_HOST': JSON.stringify(`http://${ip.address()}`),
       // All the below items match the config items in our .env file. Go
       // to the .env_example for a description of each key.
       'process.env.SERVER_PORT': JSON.stringify(process.env.SERVER_PORT),
