@@ -17,7 +17,7 @@ function renderApp(AppComponent) {
     <ReactHotLoader>
       <BrowserRouter>
         <Provider store={store}>
-          <AppComponent />
+          {<AppComponent /> || <App />}
         </Provider>
       </BrowserRouter>
     </ReactHotLoader>,

@@ -1,4 +1,5 @@
 import path from 'path'
+import ip from 'ip'
 
 import ListenerManager from './ListenerManager'
 import { createNotification } from './util'
@@ -17,7 +18,7 @@ class HotServer {
       // requiring it. It returns the http listener too.
       this.listenerManager = new ListenerManager(require(compiledOutputPath).default) // eslint-disable-line
 
-      const url = `http://localhost:${process.env.SERVER_PORT}`
+      const url = `http:${ip.address()}:${process.env.SERVER_PORT}`
 
       createNotification({
         title: 'Server',
