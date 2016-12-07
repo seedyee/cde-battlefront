@@ -2,8 +2,9 @@
 
 .Add {
   width: 900px;
-  height: 800px;
+  height: 880px;
   padding: 0 10px;
+  margin-top: 25px;
   margin-bottom: 100px;
   background: #fff;
 }
@@ -11,10 +12,11 @@
 .titleBar {
   height: 40px;
   line-height: 40px;
-  margin: 38px 0 10px 0;
+  margin: 10px 0 10px 0;
   border-bottom: $border-style;
   h3 {
     font-size: 18px;
+    font-weight: normal;
     line-height: 40px;
     color: #666;
     margin-top: 0;

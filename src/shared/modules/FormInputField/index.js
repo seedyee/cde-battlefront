@@ -9,10 +9,10 @@ const alertMessage = (error) => (
   </div>
 )
 
-export default ({ styles = {}, textarea, type, id, labelFor, label, forgetPassword, input, meta: { touched, error, warning } }) => (
+export default ({ styles = {}, textarea, type, id, labelFor, label, icon, forgetPassword, input, meta: { touched, error, warning } }) => (
   <div className={Styles.field}>
     <div className={Styles.labelContainer}>
-      <label htmlFor={labelFor}> {label} </label>
+      <label htmlFor={labelFor}>{label}<span className={Styles.icon}>{icon}</span></label>
       {forgetPassword ? <span className={Styles.forgetPassword}>{forgetPassword}</span> : null}
     </div>
     {textarea ? <textarea className={styles.input} {...input} id={id} /> : <input className={styles.input} {...input} id={id} type={type} />}

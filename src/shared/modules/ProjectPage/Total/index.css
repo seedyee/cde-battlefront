@@ -44,29 +44,32 @@
 .navUl {
   li {
     display: inline-block;
-    height: 30px;
+    height: 40px;
     margin-right: 8px;
     a {
       display: inline-block;
       width: 60px;
-      height: 30px;
-      line-height: 30px;
+      height: 40px;
+      line-height: 40px;
       text-decoration: none;
       text-align: center;
       &:hover {
+        color: $normal-color;
         cursor: pointer;
-        border-bottom: 3px solid #55ae2e;
       }
     }
   }
 }
 
 .activeNav {
-  border-bottom: 3px solid #55ae2e;
+  border-bottom: 3px solid #d26911;
+  a {
+    color: $normal-color;
+  }
 }
 
 .content {
-  height: 400px;
+  height: 100px;
   margin-top: 20px;
   background: #fff;
 }

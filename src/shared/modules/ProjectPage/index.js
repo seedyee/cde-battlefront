@@ -76,7 +76,7 @@ class ProjectPage extends React.Component {
   firstSidebarItems = () => (
     <Nav bsStyle="pills" className={Styles.navBottom} stacked onSelect={this.onSelected}>
       {Object.values(firstFields).map(i => (
-        <NavItem>
+        <NavItem key={i.path}>
           {this.getIcon(i.icon)}
           <strong>{i.name}</strong>
         </NavItem>
@@ -89,6 +89,7 @@ class ProjectPage extends React.Component {
       <Nav bsStyle="pills" className={Styles.navTop} stacked onSelect={this.onSelected}>
         {Object.values(secondFields1).map(i => (
           <NavItem
+            key={i.path}
             className={this.state.activeClass === `${pathPrefix}${i.path}` ? Styles.activeNav : ''}
             eventKey={`${pathPrefix}${i.path}`}
           >
@@ -96,9 +97,10 @@ class ProjectPage extends React.Component {
           </NavItem>
         ))}
       </Nav>
-      <Nav bsStyle="pills" className={Styles.navBottom} stacked onSelect={this.onSelected}>
+      <Nav bsStyle="pills" stacked onSelect={this.onSelected}>
         {Object.values(secondFields2).map(i => (
           <NavItem
+            key={i.path}
             className={this.state.activeClass === `${pathPrefix}${i.path}` ? Styles.activeNav : ''}
             eventKey={`${pathPrefix}${i.path}`}
           >
@@ -110,7 +112,7 @@ class ProjectPage extends React.Component {
   )
 
   tooltip = () => (
-    <Tooltip id="tooltip"><strong>添加项目</strong></Tooltip>
+    <Tooltip id="tooltip"><strong className={Styles.tooltip}>创建项目</strong></Tooltip>
   )
 
   render() {
@@ -121,11 +123,11 @@ class ProjectPage extends React.Component {
           {this.firstSidebarItems()}
         </div>
         <div className={Styles.SecondSidebar}>
-          <h3>项目
-            <OverlayTrigger placement="bottom" overlay={this.tooltip()}>
-              <Link to="add" className={Styles.add}>{this.getIcon('plus')}</Link>
-            </OverlayTrigger>
-          </h3>
+          <OverlayTrigger placement="right" overlay={this.tooltip()}>
+            <h3 onClick={() => this.setState({ activeClass: '/project/add' })}>
+              <Link to="/project/add" className={Styles.add}>项目{this.getIcon('plus')}</Link>
+            </h3>
+          </OverlayTrigger>
           {this.secondSidebarItems()}
         </div>
         <div className={Styles.content}>
