@@ -45,7 +45,7 @@
 .radioState {
   font-size: 10px;
   text-indent: 18px;
-  color: #55ae2e;
+  color: #888;
 }
 
 .checkboxDiv {
@@ -101,4 +101,7 @@
   color: #888;
 }
 
-
+.submitBtn {
+  letter-spacing: 2px;
+  padding: 8px 80px;
+}

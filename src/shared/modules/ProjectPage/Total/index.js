@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, FormControl, Button } from 'react-bootstrap'
+import { Glyphicon, Form, FormControl, Button } from 'react-bootstrap'
 
 import Styles from './index.css'
 
@@ -55,7 +55,10 @@ class Total extends Component {
     return (
       <div className={Styles.Total}>
         <div className={Styles.titleBar}>
-          <h3 className={Styles.title}>所有项目 ( )</h3>
+          <h3 className={Styles.title}>
+            <Glyphicon glyph="leaf" className={Styles.icon} />
+            所有项目 ( )
+          </h3>
           <Form className={Styles.form} inline>
             <FormControl className={Styles.input} type="text" placeholder="search..." />
             <Button className={Styles.submitBtn} bsStyle="success" bsSize="small" type="submit">搜 索</Button>

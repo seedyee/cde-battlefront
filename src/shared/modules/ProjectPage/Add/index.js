@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Glyphicon } from 'react-bootstrap'
 
 import AddForm from './AddForm'
 import Styles from './index.css'
@@ -8,7 +9,10 @@ class Add extends Component {
     return (
       <div className={Styles.Add}>
         <div className={Styles.titleBar}>
-          <h3 className={Styles.title}>创建新项目</h3>
+          <h3 className={Styles.title}>
+            <Glyphicon glyph="leaf" className={Styles.icon} />
+            创建新项目
+          </h3>
         </div>
         <AddForm />
       </div>
