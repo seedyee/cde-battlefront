@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Glyphicon, Form, FormControl, Button } from 'react-bootstrap'
 
 import Styles from './index.css'
+import logo from '../../assets/leaf.jpg'
 
 const items = {
   all: '所有',
@@ -10,7 +11,41 @@ const items = {
 }
 
 const All = () => (
-  <div>ALL</div>
+  <div className={Styles.project}>
+    <div>
+      <div className={Styles.projectImg}>
+        <a href="" className={Styles.a}>
+          <img className={Styles.logo} src={logo} alt="" />
+        </a>
+      </div>
+      <p className={Styles.projectName}>
+        <Glyphicon glyph="lock" className={Styles.icon} />
+        my project
+      </p>
+    </div>
+    <div>
+      <div className={Styles.projectImg}>
+        <a href="" className={Styles.a}>
+          <img className={Styles.logo} src={logo} alt="" />
+        </a>
+      </div>
+      <p className={Styles.projectName}>
+        <Glyphicon glyph="lock" className={Styles.icon} />
+        my project
+      </p>
+    </div>
+    <div>
+      <div className={Styles.projectImg}>
+        <a href="" className={Styles.a}>
+          <img className={Styles.logo} src={logo} alt="" />
+        </a>
+      </div>
+      <p className={Styles.projectName}>
+        <Glyphicon glyph="lock" className={Styles.icon} />
+        my project
+      </p>
+    </div>
+  </div>
 )
 const Public = () => (
   <div>Public</div>

@@ -1,7 +1,22 @@
 @import '../styles/variables.css';
 
 .nav {
+  height: 70px;
+  line-height: 70px;
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+  background: #fff;
+  font-size: 14px;
+  z-index: 100;
+  box-shadow: 1px 1px 3px #efefef;
+}
+
+.loginedNav {
   height: $nav-height;
+  line-height: $nav-height;
   top: 0;
   left: 0;
   position: fixed;
@@ -14,16 +29,16 @@
 
 .content {
   display: flex;
+  justify-content: space-between;
   margin: 0 auto;
   width: $site-content-width;
   z-index: 100;
-  justify-content: space-between;
 }
 
 .pagesNav {
   list-style: none;
   display: flex;
-  line-height: $nav-height;
+  line-height: inherit;
   >li {
     margin: 0 20px 0 0;
     cursor: pointer;
@@ -33,23 +48,22 @@
 $logo-width: 29px;
 .home {
   display: inline-block;
-  width: $logo-width;
-  height: $logo-width;
+  width: 150px;
+  height: 30px;
   vertical-align: middle;
   margin-top: -4px;
-  border-radius: $logo-width;
   img {
     display: block;
     width: 100%;
     height: 100%;
-    border-radius: $logo-width;
   }
 }
 
 .signsNav {
   display: flex;
   justify-content: space-between;
-  line-height: $nav-height;
+  line-height: inherit;
+  font-size: 16px;
 }
 
 .signIn {
@@ -64,6 +78,7 @@ $logo-width: 29px;
 
 /* only get className to <a> can't control it's styles */
 .navItems {
+  font-size: 16px;
   padding: 0 10px;
   li {
     a {

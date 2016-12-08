@@ -11,7 +11,6 @@ import Styles from './index.css'
 
 import Nav from '../Nav'
 import HomePage from '../HomePage'
-import DashboardPage from '../DashboardPage'
 import SignInPage from '../Auth/SignInPage'
 import SignUpPage from '../Auth/SignUpPage'
 import NotFoundPage from '../NotFoundPage'
@@ -43,7 +42,6 @@ const App = () => (
       <div className={Styles.content}>
         <Match exactly pattern="/" component={HomePage} />
         <Match pattern="/home" component={HomePage} />
-        <Match pattern="/dashboard" component={DashboardPage} />
         <Match pattern="/signIn" component={SignInPage} />
         <Match pattern="/signUp" component={SignUpPage} />
         <Match pattern="/profile" component={ProfilePage} />

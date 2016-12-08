@@ -22,11 +22,11 @@ class SignInForm extends Component {
   render() {
     const { handleSubmit, pristine, submitting, logined } = this.props
     const { redirectTo } = this.state
-    if (logined) return <Redirect to="/dashboard" />
+    if (logined) return <Redirect to="/project/all" />
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
       <form onSubmit={handleSubmit} className={Styles.signInForm}>
-        <h2> 开发平台 | 登录 </h2>
+        <h2>用户登录</h2>
         <Field
           styles={{ input: Styles.input }}
           component={FormInputField}
@@ -44,13 +44,13 @@ class SignInForm extends Component {
           id="password"
           labelFor="password"
           label="密 码"
-          forgetPassword="忘记密码 ?"
+          forgetPassword="忘记登录密码 ?"
         />
+        <div className={Styles.checkboxDiv}>
+          <Field name="agreement" id="agreement" component="input" type="checkbox" />
+          <label htmlFor="agreement">&nbsp;记住我&nbsp;</label>
+        </div>
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>登 录</Button>
-        <p className={Styles.signIn}>
-          无账号 ?
-          <button className={Styles.regBtn} disabled={submitting} type="button" onClick={this.redirectTo}>注 册</button>
-        </p>
       </form>
     )
   }

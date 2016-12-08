@@ -4,11 +4,14 @@
 
 .signUpForm {
   width: 400px;
-  padding: 20px 30px 30px 30px;
-  margin-bottom: 40px;
+  padding: 5px 30px 30px 30px;
   border: $border-style;
   border-radius: 6px;
   box-shadow: $box-shadow;
+  background: #fff;
+  h2 {
+    text-align: center;
+  }
 }
 
 /* cover the imporing input styles*/
@@ -22,12 +25,12 @@
   height: 36px;
   font-size: 17px !important;
   padding: 0;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 
 .signUp {
   text-align: right;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .regBtn {
@@ -37,5 +40,6 @@
   background: none;
   &:hover {
     color: #212121;
+    text-decoration: underline;
   }
 }

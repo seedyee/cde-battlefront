@@ -63,7 +63,7 @@ class AvatarForm extends Component {
           alt="your avatar"
           src={logo}
         />
-        <a href="" className={Styles.upload} >选择头像
+        <a href="" className={Styles.upload} >编辑头像
           <input type="file" onChange={this.handleImageChange} />
         </a>
         <Modal bsSize="small" show={this.state.showModal} onHide={this.close}>

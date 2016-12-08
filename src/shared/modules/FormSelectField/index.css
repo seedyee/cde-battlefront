@@ -6,6 +6,9 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 3px;
+  label {
+    font-weight: normal;
+  }
 }
 
 .input {

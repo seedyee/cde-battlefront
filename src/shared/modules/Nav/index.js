@@ -5,7 +5,7 @@ import { NavDropdown, MenuItem, Glyphicon } from 'react-bootstrap'
 
 import withRouter from '../utils/withRouter'
 import Styles from './index.css'
-import logo from './logo.png'
+import logo from '../assets/cde.gif'
 
 const paths = ['/login', '/register']
 const contains = (pathname) => paths.some(path => pathname.startsWith(path))
@@ -20,11 +20,11 @@ class Nav extends React.Component {
     const { user, logined, logoutRequest } = this.props
     return (
       <NavDropdown className={Styles.navItems} pullRight onSelect={this.onSelected} title={this.getIcon('user')} id="user">
-        <MenuItem eventKey="/project/total">项 目</MenuItem>
-        <MenuItem eventKey="/profile">基本信息</MenuItem>
+        <MenuItem eventKey="/profile">我的主页</MenuItem>
+        <MenuItem eventKey="/project/total">项目管理</MenuItem>
         <MenuItem divider />
-        <MenuItem eventKey="/settings/profile">设 置</MenuItem>
-        {logined ? <MenuItem eventKey="/" onClick={() => logoutRequest(user.id)}> 注 销 </MenuItem> : ''}
+        <MenuItem eventKey="/settings/profile">个人设置</MenuItem>
+        {logined ? <MenuItem eventKey="/" onClick={() => logoutRequest(user.id)}> 退 出 </MenuItem> : ''}
       </NavDropdown>
     )
   }
@@ -35,21 +35,19 @@ class Nav extends React.Component {
     const { logined, location: { pathname } } = this.props
     if (contains(pathname)) return (<span style={{ display: 'none' }}>noop</span>)
     return (
-      <div className={Styles.nav}>
+      <div className={logined ? Styles.loginedNav : Styles.nav}>
         <div className={Styles.content}>
           <ul className={Styles.pagesNav}>
             <li>
-              {logined ? this.getIcon('align-left') : <Link className={Styles.home} to="/"><img className={Styles.logo} alt="site logo" src={logo} /></Link>}
-            </li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link className={Styles.home} to="/"><img className={Styles.logo} alt="site logo" src={logo} /></Link>
             </li>
           </ul>
-          <ul className={Styles.signsNav}>
-            <li className={Styles.signIn}><Link to="/signIn">{this.getIcon('log-in')}&nbsp;登录</Link></li>
-            <li className={Styles.signIn}><Link to="/signUp">{this.getIcon('user')}&nbsp;注册</Link></li>
-            {this.getDropdown()}
-          </ul>
+          {logined ? this.getDropdown() :
+            <ul className={Styles.signsNav}>
+              <li className={Styles.signIn}><Link to="/signIn">{this.getIcon('log-in')}&nbsp;登录</Link></li>
+              <li className={Styles.signIn}><Link to="/signUp">{this.getIcon('user')}&nbsp;注册</Link></li>
+            </ul>
+          }
         </div>
       </div>
     )

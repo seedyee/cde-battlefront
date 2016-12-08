@@ -15,7 +15,7 @@ class UserNameForm extends Component {
           styles={{ input: Styles.input }}
           component={FormInputField}
           type="text"
-          name="username"
+          name="name"
         />
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting} >更新用户名</Button>
       </form>

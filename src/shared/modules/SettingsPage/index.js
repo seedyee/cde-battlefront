@@ -14,10 +14,10 @@ const pathPrefix = '/settings/'
 
 const fields = {
   Profile: '基本信息',
-  Account: '账户',
-  Emails: '邮箱',
-  Mobiles: '手机',
-  Security: '安全',
+  Account: '账户信息',
+  Emails: '邮箱信息',
+  Mobiles: '手机信息',
+  Security: '安全信息',
 }
 
 class SettingsPage extends React.Component {
@@ -61,7 +61,7 @@ class SettingsPage extends React.Component {
         <Helmet title="settings" />
         <div className={Styles.sidebar}>
           <ul className={Styles.sidebarUl}>
-            <li>个人信息设置</li>
+            <li>个人设置</li>
             {this.getSidebarItems()}
           </ul>
         </div>

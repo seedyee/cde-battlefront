@@ -11,6 +11,9 @@ input {
 .labelContainer {
   display: flex;
   justify-content: space-between;
+  label {
+    font-weight: normal;
+  }
 }
 
 .icon {

@@ -1,5 +1,62 @@
-.LoginPage {
+@import '../../styles/variables.css';
+
+.SignInPage {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 49px;
+  background: #fafafa;
 }
 
+.content {
+  width: 400px;
+  border: $border-style;
+  border-radius: 6px;
+  box-shadow: $box-shadow;
+  background: #fff;
+  margin-bottom: 50px;
+}
+
+.signInWay {
+  color: #666;
+  padding: 10px 0 0 0;
+  margin: 0 30px 0 30px;
+  border-top: 1px solid #ddd;
+}
+
+.ul {
+  display: flex;
+  justify-content: flex-start;
+  padding: 15px 0 15px 50px;
+  margin: 0 15px 0 15px;
+  li {
+    a {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      margin-right: 20px;
+      border-radius: 25px;
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+      }
+    }
+  }
+}
+
+.signUp {
+  text-align: right;
+  padding-right: 30px;
+}
+
+.regBtn {
+  color: #666;
+  font-weight: bold;
+  border: none;
+  background: none;
+  &:hover {
+    color: #212121;
+    text-decoration: underline;
+  }
+}

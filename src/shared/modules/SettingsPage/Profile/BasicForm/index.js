@@ -32,7 +32,7 @@ class BasicForm extends Component {
           name="email"
           id="email"
           labelFor="email"
-          label="邮箱"
+          label="默认邮箱"
           options={emailOptions}
         />
         <Field
@@ -42,7 +42,7 @@ class BasicForm extends Component {
           name="mobile"
           id="mobile"
           labelFor="mobile"
-          label="手机"
+          label="默认手机"
           options={mobileOptions}
         />
         <Field
@@ -58,10 +58,28 @@ class BasicForm extends Component {
           styles={{ input: Styles.input }}
           component={FormInputField}
           type="text"
-          name="companyAddress"
-          id="companyAddress"
-          labelFor="companyAddress"
-          label="公司地址"
+          name="business"
+          id="business"
+          labelFor="business"
+          label="行业"
+        />
+        <Field
+          styles={{ input: Styles.input }}
+          component={FormInputField}
+          type="text"
+          name="position"
+          id="position"
+          labelFor="position"
+          label="职位"
+        />
+        <Field
+          styles={{ input: Styles.input }}
+          component={FormInputField}
+          type="text"
+          name="address"
+          id="address"
+          labelFor="address"
+          label="地址"
         />
         <Field
           styles={{ input: Styles.textarea }}
@@ -70,7 +88,7 @@ class BasicForm extends Component {
           name="personal"
           id="personal"
           labelFor="personal"
-          label="个人简介"
+          label="个人介绍"
         />
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更&nbsp;&nbsp;新</Button>
       </form>

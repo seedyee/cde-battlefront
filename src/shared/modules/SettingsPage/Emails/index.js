@@ -9,7 +9,7 @@ class Emails extends Component {
   render() {
     return (
       <div className={Styles.Emails}>
-        <h3>查看邮箱</h3>
+        <h3>邮箱列表</h3>
         {this.props.emails.length === 0 ? '' :
           <EmailList
             user={this.props.user}

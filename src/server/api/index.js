@@ -9,11 +9,11 @@ const users = [
 
 const basicInfo = {
   id: '7dg0te6o9bylvxu9bmzt98jjor',
-  username: 'Seedyee',
+  name: 'Seedyee',
   avatar: '../../../assets/logo.png',
   company: '跃考恩信息科技',
-  companyAddress: '深圳',
-  companyBusiness: '互联网',
+  address: '深圳',
+  business: '互联网',
   position: '研发工程师',
   personal: '我是。。。。。。',
   timestamp: '2016-11-11',

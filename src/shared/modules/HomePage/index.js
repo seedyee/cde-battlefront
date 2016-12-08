@@ -9,7 +9,6 @@ const Home = () => (
     <p className={Styles.intro}>
       Produced with ❤️ by <a href="https://github.com/seedyee">seedyee</a>
     </p>
-    <hr />
   </div>
 )
 

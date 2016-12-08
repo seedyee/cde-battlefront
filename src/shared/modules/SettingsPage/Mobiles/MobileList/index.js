@@ -45,7 +45,7 @@ class MobileList extends Component {
 
   isVerified = (isVerified) => (
     isVerified === true ? <Label bsStyle="success" className={Styles.labelIcon}>已认证</Label>
-                        : <Label bsStyle="warning" className={Styles.labelIcon}>未认证</Label>
+                        : <Label bsStyle="warning" className={Styles.labelIcon}>待认证</Label>
   )
 
   showDedaultBtn = (isDefault, isVerified, mobile, checked) => (
@@ -55,7 +55,7 @@ class MobileList extends Component {
 
   showResendBtn = (isDefault, isVerified, id) => (
     isDefault === false && isVerified === false ?
-      <Button bsStyle="link" onClick={() => this.props.sendMobile({ id, isVerified })}>重新发送</Button> : ''
+      <Button bsStyle="link" onClick={() => this.props.sendMobile({ id, isVerified })}>发送验证短信</Button> : ''
   )
 
   render() {

@@ -9,7 +9,7 @@ class Mobiles extends Component {
   render() {
     return (
       <div className={Styles.Mobiles}>
-        <h3>查看手机</h3>
+        <h3>手机列表</h3>
         {this.props.mobiles.length === 0 ? '' :
           <MobileList
             user={this.props.user}

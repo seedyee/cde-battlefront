@@ -26,16 +26,7 @@ class RegisterForm extends Component {
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
       <form onSubmit={handleSubmit} className={Styles.signUpForm}>
-        <h2> 开发平台 | 注册 </h2>
-        <Field
-          styles={{ input: Styles.input }}
-          component={FormInputField}
-          type="email"
-          name="email"
-          id="email"
-          labelFor="email"
-          label="邮 箱"
-        />
+        <h2>用户注册</h2>
         <Field
           styles={{ input: Styles.input }}
           component={FormInputField}
@@ -48,16 +39,28 @@ class RegisterForm extends Component {
         <Field
           styles={{ input: Styles.input }}
           component={FormInputField}
+          type="email"
+          name="email"
+          id="email"
+          labelFor="email"
+          label="邮 箱"
+        />
+        <Field
+          styles={{ input: Styles.input }}
+          component={FormInputField}
           type="password"
           name="password"
           id="password"
           labelFor="password"
           label="密 码"
         />
+        <div>
+          <Field name="agreement" id="agreement" component="input" type="checkbox" />
+          <label htmlFor="agreement">&nbsp;<a href="">同意《开发平台协议》</a></label>
+        </div>
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>注&nbsp;&nbsp;册</Button>
         <p className={Styles.signUp}>
-          已注册 ?
-          <button className={Styles.regBtn} type="button" disabled={submitting} onClick={this.redirectTo}>登&nbsp;录</button>
+          <button className={Styles.regBtn} type="button" disabled={submitting} onClick={this.redirectTo}>已有账户？马上登录</button>
         </p>
       </form>
     )

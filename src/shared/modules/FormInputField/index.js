@@ -13,7 +13,7 @@ export default ({ styles = {}, textarea, type, id, labelFor, label, icon, forget
   <div className={Styles.field}>
     <div className={Styles.labelContainer}>
       <label htmlFor={labelFor}>{label}<span className={Styles.icon}>{icon}</span></label>
-      {forgetPassword ? <span className={Styles.forgetPassword}>{forgetPassword}</span> : null}
+      {forgetPassword ? <span className={Styles.forgetPassword}><a href="">{forgetPassword}</a></span> : null}
     </div>
     {textarea ? <textarea className={styles.input} {...input} id={id} /> : <input className={styles.input} {...input} id={id} type={type} />}
     <div className={Styles.error}>

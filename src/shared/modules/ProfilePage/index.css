@@ -3,6 +3,8 @@
 .ProfilePage {
   display: flex;
   justify-content: space-between;
+  width: $site-content-width;
+  margin: $horizontal-center;
   margin-top: 70px;
 }
 
