@@ -22,7 +22,7 @@ const pathPrefix = '/project/'
 
 const firstFields = [
   { path: 'total', name: '项目', icon: 'folder-open' },
-  { path: 'creation', name: '功能', icon: 'wrench' },
+  { path: 'creation', name: '组件', icon: 'wrench' },
 ]
 
 const secondFields1 = [

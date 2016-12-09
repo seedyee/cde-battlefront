@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 
 import Styles from './index.css'
-import logo from '../../../assets/logo.png'
+import logo from '../../../assets/leapcorn-blue.png'
 
 class AvatarForm extends Component {
   constructor(props) {

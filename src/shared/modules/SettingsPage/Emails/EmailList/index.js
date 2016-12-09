@@ -53,7 +53,7 @@ class EmailList extends Component {
   )
 
   showResendBtn = (isDefault, isVerified, id) => (
-    isDefault === false && isVerified === false ? <Button bsStyle="link" onClick={() => this.props.sendEmail({ id, isVerified })}>发送验证邮箱</Button> : ''
+    isDefault === false && isVerified === false ? <Button bsStyle="link" onClick={() => this.props.sendEmail({ id, isVerified })}>发送验证邮件</Button> : ''
   )
 
   render() {

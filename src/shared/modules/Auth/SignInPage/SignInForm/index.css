@@ -26,6 +26,10 @@
   }
 }
 
+.promise {
+  margin: 0 4px;
+}
+
 /* cover the imporing submitBtn styles */
 .submitBtn {
   padding: 0;

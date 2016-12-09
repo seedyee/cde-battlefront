@@ -4,4 +4,10 @@
 .Emails {
   @include content-title();
   padding-bottom: $padding-bottom;
+  p {
+    height: 40px;
+    line-height: 40px;
+    color: #666;
+    text-align: center;
+  }
 }

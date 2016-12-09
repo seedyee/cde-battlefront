@@ -23,6 +23,10 @@ input {
 
 .forgetPassword {
   color: #666;
+  font-weight: 300;
+  &:hover {
+    color: #1565C0;
+  }
 }
 
 .error {

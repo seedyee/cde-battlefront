@@ -22,7 +22,7 @@ class SignInForm extends Component {
   render() {
     const { handleSubmit, pristine, submitting, logined } = this.props
     const { redirectTo } = this.state
-    if (logined) return <Redirect to="/project/all" />
+    if (logined) return <Redirect to="/profile" />
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
       <form onSubmit={handleSubmit} className={Styles.signInForm}>
@@ -47,8 +47,8 @@ class SignInForm extends Component {
           forgetPassword="忘记登录密码 ?"
         />
         <div className={Styles.checkboxDiv}>
-          <Field name="agreement" id="agreement" component="input" type="checkbox" />
-          <label htmlFor="agreement">&nbsp;记住我&nbsp;</label>
+          <Field name="promise" id="promise" component="input" type="checkbox" />
+          <label htmlFor="promise" className={Styles.promise}>记住我</label>
         </div>
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>登 录</Button>
       </form>

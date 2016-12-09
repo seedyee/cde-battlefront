@@ -48,11 +48,12 @@
     margin-right: 8px;
     a {
       display: inline-block;
-      width: 60px;
+      width: 65px;
       height: 40px;
       line-height: 40px;
       text-decoration: none;
       text-align: center;
+      color: #666;
       &:hover {
         color: $normal-color;
         cursor: pointer;
@@ -75,7 +76,7 @@
 }
 
 .icon {
-  color: #795548;
+  font-size: 12px;
   padding-right: 5px;
 }
 
@@ -100,6 +101,12 @@
     border-radius: 4px;
     transition: border .2s ease-in-out;
     touch-action: manipulation;
+  }
+  a {
+    display: inline-block;
+    width: 150px;
+    height: 102px;
+    background: #eceff1;
   }
 }
 

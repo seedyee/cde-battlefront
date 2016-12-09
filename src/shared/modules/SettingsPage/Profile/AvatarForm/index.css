@@ -22,20 +22,22 @@
     width: 200px;
     height: 34px;
     line-height: 24px;
+    font-size: 14px;
+    font-weight: 800;
     margin-top: 16px;
-    background: linear-gradient(#91dd70, #55ae2e);
-    border: 1px solid #55ae2e;
+    background: linear-gradient(#fcfcfc, #ddd);
+    border: 1px solid #ccc;
     border-radius: 4px;
     padding: 4px 12px;
     overflow: hidden;
-    color: #fff;
+    color: #212121;
     text-align: center;
     text-decoration: none;
-    text-shadow: 0 -1px 0 rgba(0,0,0,0.15);
     letter-spacing: 0.8px;
     &:hover {
-      background: #55ae2e;
-      color: #fff;
+      background: #e6e6e6;
+      color: #333;
+      border: 1px solid #adadad;
       text-decoration: none;
       cursor: pointer;
     }

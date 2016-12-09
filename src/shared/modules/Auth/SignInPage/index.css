@@ -52,11 +52,32 @@
 
 .regBtn {
   color: #666;
-  font-weight: bold;
+  font-weight: 300;
   border: none;
   background: none;
   &:hover {
-    color: #212121;
+    color: #1565C0;
     text-decoration: underline;
+  }
+}
+
+.footer {
+  width: $site-content-width;
+  height: 80px;
+  line-height: 80px;
+  border-top: 1px solid #ddd;
+  ul {
+    display: flex;
+    justify-content: center;
+    li {
+      margin: 0 15px;
+      a {
+        font-size: 13px;
+        color: #666;
+        &:hover {
+          color: #1565C0;
+        }
+      }
+    }
   }
 }

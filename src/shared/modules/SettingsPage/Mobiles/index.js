@@ -10,7 +10,7 @@ class Mobiles extends Component {
     return (
       <div className={Styles.Mobiles}>
         <h3>手机列表</h3>
-        {this.props.mobiles.length === 0 ? '' :
+        {this.props.mobiles.length === 0 ? <p>可添加手机号码以接收账户信息相关的重要通知</p> :
           <MobileList
             user={this.props.user}
             mobiles={this.props.mobiles}

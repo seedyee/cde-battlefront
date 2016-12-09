@@ -6,21 +6,32 @@
   color: #333;
   padding-bottom: 40px;
   margin-bottom: 20px;
-  border: $border-style;
   border-radius: 3px;
 }
 
-/*Area of adding one email*/
 .sessions {
   @include content-title();
-  width: 600px;
-  height: 280px;
-  margin: 40px 0 0 40px;
+  padding-bottom: $padding-bottom;
+  p {
+    height: 40px;
+    line-height: 40px;
+    text-indent: 10px;
+    color: #666;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 100px;
+  }
 }
 
 .log {
   @include content-title();
-  width: 600px;
-  height: 300px;
-  margin: 40px 0 0 40px;
+  padding-bottom: $padding-bottom;
+  margin: 40px 0;
+  p {
+    height: 40px;
+    line-height: 40px;
+    text-indent: 10px;
+    color: #666;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 300px;
+  }
 }

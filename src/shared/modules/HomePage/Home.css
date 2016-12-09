@@ -3,6 +3,8 @@ $textColor: orange;
 .Home {
   margin: 0 auto;
   margin-top: 70px;
+  background: url(../assets/great-wall2.jpg) no-repeat 70% 40%;
+  height: 623px;
 }
 
 @mixin scale{
@@ -13,12 +15,37 @@ $textColor: orange;
   color: $textColor;
   display: flex;
   justify-content: center;
+  padding-top: 20px;
   a{
+    color: #fff;
     padding-left: calc(2px + 3px);
     &:hover{
       @include scale;
       background: blue;
       color: white;
+    }
+  }
+}
+
+.footer {
+  position: fixed;
+  right: 100px;
+  bottom: 20px;
+  width: $site-content-width;
+  height: 80px;
+  line-height: 80px;
+  ul {
+    display: flex;
+    justify-content: center;
+    li {
+      margin: 0 15px;
+      a {
+        font-size: 13px;
+        color: #eee;
+        &:hover {
+          color: #fafafa;
+        }
+      }
     }
   }
 }

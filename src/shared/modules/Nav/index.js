@@ -37,15 +37,46 @@ class Nav extends React.Component {
     return (
       <div className={logined ? Styles.loginedNav : Styles.nav}>
         <div className={Styles.content}>
-          <ul className={Styles.pagesNav}>
-            <li>
-              <Link className={Styles.home} to="/"><img className={Styles.logo} alt="site logo" src={logo} /></Link>
-            </li>
-          </ul>
+          {logined ?
+            <ul className={Styles.pagesNav}>
+              <li>
+                <Link className={Styles.home} to="/">
+                  <img className={Styles.logo} alt="site logo" src={logo} />
+                </Link>
+              </li>
+            </ul> :
+              <ul className={Styles.pagesNav}>
+                <li>
+                  <Link className={Styles.home} to="/">
+                    <img className={Styles.logo} alt="site logo" src={logo} />
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/">服务</Link>
+                </li>
+                <li>
+                  <Link to="/">项目</Link>
+                </li>
+                <li>
+                  <Link to="/">组件</Link>
+                </li>
+                <li>
+                  <Link to="/">发现</Link>
+                </li>
+              </ul>
+          }
           {logined ? this.getDropdown() :
             <ul className={Styles.signsNav}>
-              <li className={Styles.signIn}><Link to="/signIn">{this.getIcon('log-in')}&nbsp;登录</Link></li>
-              <li className={Styles.signIn}><Link to="/signUp">{this.getIcon('user')}&nbsp;注册</Link></li>
+              <li className={Styles.signIn}>
+                <Link to="/signIn">
+                  {this.getIcon('log-in')}&nbsp;登录
+                </Link>
+              </li>
+              <li className={Styles.signIn}>
+                <Link to="/signUp">
+                  {this.getIcon('user')}&nbsp;注册
+                </Link>
+              </li>
             </ul>
           }
         </div>

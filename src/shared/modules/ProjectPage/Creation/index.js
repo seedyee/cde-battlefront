@@ -9,7 +9,7 @@ class Creation extends Component {
       <div className={Styles.Creation}>
         <div className={Styles.titleBar}>
           <h3 className={Styles.title}>
-            <Glyphicon glyph="leaf" className={Styles.icon} />
+            <Glyphicon glyph="object-align-bottom" className={Styles.icon} />
             我创建的
           </h3>
           <Form className={Styles.form} inline>

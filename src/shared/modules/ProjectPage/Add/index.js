@@ -10,7 +10,7 @@ class Add extends Component {
       <div className={Styles.Add}>
         <div className={Styles.titleBar}>
           <h3 className={Styles.title}>
-            <Glyphicon glyph="leaf" className={Styles.icon} />
+            <Glyphicon glyph="object-align-bottom" className={Styles.icon} />
             创建新项目
           </h3>
         </div>

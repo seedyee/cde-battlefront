@@ -9,7 +9,7 @@ class Participation extends Component {
       <div className={Styles.Participation}>
         <div className={Styles.titleBar}>
           <h3 className={Styles.title}>
-            <Glyphicon glyph="leaf" className={Styles.icon} />
+            <Glyphicon glyph="object-align-bottom" className={Styles.icon} />
             我参与的
           </h3>
           <Form className={Styles.form} inline>

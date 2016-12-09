@@ -10,7 +10,7 @@ class Emails extends Component {
     return (
       <div className={Styles.Emails}>
         <h3>邮箱列表</h3>
-        {this.props.emails.length === 0 ? '' :
+        {this.props.emails.length === 0 ? <p>请添加一个电子邮件地址用于与帐户相关信息的通知</p> :
           <EmailList
             user={this.props.user}
             emails={this.props.emails}

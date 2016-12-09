@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Glyphicon, Form, FormControl, Button } from 'react-bootstrap'
 
 import Styles from './index.css'
-import logo from '../../assets/leaf.jpg'
 
 const items = {
   all: '所有',
@@ -14,9 +13,7 @@ const All = () => (
   <div className={Styles.project}>
     <div>
       <div className={Styles.projectImg}>
-        <a href="" className={Styles.a}>
-          <img className={Styles.logo} src={logo} alt="" />
-        </a>
+        <a href=""></a>
       </div>
       <p className={Styles.projectName}>
         <Glyphicon glyph="lock" className={Styles.icon} />
@@ -25,9 +22,7 @@ const All = () => (
     </div>
     <div>
       <div className={Styles.projectImg}>
-        <a href="" className={Styles.a}>
-          <img className={Styles.logo} src={logo} alt="" />
-        </a>
+        <a href=""></a>
       </div>
       <p className={Styles.projectName}>
         <Glyphicon glyph="lock" className={Styles.icon} />
@@ -36,9 +31,7 @@ const All = () => (
     </div>
     <div>
       <div className={Styles.projectImg}>
-        <a href="" className={Styles.a}>
-          <img className={Styles.logo} src={logo} alt="" />
-        </a>
+        <a href=""></a>
       </div>
       <p className={Styles.projectName}>
         <Glyphicon glyph="lock" className={Styles.icon} />
@@ -91,8 +84,8 @@ class Total extends Component {
       <div className={Styles.Total}>
         <div className={Styles.titleBar}>
           <h3 className={Styles.title}>
-            <Glyphicon glyph="leaf" className={Styles.icon} />
-            所有项目 ( )
+            <Glyphicon glyph="object-align-bottom" className={Styles.icon} />
+            所有项目
           </h3>
           <Form className={Styles.form} inline>
             <FormControl className={Styles.input} type="text" placeholder="search..." />

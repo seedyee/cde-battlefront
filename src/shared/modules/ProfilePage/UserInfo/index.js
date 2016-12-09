@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router'
 import { Button } from 'react-bootstrap'
 
 import Styles from './index.css'
-import leapcorn from './leapcorn.png'
+import leapcorn from '../../assets/leapcorn-blue.png'
 
 class UserInfo extends React.Component {
   constructor() {
@@ -32,7 +32,6 @@ class UserInfo extends React.Component {
         <p>地址：{user.address}</p>
         <p>邮箱：{user.email}</p>
         <p>注册：{user.timestamp}</p>
-
       </div>
     )
   }

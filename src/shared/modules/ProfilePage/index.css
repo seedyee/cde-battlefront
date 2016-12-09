@@ -10,10 +10,39 @@
 
 .userContent {
   width: $settings-content-width;
-  border: $border-style;
   border-radius: $border-radius_3px;
 }
 
+.nav {
+  border-bottom: 1px solid #ddd;
+}
 
+.navUl {
+  li {
+    display: inline-block;
+    height: 54px;
+    margin-right: 20px;
+    a {
+      display: inline-block;
+      width: 85px;
+      height: 54px;
+      line-height: 54px;
+      font-size: 15px;
+      font-weight: 300;
+      color: #666;
+      text-decoration: none;
+      text-align: center;
+      &:hover {
+        color: $normal-color;
+        cursor: pointer;
+      }
+    }
+  }
+}
 
-
+.activeNav {
+  border-bottom: 2px solid #d26911;
+  a {
+    color: #000 !important;
+  }
+}
