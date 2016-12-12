@@ -2,6 +2,10 @@
 
 .avatar {
   padding-left: 50px;
+  p {
+    color: $normal-color;
+    font-weight: normal;
+  }
 }
 
 .img {
@@ -22,18 +26,17 @@
     width: 200px;
     height: 34px;
     line-height: 24px;
-    font-size: 14px;
-    font-weight: 800;
+    font-size: 15px;
     margin-top: 16px;
     background: linear-gradient(#fcfcfc, #ddd);
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 4px 12px;
     overflow: hidden;
-    color: #212121;
+    color: $normal-color;
+    letter-spacing: $letter-spacing;
     text-align: center;
     text-decoration: none;
-    letter-spacing: 0.8px;
     &:hover {
       background: #e6e6e6;
       color: #333;

@@ -1,3 +1,5 @@
+@import '../../styles/variables.css';
+
 .userInfo {
   width: 230px;
   height: 600px;
@@ -30,7 +32,8 @@
 .profileEditBtn {
   width: 230px;
   font-size: 16px;
-  font-weight: bold;
+  letter-spacing: $letter-spacing;
+  color: $normal-color;
   background: linear-gradient(#fcfcfc, #eee);
   &:hover {
     background: #ddd;

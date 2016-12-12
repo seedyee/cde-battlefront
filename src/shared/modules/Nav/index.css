@@ -1,17 +1,18 @@
 @import '../styles/variables.css';
 
 .nav {
-  height: 70px;
-  line-height: 70px;
+  height: $nav-height;
+  line-height: $nav-height;
   top: 0;
   left: 0;
   position: fixed;
   width: 100%;
-  border-bottom: 1px solid #e5e5e5;
-  background: #fff;
   font-size: 14px;
-  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
   box-shadow: 1px 1px 3px #efefef;
+  z-index: 100;
+
 }
 
 .loginedNav {
@@ -21,9 +22,18 @@
   left: 0;
   position: fixed;
   width: 100%;
+  font-size: 14px;
   border-bottom: 1px solid #e5e5e5;
   background: $background-color;
-  font-size: 14px;
+  z-index: 100;
+}
+
+.projectContent {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 98%;
+  height: 100%;
   z-index: 100;
 }
 
@@ -104,7 +114,7 @@
   padding: 0 10px;
   li {
     a {
-      color: #212121;
+      color: $normal-color;
       margin: 4px 0;
       &:hover {
         font-weight: bold;

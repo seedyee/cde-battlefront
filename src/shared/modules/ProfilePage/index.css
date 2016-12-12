@@ -5,12 +5,12 @@
   justify-content: space-between;
   width: $site-content-width;
   margin: $horizontal-center;
-  margin-top: 70px;
+  padding-top: 25px;
 }
 
 .userContent {
   width: $settings-content-width;
-  border-radius: $border-radius_3px;
+  border-radius: $border-radius;
 }
 
 .nav {

@@ -56,7 +56,7 @@ class RegisterForm extends Component {
         />
         <div>
           <Field name="agreement" id="agreement" component="input" type="checkbox" />
-          <label htmlFor="agreement"><a href="" className={Styles.agreement}>同意《开发平台协议》</a></label>
+          <label htmlFor="agreement" className={Styles.agreement}>同意<a href="">《开发平台协议》</a></label>
         </div>
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>注册</Button>
         <p className={Styles.signUp}>

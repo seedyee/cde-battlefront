@@ -5,7 +5,7 @@
   justify-content: space-between;
   width: $site-content-width;
   margin: $horizontal-center;
-  margin-top: 70px;
+  padding-top: 25px;
 }
 
 .sidebar {
@@ -14,7 +14,7 @@
   height: 550px;
   color: $normal-color;
   border: $border-style;
-  border-radius: $border-radius_3px;
+  border-radius: $border-radius;
 }
 
 .sidebarUl {
@@ -28,11 +28,11 @@
     border-bottom: 1px solid #eee;
     &:nth-child(1) {
       font-size: 15px;
-      font-weight: 600;
       line-height: 17px;
       letter-spacing: 1px;
       margin: 0;
       padding: 9px 12px 10px;
+      color: #333;
       background: $background-color;
       border-bottom: $border-style;
     }

@@ -1,8 +1,10 @@
 .submitBtn {
   color: #fff;
   font-weight: bold;
+  letter-spacing: $letter-spacing;
   padding: 6px 68px;
-  border-radius: $border-radius_3px;
+  margin-top: $field-margin-top;
+  border-radius: $border-radius;
   background: linear-gradient(#91dd70, #55ae2e);
   text-shadow: 0 -1px 0 rgba(0,0,0,0.15);
   &:hover {

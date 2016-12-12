@@ -76,7 +76,9 @@ class ProjectPage extends React.Component {
   firstSidebarItems = () => (
     <Nav bsStyle="pills" className={Styles.navBottom} stacked onSelect={this.onSelected}>
       {Object.values(firstFields).map(i => (
-        <NavItem key={i.path}>
+        <NavItem
+          key={i.path}
+        >
           {this.getIcon(i.icon)}
           <strong>{i.name}</strong>
         </NavItem>

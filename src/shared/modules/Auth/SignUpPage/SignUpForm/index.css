@@ -23,8 +23,12 @@
   font-weight: 300;
   color: #666;
   margin-left: 4px;
-  &:hover {
-    color: #1565C0;
+  margin-top: $field-margin-top;
+  a {
+    color: #666;
+    &:hover {
+      color: $hover-color_blue;
+    }
   }
 }
 
@@ -49,7 +53,7 @@
   border: none;
   background: none;
   &:hover {
-    color: #1565C0;
+    color: $hover-color_blue;
     text-decoration: underline;
   }
 }

@@ -2,9 +2,8 @@ $textColor: orange;
 
 .Home {
   margin: 0 auto;
-  margin-top: 70px;
   background: url(../assets/great-wall2.jpg) no-repeat 70% 40%;
-  height: 623px;
+  height: 700px;
 }
 
 @mixin scale{
@@ -30,7 +29,7 @@ $textColor: orange;
 .footer {
   position: fixed;
   right: 100px;
-  bottom: 20px;
+  bottom: 8px;
   width: $site-content-width;
   height: 80px;
   line-height: 80px;

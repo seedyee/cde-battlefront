@@ -2,14 +2,13 @@
 
 @mixin content-title() {
   width: $settings-content-width;
-  color: $normal-color;
   padding-bottom: 8px;
   border: $border-style;
-  border-radius: $border-radius_3px;
+  border-radius: $border-radius;
   h3 {
     font-size: 15px;
-    font-weight: bold;
     line-height: 17px;
+    color: #333;
     letter-spacing: $letter-spacing;
     padding: 9px 10px 10px;
     margin: 0;

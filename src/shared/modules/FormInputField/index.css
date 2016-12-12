@@ -1,9 +1,11 @@
+@import '../styles/variables.css';
+
 .field {
-  margin: 20px 0;
+  margin-top: 20px;
 }
 
 input {
-  margin: 6px 0 0 0;
+  margin-top: 6px;
   padding: 0;
   padding-left: 12px;
 }
@@ -25,7 +27,7 @@ input {
   color: #666;
   font-weight: 300;
   &:hover {
-    color: #1565C0;
+    color: $hover-color_blue;
   }
 }
 

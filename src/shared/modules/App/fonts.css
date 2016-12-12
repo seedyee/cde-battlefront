@@ -1,33 +1,12 @@
 @font-face{
-  font-family: "Source Sans Pro";
-  font-weight: 200;
+  font-family: "Noto Sans";
+  font-weight: normal;
   font-style: normal;
-  src: url("source-sans-pro/WOFF/OTF/SourceSansPro-ExtraLight.otf.woff") format("woff");
+  src: url("../vendors/fonts/NotoSans-Regular.ttf") format("truetype");
 }
 
-@font-face{
-  font-family: "Source Sans Pro";
-  font-weight: 300;
-  font-style: normal;
-  src: url("source-sans-pro/WOFF/OTF/SourceSansPro-Light.otf.woff") format("woff");
-}
-
-@font-face{
-  font-family: "Source Sans Pro";
-  font-weight: 400;
-  font-style: normal;
-  src: url("source-sans-pro/WOFF/OTF/SourceSansPro-Regular.otf.woff") format("woff");
-}
-
-@font-face{
-  font-family: "Source Sans Pro";
-  font-weight: 500;
-  font-style: normal;
-  src: url("source-sans-pro/WOFF/OTF/SourceSansPro-Semibold.otf.woff") format("woff");
-}
-
-html{
-  font-family: "Source Sans Pro", "Microsoft YaHei", "微软雅黑", "Hiragino Sans GB", "冬青黑体", SimHei;
+body {
+  font-family: "Noto Sans", Verdana, "Microsoft YaHei", "微软雅黑", "Hiragino Sans GB", "冬青黑体", SimHei;
   margin: 0;
   padding: 0;
 }
