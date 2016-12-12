@@ -29,16 +29,16 @@ const validate = () => values => {
     errors.email = '请输入正确格式的邮箱地址 !'
   }
 
-  if (email && !username) {
+  if (password && !username) {
     errors.username = '请输入您的用户名 !'
   }
 
-  if (username && !password) {
-    errors.password = '请输入您的密码 !'
+  if (username && !email) {
+    errors.email = '请输入您的邮箱 !'
   }
 
-  if (password && !email) {
-    errors.email = '请输入您的邮箱 !'
+  if (email && !password) {
+    errors.password = '请输入您的密码 !'
   }
 
   return errors

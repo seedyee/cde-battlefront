@@ -9,7 +9,7 @@ const alertMessage = (error) => (
   </div>
 )
 
-export default ({ styles = {}, labelFor, label, id, options, input, meta: { touched, error, warning } }) => (
+export default ({ styles = {}, labelFor, label, id, options, input, meta: { touched, error } }) => (
   <div className={Styles.field}>
     <div className={Styles.labelContainer}>
       <label htmlFor={labelFor}> {label} </label>
@@ -18,7 +18,7 @@ export default ({ styles = {}, labelFor, label, id, options, input, meta: { touc
       {options.map(option => <option value={option} key={option}>{option}</option>)}
     </select>
     <div className={Styles.error}>
-      {touched && ((error && alertMessage(error)) || (warning && <span>{warning}</span>))}
+      {touched && error && alertMessage(error)}
     </div>
   </div>
 )

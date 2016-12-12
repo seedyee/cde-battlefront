@@ -41,7 +41,7 @@ class ProjectPage extends React.Component {
   constructor() {
     super()
     this.state = {
-      activeClass: '/project/total',
+      activeClass: '/project/all',
     }
   }
 

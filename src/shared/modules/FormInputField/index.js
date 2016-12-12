@@ -9,7 +9,7 @@ const alertMessage = (error) => (
   </div>
 )
 
-export default ({ styles = {}, textarea, type, id, labelFor, label, icon, forgetPassword, input, meta: { touched, error, warning } }) => (
+export default ({ styles = {}, textarea, type, id, labelFor, label, icon, forgetPassword, input, meta: { touched, error } }) => (
   <div className={Styles.field}>
     {label ? <div className={Styles.labelContainer}>
       <label htmlFor={labelFor}>{label}<span className={Styles.icon}>{icon}</span></label>
@@ -18,7 +18,7 @@ export default ({ styles = {}, textarea, type, id, labelFor, label, icon, forget
     {textarea ? <textarea className={styles.input} {...input} id={id} />
               : <input className={styles.input} {...input} id={id} type={type} />}
     <div className={Styles.error}>
-      {touched && ((error && alertMessage(error)) || (warning && <span>{warning}</span>))}
+      {touched && error && alertMessage(error)}
     </div>
   </div>
 )
