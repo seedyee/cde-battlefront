@@ -29,8 +29,9 @@ const parseJSON = (response) => {
 }
 
 const urlRoot = `${process.env.APP_HOST}:${process.env.SERVER_PORT}`
-const apiPrefix = '/dev/api'
-const request = ({ method, url, data }) => fetch(urlRoot + apiPrefix + url, {
+const devApiPrefix = '/dev/api'
+
+const createRequest = (prefix) => ({ method, url, data }) => fetch(urlRoot + prefix + url, {
   // Use the include value to send cookies in a
   // cross-origin resource sharing (CORS) request
   // credentials: 'include',
@@ -44,6 +45,8 @@ const request = ({ method, url, data }) => fetch(urlRoot + apiPrefix + url, {
   },
   body: JSON.stringify(data),
 }).then(checkStatus).then(parseJSON)
+
+const request = createRequest(devApiPrefix)
 
 export const post = (url, data) => request({ method: 'POST', url, data })
 export const get = (url) => request({ method: 'GET', url })
