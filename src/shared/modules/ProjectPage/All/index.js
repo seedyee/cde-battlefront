@@ -9,7 +9,7 @@ const items = {
   private: '私有',
 }
 
-const All = () => (
+const AllProject = () => (
   <div className={Styles.project}>
     <div>
       <div className={Styles.projectImg}>
@@ -47,7 +47,7 @@ const Private = () => (
   <div>Private</div>
 )
 
-class Total extends Component {
+class All extends Component {
   constructor() {
     super()
     this.state = {
@@ -69,19 +69,19 @@ class Total extends Component {
   getCountent = (type) => {
     switch (type) {
       case 'all':
-        return <All />
+        return <AllProject />
       case 'public':
         return <Public />
       case 'private':
         return <Private />
       default:
-        return <All />
+        return <AllProject />
     }
   }
 
   render() {
     return (
-      <div className={Styles.Total}>
+      <div className={Styles.All}>
         <div className={Styles.titleBar}>
           <h3 className={Styles.title}>
             <Glyphicon glyph="object-align-bottom" className={Styles.icon} />
@@ -105,4 +105,4 @@ class Total extends Component {
   }
 }
 
-export default Total
+export default All

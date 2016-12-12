@@ -11,29 +11,29 @@ import {
 
 import withRouter from '../utils/withRouter'
 import Add from './Add'
-import Total from './Total'
+import All from './All'
 import Creation from './Creation'
 import Participation from './Participation'
-import Attention from './Attention'
+import Concern from './Concern'
 import Collection from './Collection'
 import Styles from './index.css'
 
 const pathPrefix = '/project/'
 
 const firstFields = [
-  { path: 'total', name: '项目', icon: 'folder-open' },
-  { path: 'creation', name: '组件', icon: 'wrench' },
+  { path: 'all', name: '项目', icon: 'folder-open' },
+  { path: 'create', name: '组件', icon: 'wrench' },
 ]
 
 const secondFields1 = [
-  { path: 'total', name: '所有项目 (1)', icon: 'folder-open' },
-  { path: 'creation', name: '我创建的 (1)', icon: 'folder-close' },
-  { path: 'participation', name: '我参与的 (1)', icon: 'edit' },
+  { path: 'all', name: '所有项目 (1)', icon: 'folder-open' },
+  { path: 'create', name: '我创建的 (1)', icon: 'folder-close' },
+  { path: 'participate', name: '我参与的 (1)', icon: 'edit' },
 ]
 
 const secondFields2 = [
-  { path: 'attention', name: '我关注的 (0)', icon: 'eye-open' },
-  { path: 'collection', name: '我收藏的 (0)', icon: 'heart' },
+  { path: 'concern', name: '我关注的 (0)', icon: 'eye-open' },
+  { path: 'collect', name: '我收藏的 (0)', icon: 'heart' },
 ]
 
 @withRouter
@@ -58,18 +58,18 @@ class ProjectPage extends React.Component {
     switch (this.props.params.name) {
       case 'add':
         return <Add />
-      case 'total':
-        return <Total />
-      case 'creation':
+      case 'all':
+        return <All />
+      case 'create':
         return <Creation />
-      case 'participation':
+      case 'participate':
         return <Participation />
-      case 'attention':
-        return <Attention />
-      case 'collection':
+      case 'concern':
+        return <Concern />
+      case 'collect':
         return <Collection />
       default:
-        return <Total />
+        return <All />
     }
   }
 
