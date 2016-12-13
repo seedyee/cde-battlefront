@@ -102,6 +102,8 @@ const createPlugins = (target, mode) => {
       // All the below items match the config items in our .env file. Go
       // to the .env_example for a description of each key.
       'process.env.SERVER_PORT': JSON.stringify(process.env.SERVER_PORT),
+      'process.env.PROXY_SERVER_PORT': JSON.stringify(process.env.PROXY_SERVER_PORT),
+      'process.env.PROXY_SERVER_ROOT': JSON.stringify(process.env.PROXY_SERVER_ROOT),
       'process.env.CLIENT_DEVSERVER_PORT': JSON.stringify(process.env.CLIENT_DEVSERVER_PORT),
 
       'process.env.DISABLE_SSR': process.env.DISABLE_SSR,
