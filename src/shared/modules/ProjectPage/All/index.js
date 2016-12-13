@@ -82,20 +82,14 @@ class All extends Component {
   render() {
     return (
       <div className={Styles.All}>
-        <div className={Styles.titleBar}>
-          <h3 className={Styles.title}>
-            <Glyphicon glyph="object-align-bottom" className={Styles.icon} />
-            所有项目
-          </h3>
-          <Form className={Styles.form} inline>
-            <FormControl className={Styles.input} type="text" placeholder="search..." />
-            <Button className={Styles.submitBtn} bsStyle="success" bsSize="small" type="submit">搜 索</Button>
-          </Form>
-        </div>
         <div className={Styles.nav}>
           <ul className={Styles.navUl}>
             {this.getItems()}
           </ul>
+          <Form className={Styles.form} inline>
+            <FormControl className={Styles.input} type="text" placeholder="search..." />
+            <Button className={Styles.submitBtn} bsStyle="success" bsSize="small" type="submit">搜 索</Button>
+          </Form>
         </div>
         <div className={Styles.content}>
           {this.getCountent(this.state.activeContent)}
