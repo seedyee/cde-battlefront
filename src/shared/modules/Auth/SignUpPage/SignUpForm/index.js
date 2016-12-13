@@ -22,7 +22,7 @@ class RegisterForm extends Component {
   render() {
     const { handleSubmit, pristine, submitting, logined } = this.props
     const { redirectTo } = this.state
-    if (logined) return <Redirect to="/dashboard" />
+    if (logined) return <Redirect to="/profile" />
     if (redirectTo) return <Redirect to={redirectTo} />
     return (
       <form onSubmit={handleSubmit} className={Styles.signUpForm}>

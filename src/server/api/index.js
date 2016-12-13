@@ -86,7 +86,7 @@ const success = {
 
 const id = Math.random().toString(36).substr(2);
 
-router.post('/login', (req, res) => {
+router.post('/authc/signin', (req, res) => {
   const { principal, password } = req.body
   if (!(users.some(user => user.username === principal) || users.some(user => user.email === principal))) {
     res.json({ error: { text: '您输入用户名或邮箱不存在，请重新输入' } })
@@ -101,7 +101,7 @@ router.post('/login', (req, res) => {
   }
 })
 
-router.post('/register', (req, res) => {
+router.post('/accounts', (req, res) => {
   const { email, username, password } = req.body
   if (users.some(user => user.email === email)) {
     res.json({ error: { text: '用户名或邮箱已被使用，请重新输入 !' } })
@@ -111,7 +111,7 @@ router.post('/register', (req, res) => {
   }
 })
 
-router.get('/logout', (req, res) => {
+router.post('/authc/signout', (req, res) => {
   res.json({})
 })
 
