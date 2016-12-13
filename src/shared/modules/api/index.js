@@ -30,8 +30,9 @@ const parseJSON = (response) => {
 
 const urlRoot = `${process.env.APP_HOST}:${process.env.SERVER_PORT}`
 const devApiPrefix = '/dev/api'
+const apiUrl = `${process.env.PROXY_SERVER_ROOT}:${process.env.PROXY_SERVER_PORT}`
 
-const createRequest = (prefix) => ({ method, url, data }) => fetch(urlRoot + prefix + url, {
+const createRequest = (rootUrl = '', prefix = '') => ({ method, url, data }) => fetch(rootUrl + prefix + url, {
   // Use the include value to send cookies in a
   // cross-origin resource sharing (CORS) request
   // credentials: 'include',
@@ -46,15 +47,21 @@ const createRequest = (prefix) => ({ method, url, data }) => fetch(urlRoot + pre
   body: JSON.stringify(data),
 }).then(checkStatus).then(parseJSON)
 
-const request = createRequest(devApiPrefix)
+const realRequest = createRequest(apiUrl)
+export const realPost = (url, data) => realRequest({ method: 'POST', url, data })
+export const realGet = (url) => realRequest({ method: 'GET', url })
+export const realRel = (url) => realRequest({ method: 'DELETE', url })
 
+const request = createRequest(urlRoot, devApiPrefix)
 export const post = (url, data) => request({ method: 'POST', url, data })
 export const get = (url) => request({ method: 'GET', url })
 export const del = (url) => request({ method: 'DELETE', url })
 
-export const login = (data) => post('/login', data)
-export const register = (data) => post('/register', data)
-export const logout = (id) => get(`/logout?id=${id}`)
+
+
+export const login = (data) => post('/authc/signin', data)
+export const register = (data) => realPost('/accounts?', data)
+export const logout = (id) => post('/authc/signout', id)
 
 // APIs about user
 export const loadUsers = () => get('/users')
