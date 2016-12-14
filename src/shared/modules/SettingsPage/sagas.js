@@ -5,7 +5,7 @@ import * as api from '../api'
 import { isEmptyObj } from '../utils'
 import last from 'lodash/last'
 
-const ID = '5850ab4b30e7b3255c2a78ad'
+const ID = '585118ef30e7b3537e82a30d'
 /*
  * sagas about user
  */
@@ -105,7 +105,7 @@ function* loadEmails() {
   if (!isEmptyObj(user)) return
   yield put(actions.loadEmailsActions.request())
   try {
-    const response = yield call(api.loadEmails, 'fakeId')
+    const response = yield call(api.loadEmails, ID)
     yield put(actions.loadEmailsActions.success(response))
   } catch (e) {
     yield put(actions.loadEmailsActions.failure(e))

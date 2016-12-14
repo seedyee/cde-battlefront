@@ -4,7 +4,7 @@ import { selectCurrentUser } from './selectors'
 import { isEmptyObj } from '../utils'
 import * as api from '../api'
 
-const ID = '5850ab4b30e7b3255c2a78ad'
+const ID = '585118ef30e7b3537e82a30d'
 
 function* loadBasicInfo() {
   const user = yield select(selectCurrentUser)

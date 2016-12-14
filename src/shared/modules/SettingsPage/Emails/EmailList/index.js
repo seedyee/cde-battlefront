@@ -12,12 +12,24 @@ class EmailList extends Component {
   }
 
   getEmails = (emails, checked) => emails.map(e => (
-    <tr key={e.id}>
-      <td>{e.email}</td>
-      <td>{this.isDefault(e.isDefault)} {e.isDefault === true ? this.isPublic(e.isPublic) : ''}</td>
-      <td>{this.isVerified(e.isVerified)}</td>
-      <td>{this.showResendBtn(e.isDefault, e.isVerified, e.id)} {this.showDedaultBtn(e.isDefault, e.isVerified, e.email, checked)}</td>
-      <td>{this.getIcon('trash', e.id, e.email)}</td>
+    <tr key={e.emailId}>
+      <td>
+        {e.email}
+      </td>
+      <td>
+        {this.isDefault(e.default)}
+        {e.default === true ? this.isPublic(e.public) : ''}
+      </td>
+      <td>
+        {this.isVerified(e.verified)}
+      </td>
+      <td>
+        {this.showResendBtn(e.default, e.verified, e.emailId)}
+        {this.showDedaultBtn(e.default, e.verified, e.email, checked)}
+      </td>
+      <td>
+        {this.getIcon('trash', e.emailId, e.email)}
+      </td>
     </tr>
   ))
 
@@ -49,20 +61,29 @@ class EmailList extends Component {
   )
 
   showDedaultBtn = (isDefault, isVerified, email, checked) => (
-    isDefault === false && isVerified === true ? <Button bsStyle="link" onClick={() => (confirm(`您确定设${email}为默认邮箱吗？`) ? this.props.updateEmail({ email, checked }) : '')}>设为默认</Button> : ''
+    isDefault === false && isVerified === true ?
+      <Button bsStyle="link" onClick={() => (confirm(`您确定设${email}为默认邮箱吗？`) ? this.props.updateEmail({ email, checked }) : '')}>
+        设为默认
+      </Button>
+      : ''
   )
 
   showResendBtn = (isDefault, isVerified, id) => (
-    isDefault === false && isVerified === false ? <Button bsStyle="link" onClick={() => this.props.sendEmail({ id, isVerified })}>发送验证邮件</Button> : ''
+    isDefault === false && isVerified === false ?
+      <Button bsStyle="link" onClick={() => this.props.sendEmail({ id, isVerified })}>
+        发送验证邮件
+      </Button>
+      : ''
   )
 
   render() {
     const { checked } = this.state
     const { emails } = this.props
+    console.log(emails)
     return (
       <table className={Styles.emailTable}>
         <tbody>{this.getEmails(emails, checked)}</tbody>
-        {this.props.emails.some(email => email.isDefault === true) ?
+        {emails.some(email => email.default === true) ?
           <tfoot>
             <tr><td>公开默认邮箱：<input type="checkbox" onChange={this.pubilicSwitch} checked={checked} /></td></tr>
           </tfoot>
