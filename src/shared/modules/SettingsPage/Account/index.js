@@ -10,7 +10,7 @@ class Account extends Component {
       <div className={Styles.Account}>
         <div className={Styles.userName}>
           <h3>修改用户名</h3>
-          <UserNameForm initialValues={this.props.initialValues} />
+          <UserNameForm initialValues={{ name: this.props.initialValues.name }} />
         </div>
         <div className={Styles.passwordEdit}>
           <h3>修改密码</h3>

@@ -24,18 +24,18 @@ class PasswordForm extends Component {
           styles={{ input: Styles.input }}
           component={FormInputField}
           type="password"
-          name="newPassword"
-          id="newPassword"
-          labelFor="newPassword"
+          name="password1"
+          id="password1"
+          labelFor="password1"
           label="新密码"
         />
         <Field
           styles={{ input: Styles.input }}
           component={FormInputField}
           type="password"
-          name="newPasswordConfirm"
-          id="newPasswordConfirm"
-          labelFor="newPasswordConfirm"
+          name="password2"
+          id="password2"
+          labelFor="password2"
           label="确认密码"
         />
         <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更新密码</Button>

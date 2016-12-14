@@ -5,26 +5,26 @@ const validators = {
 const validate = () => values => {
   const errors = {}
   const password = values.password
-  const newPassword = values.newPassword
-  const newPasswordConfirm = values.newPasswordConfirm
+  const password1 = values.password1
+  const password2 = values.password2
 
   if (password && !validators.password.test(password)) {
     errors.password = '密码有效长度为6-24位，且数字、字母、字符至少包含两种 !'
   }
 
-  if (newPassword && !validators.password.test(newPassword)) {
+  if (password1 && !validators.password.test(password1)) {
     errors.newPassword = '密码有效长度为6-24位，且数字、字母、字符至少包含两种 !'
   }
 
-  if (newPassword !== newPasswordConfirm) {
-    errors.newPasswordConfirm = '密码不一致 !'
+  if (password1 !== password2) {
+    errors.password2 = '密码不一致 !'
   }
 
-  if (password && !newPassword) {
+  if (password && !password1) {
     errors.newPassword = '请填写新密码 !'
   }
 
-  if (newPassword && newPasswordConfirm && !password) {
+  if (password1 && password2 && !password) {
     errors.password = '请填写原密码 !'
   }
 
