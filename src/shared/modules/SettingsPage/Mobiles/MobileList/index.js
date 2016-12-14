@@ -12,12 +12,12 @@ class MobileList extends Component {
   }
 
   getMobiles = (mobiles, checked) => mobiles.map(m => (
-    <tr key={m.id}>
+    <tr key={m.mobileId}>
       <td>{m.mobile}</td>
-      <td>{this.isDefault(m.isDefault)} {m.isDefault === true ? this.isPublic(m.isPublic) : ''}</td>
-      <td>{this.isVerified(m.isVerified)}</td>
-      <td>{this.showResendBtn(m.isDefault, m.isVerified, m.id)} {this.showDedaultBtn(m.isDefault, m.isVerified, m.mobile, checked)}</td>
-      <td>{this.getIcon('trash', m.id, m.mobile)}</td>
+      <td>{this.isDefault(m.default)} {m.default === true ? this.isPublic(m.public) : ''}</td>
+      <td>{this.isVerified(m.verified)}</td>
+      <td>{this.showResendBtn(m.default, m.verified, m.mobileId)} {this.showDedaultBtn(m.default, m.verified, m.mobile, checked)}</td>
+      <td>{this.getIcon('trash', m.mobileId, m.mobile)}</td>
     </tr>
   ))
 
@@ -64,7 +64,7 @@ class MobileList extends Component {
     return (
       <table className={Styles.mobilesTable}>
         <tbody>{this.getMobiles(mobiles, checked)}</tbody>
-        {this.props.mobiles.some(mobile => mobile.isDefault === true) ?
+        {mobiles.some(mobile => mobile.default === true) ?
           <tfoot>
             <tr><td>公开默认手机：<input type="checkbox" onChange={this.pubilicSwitch} checked={checked} /></td></tr>
           </tfoot>

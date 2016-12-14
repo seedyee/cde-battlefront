@@ -221,7 +221,7 @@ function* loadMobiles() {
   if (!isEmptyObj(user)) return
   yield put(actions.loadMobilesActions.request())
   try {
-    const response = yield call(api.loadMobiles, 'fakeId')
+    const response = yield call(api.loadMobiles, ID)
     yield put(actions.loadMobilesActions.success(response))
   } catch (e) {
     yield put(actions.loadMobilesActions.failure(e))
@@ -237,21 +237,17 @@ function* addMobile() {
       alert('不能添加相同手机 !')
     } else {
       try {
-        const { error } = yield call(api.addMobile, 'fakeId', { mobile: payload.mobile })
+        const { error, ...rest } = yield call(api.addMobile, ID, { mobile: payload.mobile })
         if (error) {
           yield put(actions.addMobileActions.failure(error.text))
           alert(error.text)
-        } else {
-          const newMobiles = [...mobiles]
-          newMobiles.push({
-            id: mobiles.length === 0 ? '1' : String(Number(last(mobiles).id) + 1),
-            mobile: payload.mobile,
-            isDefault: false,
-            isVerified: false,
-            isPublic: false,
-          })
-          yield put(actions.addMobileActions.success({ newMobiles }))
+        } else if (rest.code === 0) {
+          const response = yield call(api.loadMobiles, ID)
+          yield put(actions.addMobileActions.success(response))
           alert('手机添加成功 !')
+        } else {
+          yield put(actions.addMobileActions.failure(rest.message))
+          alert(rest.message)
         }
       } catch (e) {
         yield put(actions.addMobileActions.failure(e))
@@ -266,13 +262,16 @@ function* deleteMobile() {
     const { payload } = yield take(actions.deleteMobileActions.REQUEST)
     const mobiles = yield select(selectMobiles)
     try {
-      const { error } = yield call(api.deleteMobile, { id: 'fakeId', mobileId: payload })
+      const { error, ...rest } = yield call(api.deleteMobile, { id: ID, mobileId: payload })
       if (error) {
         yield put(actions.deleteMobileActions.failure(error.text))
         alert(error.text)
-      } else {
-        const newMobiles = mobiles.filter(e => e.id !== payload)
+      } else if (rest.code === 0) {
+        const newMobiles = mobiles.filter(e => e.mobileId !== payload)
         yield put(actions.deleteMobileActions.success({ newMobiles }))
+      } else {
+        yield put(actions.deleteMobileActions.failure(rest.message))
+        alert(rest.message)
       }
     } catch (e) {
       yield put(actions.deleteMobileActions.failure(e))

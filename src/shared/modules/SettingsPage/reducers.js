@@ -45,7 +45,7 @@ const mobiles = (state = [], action) => {
     case userActions.loadMobilesActions.SUCCESS:
       return action.payload
     case userActions.addMobileActions.SUCCESS:
-      return action.payload.newMobiles
+      return action.payload
     case userActions.deleteMobileActions.SUCCESS:
       return action.payload.newMobiles
     case userActions.updateMobileActions.SUCCESS:
