@@ -146,13 +146,16 @@ function* deleteEmail() {
     const { payload } = yield take(actions.deleteEmailActions.REQUEST)
     const emails = yield select(selectEmails)
     try {
-      const { error } = yield call(api.deleteEmail, { id: 'fakeId', emailId: payload })
+      const { error, ...rest } = yield call(api.deleteEmail, { id: ID, emailId: payload })
       if (error) {
         yield put(actions.deleteEmailActions.failure(error.text))
         alert(error.text)
-      } else {
-        const newEmails = emails.filter(e => e.id !== payload)
+      } else if (rest.code === 0) {
+        const newEmails = emails.filter(e => e.emailId !== payload)
         yield put(actions.deleteEmailActions.success({ newEmails }))
+      } else {
+        yield put(actions.deleteEmailActions.failure(rest.message))
+        alert(rest.message)
       }
     } catch (e) {
       yield put(actions.deleteEmailActions.failure(e))
