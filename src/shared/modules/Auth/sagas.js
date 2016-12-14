@@ -46,9 +46,12 @@ export function* registerFlow() {
       if (error) {
         yield put(registerActions.failure(error.text))
         alert(error.text)
-      } else {
+      } else if (rest.code === 0) {
         yield put(registerActions.success(rest))
         alert('注册成功 !')
+      } else {
+        yield put(registerActions.failure(rest.message))
+        alert(rest.message)
       }
     } catch (e) {
       yield put(registerActions.failure(e))

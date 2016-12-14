@@ -59,15 +59,16 @@ export const del = (url) => request({ method: 'DELETE', url })
 
 
 
-export const login = (data) => post('/authc/signin', data)
-export const register = (data) => realPost('/accounts?', data)
+export const login = (data) => realPost('/authc/signin', data)
+export const register = (data) => realPost('/accounts', data)
 export const logout = (id) => post('/authc/signout', id)
 
 // APIs about user
 export const loadUsers = () => get('/users')
-export const loadUser = (id) => get(`/accounts/${id}/basicInfo`)
-export const updateUser = (id, data) => post(`/accounts/${id}/basicInfo`, data)
-export const updatePassword = (id, data) => post(`/accounts/${id}/password`, data)
+export const loadBasicInfo = (id) => realGet(`/accounts/${id}/basicInfo`)
+export const updateBasicInfo = (id, data) => realPost(`/accounts/${id}/basicInfo`, data)
+export const updatePassword = (id, data) => realPost(`/accounts/${id}/password`, data)
+export const updateName = (id, data) => realPost(`/accounts/${id}/name`, data)
 
 // APIs about Email
 export const loadEmails = (id) => get(`/accounts/${id}/emails`)

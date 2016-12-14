@@ -5,36 +5,63 @@ import * as api from '../api'
 import { isEmptyObj } from '../utils'
 import last from 'lodash/last'
 
+const ID = '5850ab4b30e7b3255c2a78ad'
 /*
  * sagas about user
  */
-function* loadUser() {
+function* loadBasicInfo() {
   const user = yield select(selectUser)
   if (!isEmptyObj(user)) return
   yield put(actions.loadUserActions.request())
   try {
-    const response = yield call(api.loadUser, 'fakeId')
+    const response = yield call(api.loadBasicInfo, ID)
     yield put(actions.loadUserActions.success(response))
   } catch (e) {
     yield put(actions.loadUserActions.failure(e))
   }
 }
 
-function* updateUser() {
+function* updateBasicInfo() {
   while (true) {
     const { payload } = yield take(actions.updateUserActions.REQUEST)
     try {
-      const { error } = yield call(api.updateUser, 'fakeId', payload)
+      const { error, ...rest } = yield call(api.updateBasicInfo, ID, payload)
       if (error) {
         yield put(actions.updateUserActions.failure(error.text))
         alert(error.text)
-      } else {
-        const user = yield call(api.loadUser, 'fakeId')
+      } else if (rest.code === 0) {
+        const user = yield call(api.loadBasicInfo, ID)
         yield put(actions.updateUserActions.success(user))
         alert('更新成功 !')
+      } else {
+        yield put(actions.updateUserActions.failure(rest.message))
+        alert(rest.message)
       }
     } catch (e) {
       yield put(actions.updateUserActions.failure(e))
+      alert(e)
+    }
+  }
+}
+
+function* updateName() {
+  while (true) {
+    const { payload } = yield take(actions.updateNameActions.REQUEST)
+    try {
+      const { error, ...rest } = yield call(api.updateName, ID, payload)
+      if (error) {
+        yield put(actions.updateNameActions.failure(error.text))
+        alert(error.text)
+      } else if (rest.code === 0) {
+        const user = yield call(api.loadBasicInfo, ID)
+        yield put(actions.updateNameActions.success(user))
+        alert('更新成功 !')
+      } else {
+        yield put(actions.updateNameActions.failure(rest.message))
+        alert(rest.message)
+      }
+    } catch (e) {
+      yield put(actions.updateNameActions.failure(e))
       alert(e)
     }
   }
@@ -46,18 +73,21 @@ function* updateUser() {
 function* updatePassword() {
   while (true) {
     const { payload } = yield take(actions.updatePasswordActions.REQUEST)
-    if (payload.password === payload.newPassword) {
+    if (payload.password === payload.password1) {
       yield put(actions.updatePasswordActions.failure())
       alert('新密码跟原密码一致 !')
     } else {
       try {
-        const { error, ...rest } = yield call(api.updatePassword, 'fakeId', { password: payload.password, newPassword: payload.newPassword })
+        const { error, ...rest } = yield call(api.updatePassword, payload)
         if (error) {
           yield put(actions.updatePasswordActions.failure(error.text))
           alert(error.text)
-        } else {
+        } else if (rest.code === 0) {
           yield put(actions.updatePasswordActions.success(rest))
           alert('更新密码成功 ！')
+        } else {
+          yield put(actions.updatePasswordActions.failure(rest.message))
+          alert(rest.message)
         }
       } catch (e) {
         yield put(actions.updatePasswordActions.failure(e))
@@ -303,8 +333,9 @@ function* sendMobile() {
 
 export default function* settingsSaga() {
   yield [
-    fork(loadUser),
-    fork(updateUser),
+    fork(loadBasicInfo),
+    fork(updateBasicInfo),
+    fork(updateName),
     fork(updatePassword),
     fork(loadEmails),
     fork(addEmail),

@@ -7,6 +7,8 @@ const user = (state = {}, action) => {
       return action.payload
     case userActions.updateUserActions.SUCCESS:
       return action.payload
+    case userActions.updateNameActions.SUCCESS:
+      return action.payload
     default:
       return state
   }

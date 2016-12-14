@@ -5,6 +5,7 @@ const prefix = 'SETTINGS/USER'
 // Actions about user
 export const loadUserActions = createActions(prefix, 'LOAD_USER')
 export const updateUserActions = createActions(prefix, 'UPDATE_USER')
+export const updateNameActions = createActions(prefix, 'UPDATE_NAME')
 
 // Actions about password
 export const updatePasswordActions = createActions(prefix, 'UPDATE_PASSWORD')
