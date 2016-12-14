@@ -28,7 +28,7 @@ const emails = (state = [], action) => {
     case userActions.loadEmailsActions.SUCCESS:
       return action.payload
     case userActions.addEmailActions.SUCCESS:
-      return action.payload.newEmails
+      return action.payload
     case userActions.deleteEmailActions.SUCCESS:
       return action.payload.newEmails
     case userActions.updateEmailActions.SUCCESS:

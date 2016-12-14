@@ -79,7 +79,6 @@ class EmailList extends Component {
   render() {
     const { checked } = this.state
     const { emails } = this.props
-    console.log(emails)
     return (
       <table className={Styles.emailTable}>
         <tbody>{this.getEmails(emails, checked)}</tbody>

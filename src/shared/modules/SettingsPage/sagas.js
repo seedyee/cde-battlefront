@@ -121,21 +121,17 @@ function* addEmail() {
       alert('不能添加相同邮箱 !')
     } else {
       try {
-        const { error } = yield call(api.addEmail, 'fakeId', { email: payload.email })
+        const { error, ...rest } = yield call(api.addEmail, ID, { email: payload.email })
         if (error) {
           yield put(actions.addEmailActions.failure(error.text))
           alert(error.text)
-        } else {
-          const newEmails = [...emails]
-          newEmails.push({
-            id: emails.length === 0 ? '1' : String(Number(last(emails).id) + 1),
-            email: payload.email,
-            isDefault: false,
-            isVerified: false,
-            isPublic: false,
-          })
-          yield put(actions.addEmailActions.success({ newEmails }))
+        } else if (rest.code === 0) {
+          const response = yield call(api.loadEmails, ID)
+          yield put(actions.addEmailActions.success(response))
           alert('新增邮箱成功 !')
+        } else {
+          yield put(actions.addEmailActions.failure(rest.message))
+          alert(rest.message)
         }
       } catch (e) {
         yield put(actions.addEmailActions.failure(e))

@@ -72,7 +72,7 @@ export const updateName = (id, data) => realPost(`/accounts/${id}/name`, data)
 
 // APIs about Email
 export const loadEmails = (id) => realGet(`/accounts/${id}/emails`)
-export const addEmail = (id, email) => post(`/accounts/${id}/emails`, email)
+export const addEmail = (id, email) => realPost(`/accounts/${id}/emails`, email)
 export const deleteEmail = ({ id, emailId }) => del(`/accounts/${id}/emails/${emailId}`)
 export const updateEmail = (id, data) => post(`/accounts/${id}/basicInfo`, data)
 export const sendEmail = ({ id, emailId }, data) => post(`/accounts/${id}/emails/${emailId}`, data)

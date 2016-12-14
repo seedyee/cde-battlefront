@@ -36,6 +36,7 @@
 .labelIcon {
   letter-spacing: 0.5px;
   padding: 3px 18px;
+  margin-right: 3px;
 }
 
 .trashIcon {
