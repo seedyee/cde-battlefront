@@ -13,7 +13,7 @@ const validate = () => values => {
   }
 
   if (password1 && !validators.password.test(password1)) {
-    errors.newPassword = '密码有效长度为6-24位，且数字、字母、字符至少包含两种 !'
+    errors.password1 = '密码有效长度为6-24位，且数字、字母、字符至少包含两种 !'
   }
 
   if (password1 !== password2) {
@@ -21,7 +21,7 @@ const validate = () => values => {
   }
 
   if (password && !password1) {
-    errors.newPassword = '请填写新密码 !'
+    errors.password1 = '请填写新密码 !'
   }
 
   if (password1 && password2 && !password) {

@@ -78,12 +78,12 @@ function* updatePassword() {
       alert('新密码跟原密码一致 !')
     } else {
       try {
-        const { error, ...rest } = yield call(api.updatePassword, payload)
+        const { error, ...rest } = yield call(api.updatePassword, ID, payload)
         if (error) {
           yield put(actions.updatePasswordActions.failure(error.text))
           alert(error.text)
         } else if (rest.code === 0) {
-          yield put(actions.updatePasswordActions.success(rest))
+          yield put(actions.updatePasswordActions.success('changed'))
           alert('更新密码成功 ！')
         } else {
           yield put(actions.updatePasswordActions.failure(rest.message))
