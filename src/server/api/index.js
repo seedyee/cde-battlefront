@@ -3,8 +3,8 @@ import express from 'express'
 const router = express.Router() // eslint-disable-line new-cap
 
 const users = [
-  { id: '7dg0te6o9bylvxu9bmzt98jjor', username: 'Seedyee', email: 'seedyee@mail.com', password: 'aaaaaaa1' },
-  { id: '9c2lz3zlxses168th4goav2t9', username: 'jundo', email: 'jundo@mail.com', password: 'aaaaaaa1' },
+  { id: '7dg0te6o9bylvxu9bmzt98jjor', name: 'Seedyee', email: 'seedyee@mail.com', password: 'aaaaaaa1' },
+  { id: '9c2lz3zlxses168th4goav2t9', name: 'jundo', email: 'jundo@mail.com', password: 'aaaaaaa1' },
 ]
 
 const basicInfo = {
@@ -88,7 +88,7 @@ const id = Math.random().toString(36).substr(2);
 
 router.post('/authc/signin', (req, res) => {
   const { principal, password } = req.body
-  if (!(users.some(user => user.username === principal) || users.some(user => user.email === principal))) {
+  if (!(users.some(user => user.name === principal) || users.some(user => user.email === principal))) {
     res.json({ error: { text: '您输入用户名或邮箱不存在，请重新输入' } })
   } else if (!users.some(user => user.password === password)) {
     res.json({ error: { text: '您输入的密码错误，请重新输入 !' } })
@@ -96,18 +96,18 @@ router.post('/authc/signin', (req, res) => {
     const currentUser = users.find(user => user.email === principal)
     res.json(currentUser)
   } else {
-    const currentUser = users.find(user => user.username === principal)
+    const currentUser = users.find(user => user.name === principal)
     res.json(currentUser)
   }
 })
 
 router.post('/accounts', (req, res) => {
-  const { email, username, password } = req.body
+  const { email, name, password } = req.body
   if (users.some(user => user.email === email)) {
     res.json({ error: { text: '用户名或邮箱已被使用，请重新输入 !' } })
   } else {
-    users.push({ id, username, email, password })
-    res.json({ id, username, email })
+    users.push({ id, name, email, password })
+    res.json({ id, name, email })
   }
 })
 

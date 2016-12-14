@@ -1,9 +1,9 @@
 const validate = () => values => {
   const errors = {}
-  const username = values.username
+  const name = values.name
 
-  if (!username) {
-    errors.username = '用户名不为空 !'
+  if (!name) {
+    errors.name = '用户名不为空 !'
   }
 
   return errors

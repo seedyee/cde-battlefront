@@ -31,9 +31,9 @@ class RegisterForm extends Component {
           styles={{ input: Styles.input }}
           component={FormInputField}
           type="text"
-          name="username"
-          id="username"
-          labelFor="username"
+          name="name"
+          id="name"
+          labelFor="name"
           label="用户名"
         />
         <Field
