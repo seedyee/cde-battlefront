@@ -64,7 +64,6 @@ export const register = (data) => realPost('/accounts', data)
 export const logout = (id) => post('/authc/signout', id)
 
 // APIs about user
-export const loadUsers = () => get('/users')
 export const loadBasicInfo = (id) => realGet(`/accounts/${id}/basicInfo`)
 export const updateBasicInfo = (id, data) => realPost(`/accounts/${id}/basicInfo`, data)
 export const updatePassword = (id, data) => realPost(`/accounts/${id}/password`, data)
