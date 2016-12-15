@@ -39,10 +39,20 @@
   margin-right: 3px;
 }
 
-.trashIcon {
+.icon {
+  text-indent: 0;
+  margin: 0 15px 0 5px;
+}
+
+.clickableIcon {
   color: #B71C1C;
-  margin-right: 15px;
+  text-indent: 0;  /* Remover the default text-indent */
+  margin: 0 15px 0 5px;
   &:hover {
     cursor: pointer;
   }
+}
+
+.tooltip {
+  padding: 3px 8px;
 }

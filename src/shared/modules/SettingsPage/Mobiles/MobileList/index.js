@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Label, Glyphicon, Button } from 'react-bootstrap'
+import { OverlayTrigger, Tooltip, Label, Glyphicon, Button } from 'react-bootstrap'
 
 import Styles from './index.css'
 
@@ -28,17 +28,32 @@ class MobileList extends Component {
         {this.showDedaultBtn(m.default, m.verified, m.mobile, checked)}
       </td>
       <td>
-        {m.default === true ? '' : this.getIcon('trash', m.mobileId, m.mobile)}
+        {m.default === true ? this.getIcon('trash') : this.getClickableIcon('trash', m.mobileId, m.mobile)}
       </td>
     </tr>
   ))
 
-  getIcon = (name, id, mobile) => (
-    <Glyphicon
-      glyph={name}
-      className={Styles.trashIcon}
-      onClick={() => (confirm(`您确定删除${mobile}吗？`) ? this.props.deleteMobile(id) : '')}
-    />
+  getIcon = (name) => (
+    <OverlayTrigger placement="bottom" overlay={this.tooltip('默认手机不能删除')}>
+      <Glyphicon
+        glyph={name}
+        className={Styles.icon}
+      />
+    </OverlayTrigger>
+  )
+
+  getClickableIcon = (name, id, mobile) => (
+    <OverlayTrigger placement="bottom" overlay={this.tooltip('删除手机')}>
+      <Glyphicon
+        glyph={name}
+        className={Styles.clickableIcon}
+        onClick={() => (confirm(`您确定删除${mobile}吗？`) ? this.props.deleteMobile(id) : '')}
+      />
+    </OverlayTrigger>
+  )
+
+  tooltip = (tip) => (
+    <Tooltip id="tooltip"><strong className={Styles.tooltip}>{tip}</strong></Tooltip>
   )
 
   pubilicSwitch = (event) => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Label, Glyphicon, Button } from 'react-bootstrap'
+import { OverlayTrigger, Tooltip, Label, Glyphicon, Button } from 'react-bootstrap'
 
 import Styles from './index.css'
 
@@ -28,17 +28,32 @@ class EmailList extends Component {
         {this.showDedaultBtn(e.default, e.verified, e.email, checked)}
       </td>
       <td>
-        {e.default === true ? '' : this.getIcon('trash', e.emailId, e.email)}
+        {e.default === true ? this.getIcon('trash') : this.getClickableIcon('trash', e.emailId, e.email)}
       </td>
     </tr>
   ))
 
-  getIcon = (name, id, email) => (
-    <Glyphicon
-      glyph={name}
-      className={Styles.trashIcon}
-      onClick={() => (confirm(`您确定删除${email}吗？`) ? this.props.deleteEmail(id) : '')}
-    />
+  getIcon = (name) => (
+    <OverlayTrigger placement="bottom" overlay={this.tooltip('默认邮箱不能删除')}>
+      <Glyphicon
+        glyph={name}
+        className={Styles.icon}
+      />
+    </OverlayTrigger>
+  )
+
+  getClickableIcon = (name, id, email) => (
+    <OverlayTrigger placement="bottom" overlay={this.tooltip('删除邮箱')}>
+      <Glyphicon
+        glyph={name}
+        className={Styles.clickableIcon}
+        onClick={() => (confirm(`您确定删除${email}吗？`) ? this.props.deleteEmail(id) : '')}
+      />
+    </OverlayTrigger>
+  )
+
+  tooltip = (tip) => (
+    <Tooltip id="tooltip"><strong className={Styles.tooltip}>{tip}</strong></Tooltip>
   )
 
   pubilicSwitch = (event) => {
