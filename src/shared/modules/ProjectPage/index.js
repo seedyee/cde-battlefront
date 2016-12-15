@@ -38,10 +38,10 @@ const secondFields2 = [
 
 @withRouter
 class ProjectPage extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      activeClass: '/project/all',
+      activeClass: this.props.location.pathname,
     }
   }
 
