@@ -3,9 +3,9 @@ import * as userActions from './actions'
 
 const user = (state = {}, action) => {
   switch (action.type) {
-    case userActions.loadUserActions.SUCCESS:
+    case userActions.loadBasicInfoActions.SUCCESS:
       return action.payload
-    case userActions.updateUserActions.SUCCESS:
+    case userActions.updateBasicInfoActions.SUCCESS:
       return action.payload
     case userActions.updateNameActions.SUCCESS:
       return action.payload

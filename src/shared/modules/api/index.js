@@ -57,8 +57,7 @@ export const post = (url, data) => request({ method: 'POST', url, data })
 export const get = (url) => request({ method: 'GET', url })
 export const del = (url) => request({ method: 'DELETE', url })
 
-
-
+// API about auth
 export const login = (data) => realPost('/authc/signin', data)
 export const register = (data) => realPost('/accounts', data)
 export const logout = (id) => post('/authc/signout', id)
@@ -66,8 +65,8 @@ export const logout = (id) => post('/authc/signout', id)
 // APIs about user
 export const loadBasicInfo = (id) => realGet(`/accounts/${id}/basicInfo`)
 export const updateBasicInfo = (id, data) => realPost(`/accounts/${id}/basicInfo`, data)
-export const updatePassword = (id, data) => realPost(`/accounts/${id}/password`, data)
 export const updateName = (id, data) => realPost(`/accounts/${id}/name`, data)
+export const updatePassword = (id, data) => realPost(`/accounts/${id}/password`, data)
 
 // APIs about Email
 export const loadEmails = (id) => realGet(`/accounts/${id}/emails`)

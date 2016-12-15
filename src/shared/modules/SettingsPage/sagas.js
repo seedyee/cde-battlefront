@@ -5,39 +5,40 @@ import * as api from '../api'
 import { isEmptyObj } from '../utils'
 
 const ID = '585118ef30e7b3537e82a30d'
+
 /*
  * sagas about user
  */
 function* loadBasicInfo() {
   const user = yield select(selectUser)
   if (!isEmptyObj(user)) return
-  yield put(actions.loadUserActions.request())
+  yield put(actions.loadBasicInfoActions.request())
   try {
     const response = yield call(api.loadBasicInfo, ID)
-    yield put(actions.loadUserActions.success(response))
+    yield put(actions.loadBasicInfoActions.success(response))
   } catch (e) {
-    yield put(actions.loadUserActions.failure(e))
+    yield put(actions.loadBasicInfoActions.failure(e))
   }
 }
 
 function* updateBasicInfo() {
   while (true) {
-    const { payload } = yield take(actions.updateUserActions.REQUEST)
+    const { payload } = yield take(actions.updateBasicInfoActions.REQUEST)
     try {
       const { error, ...rest } = yield call(api.updateBasicInfo, ID, payload)
       if (error) {
-        yield put(actions.updateUserActions.failure(error.text))
+        yield put(actions.updateBasicInfoActions.failure(error.text))
         alert(error.text)
       } else if (rest.code === 0) {
         const user = yield call(api.loadBasicInfo, ID)
-        yield put(actions.updateUserActions.success(user))
+        yield put(actions.updateBasicInfoActions.success(user))
         alert('更新成功 !')
       } else {
-        yield put(actions.updateUserActions.failure(rest.message))
+        yield put(actions.updateBasicInfoActions.failure(rest.message))
         alert(rest.message)
       }
     } catch (e) {
-      yield put(actions.updateUserActions.failure(e))
+      yield put(actions.updateBasicInfoActions.failure(e))
       alert(e)
     }
   }

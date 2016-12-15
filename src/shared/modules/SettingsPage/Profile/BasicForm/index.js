@@ -102,7 +102,7 @@ BasicForm.propTypes = {
   submitting: PropTypes.bool.isRequired,
 }
 
-import { updateUserActions } from '../../actions'
+import { updateBasicInfoActions } from '../../actions'
 import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
 import validate from './validate'
 
@@ -111,7 +111,7 @@ const comp = reduxForm({
   enableReinitialize: true,
   keepDirtyOnReinitialize: true,
   validate: validate(),
-  onSubmit: onSubmitActions(updateUserActions),
+  onSubmit: onSubmitActions(updateBasicInfoActions),
 })(BasicForm)
 
 import { selectEmails, selectMobiles } from '../../selectors'

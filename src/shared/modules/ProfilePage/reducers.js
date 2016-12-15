@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 
-import { loadUserActions } from './actions'
+import { loadBasicInfoActions } from './actions'
 
 const user = (state = {}, action) => {
   switch (action.type) {
-    case loadUserActions.SUCCESS:
+    case loadBasicInfoActions.SUCCESS:
       return action.payload
     default:
       return state
