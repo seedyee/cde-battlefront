@@ -7,7 +7,7 @@ class EmailList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      checked: this.props.user.isPublicEmail,
+      checked: this.props.user.publicEmail,
     }
   }
 
@@ -43,7 +43,7 @@ class EmailList extends Component {
 
   pubilicSwitch = (event) => {
     this.setState({ checked: event.target.checked })
-    this.props.updateEmail({ isPublicEmail: event.target.checked })
+    this.props.updateEmail({ public: event.target.checked })
   }
 
   isDefault = (isDefault) => (

@@ -73,7 +73,7 @@ export const updateName = (id, data) => realPost(`/accounts/${id}/name`, data)
 export const loadEmails = (id) => realGet(`/accounts/${id}/emails`)
 export const addEmail = (id, email) => realPost(`/accounts/${id}/emails`, email)
 export const deleteEmail = ({ id, emailId }) => realRel(`/accounts/${id}/emails/${emailId}`)
-export const updateEmail = (id, data) => post(`/accounts/${id}/basicInfo`, data)
+export const updateEmail = ({ id, emailId }, data) => realPost(`/accounts/${id}/emails/${emailId}`, data)
 export const sendEmail = ({ id, emailId }, data) => post(`/accounts/${id}/emails/${emailId}`, data)
 
 // APIs about Mobile

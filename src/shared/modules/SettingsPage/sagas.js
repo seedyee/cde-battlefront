@@ -3,7 +3,6 @@ import { selectUser, selectEmails, selectMobiles } from './selectors'
 import * as actions from './actions'
 import * as api from '../api'
 import { isEmptyObj } from '../utils'
-import last from 'lodash/last'
 
 const ID = '585118ef30e7b3537e82a30d'
 /*
@@ -168,21 +167,20 @@ function* updateEmail() {
   while (true) {
     const { payload } = yield take(actions.updateEmailActions.REQUEST)
     const emails = yield select(selectEmails)
+    const eId = emails.find(email => email.default === true).emailId
     const newEmails = [...emails]
     try {
-      const { error } = yield call(api.updateEmail, 'fakeId', payload)
+      const { error, ...rest } = yield call(api.updateEmail, { id: ID, emailId: eId }, payload)
       if (error) {
         yield put(actions.updateEmailActions.failure(error.text))
         alert(error.text)
-      } else if (payload.email === undefined) {
-        newEmails.find(email => email.isDefault === true).isPublic = payload.isPublicEmail
+      } else if (rest.code === 0) {
+        newEmails.find(email => email.default === true).public = payload.public
         yield put(actions.updateEmailActions.success({ newEmails }))
         alert('设置成功 !')
       } else {
-        newEmails.map(email => email.isDefault = false)  // eslint-disable-line no-return-assign, no-param-reassign
-        newEmails.find(email => email.email === payload.email).isDefault = true
-        newEmails.find(email => email.isDefault === true).isPublic = payload.checked
-        yield put(actions.updateEmailActions.success({ newEmails }))
+        yield put(actions.updateEmailActions.failure(rest.message))
+        alert(rest.message)
       }
     } catch (e) {
       yield put(actions.updateEmailActions.failure(e))
