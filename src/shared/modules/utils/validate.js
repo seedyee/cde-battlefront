@@ -4,6 +4,8 @@ const validators = {
   password: /((?=.*\d)(?=.*\D)|(?=.*[a-zA-Z])(?=.*[^a-zA-Z]))^.{6,24}$/,
   // 11 numbers that starts with one
   mobile: /^1[0-9]{10}$/,
+  // 3 to 16 characters starts with alphabet include alphabet or numbers
+  name: /^[a-zA-Z][a-zA-Z0-9]{2,15}$/,
 }
 
 const validate = () => values => {
@@ -27,6 +29,10 @@ const validate = () => values => {
 
   if (email && !validators.email.test(email)) {
     errors.email = '请输入正确格式的邮箱地址 !'
+  }
+
+  if (name && !validators.name.test(name)) {
+    errors.name = '用户名有效格式为3-16位，由字母或数字组成，开头必须为字母 !'
   }
 
   if (password && !name) {
