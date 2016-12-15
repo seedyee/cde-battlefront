@@ -13,18 +13,18 @@ import Styles from './index.css'
 const pathPrefix = '/settings/'
 
 const fields = {
-  Profile: '基本信息',
-  Account: '账户信息',
-  Emails: '邮箱信息',
-  Mobiles: '手机信息',
-  Security: '安全信息',
+  profile: '基本信息',
+  account: '账户信息',
+  emails: '邮箱信息',
+  mobiles: '手机信息',
+  security: '安全信息',
 }
 
 class SettingsPage extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      activeKey: 'Profile',
+      activeKey: this.props.location.pathname.slice(pathPrefix.length),
     }
   }
 
@@ -41,15 +41,15 @@ class SettingsPage extends React.Component {
   getCountent = () => {
     const { user, emails, mobiles } = this.props
     switch (this.props.params.name) {
-      case 'Profile':
+      case 'profile':
         return <Profile initialValues={user} />
-      case 'Emails':
+      case 'emails':
         return <Emails emails={emails} user={user} />
-      case 'Account':
+      case 'account':
         return <Account initialValues={user} />
-      case 'Mobiles':
+      case 'mobiles':
         return <Mobiles mobiles={mobiles} user={user} />
-      case 'Security':
+      case 'security':
         return <Security user={user} />
       default:
         return <Profile initialValues={user} />
