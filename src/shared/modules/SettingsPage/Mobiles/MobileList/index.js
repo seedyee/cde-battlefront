@@ -7,7 +7,7 @@ class MobileList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      checked: this.props.user.isPublicMobile,
+      checked: this.props.user.publicMobile,
     }
   }
 
@@ -31,7 +31,7 @@ class MobileList extends Component {
 
   pubilicSwitch = (event) => {
     this.setState({ checked: event.target.checked })
-    this.props.updateMobile({ isPublicMobile: event.target.checked })
+    this.props.updateMobile({ public: event.target.checked })
   }
 
   isDefault = (isDefault) => (

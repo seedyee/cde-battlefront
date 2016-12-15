@@ -283,21 +283,20 @@ function* updateMobile() {
   while (true) {
     const { payload } = yield take(actions.updateMobileActions.REQUEST)
     const mobiles = yield select(selectMobiles)
+    const mId = mobiles.find(mobile => mobile.default === true).mobileId
     const newMobiles = [...mobiles]
     try {
-      const { error } = yield call(api.updateMobile, 'fakeId', payload)
+      const { error, ...rest } = yield call(api.updateMobile, { id: ID, mobileId: mId }, payload)
       if (error) {
         yield put(actions.updateMobileActions.failure(error.text))
         alert(error.text)
-      } else if (payload.mobile === undefined) {
-        newMobiles.find(mobile => mobile.isDefault === true).isPublic = payload.isPublicMobile
+      } else if (rest.code === 0) {
+        newMobiles.find(mobile => mobile.default === true).public = payload.public
         yield put(actions.updateMobileActions.success({ newMobiles }))
         alert('设置成功 !')
       } else {
-        newMobiles.map(mobile => mobile.isDefault = false)  // eslint-disable-line no-return-assign, no-param-reassign
-        newMobiles.find(mobile => mobile.mobile === payload.mobile).isDefault = true
-        newMobiles.find(mobile => mobile.isDefault === true).isPublic = payload.checked
-        yield put(actions.updateMobileActions.success({ newMobiles }))
+        yield put(actions.updateMobileActions.failure(rest.message))
+        alert(rest.message)
       }
     } catch (e) {
       yield put(actions.updateMobileActions.failure(e))

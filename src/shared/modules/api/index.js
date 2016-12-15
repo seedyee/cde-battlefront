@@ -80,5 +80,5 @@ export const sendEmail = ({ id, emailId }, data) => post(`/accounts/${id}/emails
 export const loadMobiles = (id) => realGet(`/accounts/${id}/mobiles`)
 export const addMobile = (id, mobile) => realPost(`/accounts/${id}/mobiles`, mobile)
 export const deleteMobile = ({ id, mobileId }) => realRel(`/accounts/${id}/mobiles/${mobileId}`)
-export const updateMobile = (id, data) => post(`/accounts/${id}/basicInfo`, data)
+export const updateMobile = ({ id, mobileId }, data) => realPost(`/accounts/${id}/mobiles/${mobileId}`, data)
 export const sendMobile = ({ id, mobileId }, data) => post(`/accounts/${id}/mobiles/${mobileId}`, data)
