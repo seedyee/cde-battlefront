@@ -28,7 +28,7 @@ class EmailList extends Component {
         {this.showDedaultBtn(e.default, e.verified, e.email, checked)}
       </td>
       <td>
-        {this.getIcon('trash', e.emailId, e.email)}
+        {e.default === true ? '' : this.getIcon('trash', e.emailId, e.email)}
       </td>
     </tr>
   ))
@@ -84,7 +84,11 @@ class EmailList extends Component {
         <tbody>{this.getEmails(emails, checked)}</tbody>
         {emails.some(email => email.default === true) ?
           <tfoot>
-            <tr><td>公开默认邮箱：<input type="checkbox" onChange={this.pubilicSwitch} checked={checked} /></td></tr>
+            <tr>
+              <td>
+                公开默认邮箱：<input type="checkbox" onChange={this.pubilicSwitch} checked={checked} />
+              </td>
+            </tr>
           </tfoot>
           : null
         }

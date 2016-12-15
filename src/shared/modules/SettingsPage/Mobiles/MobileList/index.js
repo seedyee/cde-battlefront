@@ -13,11 +13,23 @@ class MobileList extends Component {
 
   getMobiles = (mobiles, checked) => mobiles.map(m => (
     <tr key={m.mobileId}>
-      <td>{m.mobile}</td>
-      <td>{this.isDefault(m.default)} {m.default === true ? this.isPublic(m.public) : ''}</td>
-      <td>{this.isVerified(m.verified)}</td>
-      <td>{this.showResendBtn(m.default, m.verified, m.mobileId)} {this.showDedaultBtn(m.default, m.verified, m.mobile, checked)}</td>
-      <td>{this.getIcon('trash', m.mobileId, m.mobile)}</td>
+      <td>
+        {m.mobile}
+      </td>
+      <td>
+        {this.isDefault(m.default)}
+        {m.default === true ? this.isPublic(m.public) : ''}
+      </td>
+      <td>
+        {this.isVerified(m.verified)}
+      </td>
+      <td>
+        {this.showResendBtn(m.default, m.verified, m.mobileId)}
+        {this.showDedaultBtn(m.default, m.verified, m.mobile, checked)}
+      </td>
+      <td>
+        {m.default === true ? '' : this.getIcon('trash', m.mobileId, m.mobile)}
+      </td>
     </tr>
   ))
 
@@ -50,12 +62,18 @@ class MobileList extends Component {
 
   showDedaultBtn = (isDefault, isVerified, mobile, checked) => (
     isDefault === false && isVerified === true ?
-      <Button bsStyle="link" onClick={() => (confirm(`您确定设${mobile}为默认手机号码吗？`) ? this.props.updateMobile({ mobile, checked }) : '')} >设为默认</Button> : ''
+      <Button bsStyle="link" onClick={() => (confirm(`您确定设${mobile}为默认手机号码吗？`) ? this.props.updateMobile({ mobile, checked }) : '')}>
+        设为默认
+      </Button>
+      : ''
   )
 
   showResendBtn = (isDefault, isVerified, id) => (
     isDefault === false && isVerified === false ?
-      <Button bsStyle="link" onClick={() => this.props.sendMobile({ id, isVerified })}>发送验证短信</Button> : ''
+      <Button bsStyle="link" onClick={() => this.props.sendMobile({ id, isVerified })}>
+        发送验证短信
+      </Button>
+      : ''
   )
 
   render() {
@@ -66,7 +84,11 @@ class MobileList extends Component {
         <tbody>{this.getMobiles(mobiles, checked)}</tbody>
         {mobiles.some(mobile => mobile.default === true) ?
           <tfoot>
-            <tr><td>公开默认手机：<input type="checkbox" onChange={this.pubilicSwitch} checked={checked} /></td></tr>
+            <tr>
+              <td>
+                公开默认手机：<input type="checkbox" onChange={this.pubilicSwitch} checked={checked} />
+              </td>
+            </tr>
           </tfoot>
           : null
         }
