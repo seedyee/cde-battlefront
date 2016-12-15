@@ -21,7 +21,7 @@ class Nav extends React.Component {
     return (
       <NavDropdown className={Styles.navItems} pullRight onSelect={this.onSelected} title={this.getIcon('user')} id="user">
         <MenuItem eventKey="/profile">我的主页</MenuItem>
-        <MenuItem eventKey="/project/total">项目管理</MenuItem>
+        <MenuItem eventKey="/project/all">项目管理</MenuItem>
         <MenuItem divider />
         <MenuItem eventKey="/settings/profile">个人设置</MenuItem>
         {logined ? <MenuItem eventKey="/" onClick={() => logoutRequest({ id: user.id })}> 退 出 </MenuItem> : ''}
@@ -42,7 +42,7 @@ class Nav extends React.Component {
               <ul className={Styles.pagesNav}>
                 <li>
                   <Link className={Styles.home} to="/">
-                    <img className={Styles.logo} alt="site logo" src={logo} />
+                    <img alt="site logo" src={logo} />
                   </Link>
                 </li>
               </ul>
@@ -54,7 +54,7 @@ class Nav extends React.Component {
                 <ul className={Styles.pagesNav}>
                   <li>
                     <Link className={Styles.home} to="/">
-                      <img className={Styles.logo} alt="site logo" src={logo} />
+                      <img alt="site logo" src={logo} />
                     </Link>
                   </li>
                   <li>
