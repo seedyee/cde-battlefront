@@ -115,11 +115,11 @@
   li {
     a {
       color: $normal-color;
+      padding-top: 5px;
+      padding-bottom: 5px;
       margin: 4px 0;
       &:hover {
-        font-weight: bold;
-        color: #fff;
-        background: #428bca;
+        background: #eee;
       }
     }
   }
