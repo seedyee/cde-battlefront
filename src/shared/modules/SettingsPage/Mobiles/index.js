@@ -16,7 +16,6 @@ class Mobiles extends Component {
             mobiles={this.props.mobiles}
             deleteMobile={this.props.deleteMobile}
             updateMobile={this.props.updateMobile}
-            sendMobile={this.props.sendMobile}
           />
         }
         <MobileForm />
@@ -25,14 +24,13 @@ class Mobiles extends Component {
   }
 }
 
-import { deleteMobileActions, updateMobileActions, sendMobileActions } from '../actions'
+import { deleteMobileActions, updateMobileActions } from '../actions'
 
 export default connect(
   null,
   {
     deleteMobile: deleteMobileActions.request,
     updateMobile: updateMobileActions.request,
-    sendMobile: sendMobileActions.request,
   }
 )(Mobiles)
 

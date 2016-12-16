@@ -50,8 +50,6 @@ const mobiles = (state = [], action) => {
       return action.payload.newMobiles
     case userActions.updateMobileActions.SUCCESS:
       return action.payload.newMobiles
-    case userActions.sendMobileActions.SUCCESS:
-      return action.payload.newMobiles
     default:
       return state
   }

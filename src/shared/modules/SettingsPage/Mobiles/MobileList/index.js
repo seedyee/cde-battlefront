@@ -85,7 +85,7 @@ class MobileList extends Component {
 
   showResendBtn = (isDefault, isVerified, id) => (
     isDefault === false && isVerified === false ?
-      <Button bsStyle="link" onClick={() => this.props.sendMobile({ id, isVerified })}>
+      <Button bsStyle="link" onClick={() => false}>
         发送验证短信
       </Button>
       : ''

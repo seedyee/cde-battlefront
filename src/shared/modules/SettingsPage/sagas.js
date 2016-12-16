@@ -25,17 +25,13 @@ function* updateBasicInfo() {
   while (true) {
     const { payload } = yield take(actions.updateBasicInfoActions.REQUEST)
     try {
-      const { error, ...rest } = yield call(api.updateBasicInfo, ID, payload)
-      if (error) {
-        yield put(actions.updateBasicInfoActions.failure(error.text))
-        alert(error.text)
-      } else if (rest.code === 0) {
-        const user = yield call(api.loadBasicInfo, ID)
-        yield put(actions.updateBasicInfoActions.success(user))
+      const response = yield call(api.updateBasicInfo, ID, payload)
+      if (response.code === 0) {
+        yield put(actions.updateBasicInfoActions.success(payload))
         alert('更新成功 !')
       } else {
-        yield put(actions.updateBasicInfoActions.failure(rest.message))
-        alert(rest.message)
+        yield put(actions.updateBasicInfoActions.failure(response.message))
+        alert(response.message)
       }
     } catch (e) {
       yield put(actions.updateBasicInfoActions.failure(e))
@@ -48,17 +44,14 @@ function* updateName() {
   while (true) {
     const { payload } = yield take(actions.updateNameActions.REQUEST)
     try {
-      const { error, ...rest } = yield call(api.updateName, ID, payload)
-      if (error) {
-        yield put(actions.updateNameActions.failure(error.text))
-        alert(error.text)
-      } else if (rest.code === 0) {
-        const user = yield call(api.loadBasicInfo, ID)
-        yield put(actions.updateNameActions.success(user))
+      const response = yield call(api.updateName, ID, payload)
+      if (response.code === 0) {
+        const basicInfo = yield call(api.loadBasicInfo, ID)
+        yield put(actions.updateNameActions.success(basicInfo))
         alert('更新成功 !')
       } else {
-        yield put(actions.updateNameActions.failure(rest.message))
-        alert(rest.message)
+        yield put(actions.updateNameActions.failure(response.message))
+        alert(response.message)
       }
     } catch (e) {
       yield put(actions.updateNameActions.failure(e))
@@ -78,16 +71,13 @@ function* updatePassword() {
       alert('新密码跟原密码一致 !')
     } else {
       try {
-        const { error, ...rest } = yield call(api.updatePassword, ID, payload)
-        if (error) {
-          yield put(actions.updatePasswordActions.failure(error.text))
-          alert(error.text)
-        } else if (rest.code === 0) {
+        const response = yield call(api.updatePassword, ID, payload)
+        if (response.code === 0) {
           yield put(actions.updatePasswordActions.success('changed'))
           alert('更新密码成功 ！')
         } else {
-          yield put(actions.updatePasswordActions.failure(rest.message))
-          alert(rest.message)
+          yield put(actions.updatePasswordActions.failure(response.message))
+          alert(response.message)
         }
       } catch (e) {
         yield put(actions.updatePasswordActions.failure(e))
@@ -118,20 +108,17 @@ function* addEmail() {
     const emails = yield select(selectEmails)
     if (emails.some(e => e.email === payload.email)) {
       yield put(actions.addEmailActions.failure())
-      alert('不能添加相同邮箱 !')
+      alert('不能重复添加相同邮箱 !')
     } else {
       try {
-        const { error, ...rest } = yield call(api.addEmail, ID, { email: payload.email })
-        if (error) {
-          yield put(actions.addEmailActions.failure(error.text))
-          alert(error.text)
-        } else if (rest.code === 0) {
+        const response = yield call(api.addEmail, ID, { email: payload.email })
+        if (response.code === 0) {
           const response = yield call(api.loadEmails, ID)
           yield put(actions.addEmailActions.success(response))
           alert('新增邮箱成功 !')
         } else {
-          yield put(actions.addEmailActions.failure(rest.message))
-          alert(rest.message)
+          yield put(actions.addEmailActions.failure(response.message))
+          alert(response.message)
         }
       } catch (e) {
         yield put(actions.addEmailActions.failure(e))
@@ -146,16 +133,13 @@ function* deleteEmail() {
     const { payload } = yield take(actions.deleteEmailActions.REQUEST)
     const emails = yield select(selectEmails)
     try {
-      const { error, ...rest } = yield call(api.deleteEmail, { id: ID, emailId: payload })
-      if (error) {
-        yield put(actions.deleteEmailActions.failure(error.text))
-        alert(error.text)
-      } else if (rest.code === 0) {
+      const response = yield call(api.deleteEmail, { id: ID, emailId: payload })
+      if (response.code === 0) {
         const newEmails = emails.filter(e => e.emailId !== payload)
         yield put(actions.deleteEmailActions.success({ newEmails }))
       } else {
-        yield put(actions.deleteEmailActions.failure(rest.message))
-        alert(rest.message)
+        yield put(actions.deleteEmailActions.failure(response.message))
+        alert(response.message)
       }
     } catch (e) {
       yield put(actions.deleteEmailActions.failure(e))
@@ -171,17 +155,14 @@ function* updateEmail() {
     const eId = emails.find(email => email.default === true).emailId
     const newEmails = [...emails]
     try {
-      const { error, ...rest } = yield call(api.updateEmail, { id: ID, emailId: eId }, payload)
-      if (error) {
-        yield put(actions.updateEmailActions.failure(error.text))
-        alert(error.text)
-      } else if (rest.code === 0) {
+      const response = yield call(api.updateEmail, { id: ID, emailId: eId }, payload)
+      if (response.code === 0) {
         newEmails.find(email => email.default === true).public = payload.public
         yield put(actions.updateEmailActions.success({ newEmails }))
         alert('设置成功 !')
       } else {
-        yield put(actions.updateEmailActions.failure(rest.message))
-        alert(rest.message)
+        yield put(actions.updateEmailActions.failure(response.message))
+        alert(response.message)
       }
     } catch (e) {
       yield put(actions.updateEmailActions.failure(e))
@@ -194,7 +175,6 @@ function* sendEmail() {
   while (true) {
     const { payload } = yield take(actions.sendEmailActions.REQUEST)
     const emails = yield select(selectEmails)
-    console.log(payload)
     try {
       const { error } = yield call(api.sendEmail, { id: 'fakeId', emailId: payload.id }, { isVerified: payload.isVerified })
       if (error) {
@@ -236,17 +216,14 @@ function* addMobile() {
       alert('不能添加相同手机 !')
     } else {
       try {
-        const { error, ...rest } = yield call(api.addMobile, ID, { mobile: payload.mobile })
-        if (error) {
-          yield put(actions.addMobileActions.failure(error.text))
-          alert(error.text)
-        } else if (rest.code === 0) {
+        const response = yield call(api.addMobile, ID, { mobile: payload.mobile })
+        if (response.code === 0) {
           const response = yield call(api.loadMobiles, ID)
           yield put(actions.addMobileActions.success(response))
           alert('手机添加成功 !')
         } else {
-          yield put(actions.addMobileActions.failure(rest.message))
-          alert(rest.message)
+          yield put(actions.addMobileActions.failure(response.message))
+          alert(response.message)
         }
       } catch (e) {
         yield put(actions.addMobileActions.failure(e))
@@ -261,16 +238,13 @@ function* deleteMobile() {
     const { payload } = yield take(actions.deleteMobileActions.REQUEST)
     const mobiles = yield select(selectMobiles)
     try {
-      const { error, ...rest } = yield call(api.deleteMobile, { id: ID, mobileId: payload })
-      if (error) {
-        yield put(actions.deleteMobileActions.failure(error.text))
-        alert(error.text)
-      } else if (rest.code === 0) {
+      const response = yield call(api.deleteMobile, { id: ID, mobileId: payload })
+      if (response.code === 0) {
         const newMobiles = mobiles.filter(e => e.mobileId !== payload)
         yield put(actions.deleteMobileActions.success({ newMobiles }))
       } else {
-        yield put(actions.deleteMobileActions.failure(rest.message))
-        alert(rest.message)
+        yield put(actions.deleteMobileActions.failure(response.message))
+        alert(response.message)
       }
     } catch (e) {
       yield put(actions.deleteMobileActions.failure(e))
@@ -287,41 +261,17 @@ function* updateMobile() {
     const mId = mobiles.find(mobile => mobile.default === true).mobileId
     const newMobiles = [...mobiles]
     try {
-      const { error, ...rest } = yield call(api.updateMobile, { id: ID, mobileId: mId }, payload)
-      if (error) {
-        yield put(actions.updateMobileActions.failure(error.text))
-        alert(error.text)
-      } else if (rest.code === 0) {
+      const response = yield call(api.updateMobile, { id: ID, mobileId: mId }, payload)
+      if (response.code === 0) {
         newMobiles.find(mobile => mobile.default === true).public = payload.public
         yield put(actions.updateMobileActions.success({ newMobiles }))
         alert('设置成功 !')
       } else {
-        yield put(actions.updateMobileActions.failure(rest.message))
-        alert(rest.message)
+        yield put(actions.updateMobileActions.failure(response.message))
+        alert(response.message)
       }
     } catch (e) {
       yield put(actions.updateMobileActions.failure(e))
-      alert(e)
-    }
-  }
-}
-
-function* sendMobile() {
-  while (true) {
-    const { payload } = yield take(actions.sendMobileActions.REQUEST)
-    const mobiles = yield select(selectMobiles)
-    try {
-      const { error } = yield call(api.sendMobile, { id: 'fakeId', mobileId: payload.id }, { isVerified: payload.isVerified })
-      if (error) {
-        yield put(actions.sendMobileActions.failure(error.text))
-        alert(error.text)
-      } else {
-        const newMobiles = [...mobiles]
-        yield put(actions.sendMobileActions.success({ newMobiles }))
-        alert('已发送手机认证短信 !')
-      }
-    } catch (e) {
-      yield put(actions.sendMobileActions.failure(e))
       alert(e)
     }
   }
@@ -342,6 +292,5 @@ export default function* settingsSaga() {
     fork(addMobile),
     fork(deleteMobile),
     fork(updateMobile),
-    fork(sendMobile),
   ]
 }
