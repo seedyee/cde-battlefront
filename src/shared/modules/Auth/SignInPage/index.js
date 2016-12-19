@@ -29,7 +29,13 @@ class SignInPage extends React.Component {
         <div className={Styles.content}>
           <SignInForm />
           <p className={Styles.signUp}>
-            <button className={Styles.regBtn} type="button" onClick={this.redirectTo}>还没有账户，立即注册</button>
+            <button
+              type="button"
+              className={Styles.regBtn}
+              onClick={this.redirectTo}
+            >
+              还没有账户，立即注册
+            </button>
           </p>
           <OtherSignUp />
         </div>

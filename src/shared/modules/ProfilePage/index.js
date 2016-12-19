@@ -42,7 +42,11 @@ class ProfilePage extends React.Component {
   }
 
   getItems = () => Object.keys(items).map(key => (
-    <li key={key} onClick={this.setActiveNav(key)} className={this.state.activeKey === key ? Styles.activeNav : ''}>
+    <li
+      key={key}
+      onClick={this.setActiveNav(key)}
+      className={this.state.activeKey === key ? Styles.activeNav : ''}
+    >
       <a>{items[key]}</a>
     </li>
   ))

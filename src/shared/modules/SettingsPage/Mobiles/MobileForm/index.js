@@ -20,7 +20,14 @@ class MobileForm extends Component {
           labelFor="mobile"
           label="添加手机"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>添&nbsp;加</Button>
+        <Button
+          type="submit"
+          bsStyle="success"
+          className={Styles.submitBtn}
+          disabled={pristine || submitting}
+        >
+          添加
+        </Button>
       </form>
     )
   }

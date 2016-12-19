@@ -24,7 +24,7 @@ class SettingsPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeKey: this.props.location.pathname.slice(pathPrefix.length),
+      activeKey: this.props.params.name,
     }
   }
 
@@ -33,7 +33,11 @@ class SettingsPage extends React.Component {
   }
 
   getSidebarItems = () => Object.keys(fields).map(key => (
-    <li key={key} onClick={this.setActiveNav(key)} className={this.state.activeKey === key ? Styles.activeNav : ''}>
+    <li
+      key={key}
+      onClick={this.setActiveNav(key)}
+      className={this.state.activeKey === key ? Styles.activeNav : ''}
+    >
       <Link to={`${pathPrefix}${key}`}>{fields[key]}</Link>
     </li>
   ))
@@ -46,7 +50,7 @@ class SettingsPage extends React.Component {
       case 'emails':
         return <Emails emails={emails} user={user} />
       case 'account':
-        return <Account initialValues={user} />
+        return <Account initialValues={{ name: this.props.user.name }} />
       case 'mobiles':
         return <Mobiles mobiles={mobiles} user={user} />
       case 'security':

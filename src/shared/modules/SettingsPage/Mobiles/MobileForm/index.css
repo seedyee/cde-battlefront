@@ -7,3 +7,7 @@
   padding-left: $content-padding-left;
   border-top: $border-style;
 }
+
+.submitBtn {
+  letter-spacing: 6px;
+}

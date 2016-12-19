@@ -38,7 +38,14 @@ class PasswordForm extends Component {
           labelFor="password2"
           label="确认密码"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更新密码</Button>
+        <Button
+          type="submit"
+          bsStyle="success"
+          className={Styles.submitBtn}
+          disabled={pristine || submitting}
+        >
+          更新密码
+        </Button>
       </form>
     )
   }

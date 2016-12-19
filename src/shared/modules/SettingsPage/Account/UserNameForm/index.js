@@ -17,7 +17,14 @@ class UserNameForm extends Component {
           type="text"
           name="name"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting} >更新用户名</Button>
+        <Button
+          type="submit"
+          bsStyle="success"
+          className={Styles.submitBtn}
+          disabled={pristine || submitting}
+        >
+        更新用户名
+        </Button>
       </form>
     )
   }

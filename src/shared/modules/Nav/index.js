@@ -19,7 +19,13 @@ class Nav extends React.Component {
   getDropdown = () => {
     const { user, logined, logoutRequest } = this.props
     return (
-      <NavDropdown className={Styles.navItems} pullRight onSelect={this.onSelected} title={this.getIcon('user')} id="user">
+      <NavDropdown
+        id="user"
+        className={Styles.navItems}
+        onSelect={this.onSelected}
+        title={this.getIcon('user')}
+        pullRight
+      >
         <MenuItem eventKey="/profile">我的主页</MenuItem>
         <MenuItem eventKey="/project/all">项目管理</MenuItem>
         <MenuItem divider />
@@ -103,5 +109,10 @@ const mapStateToProps = (state) => ({
   logined: selectLogined(state),
 })
 
-export default connect(mapStateToProps, { logoutRequest: logoutActions.request })(Nav)
+export default connect(
+  mapStateToProps,
+  {
+    logoutRequest: logoutActions.request,
+  }
+)(Nav)
 

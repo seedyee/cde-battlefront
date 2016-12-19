@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
-import { OverlayTrigger, Tooltip, Label, Glyphicon, Button } from 'react-bootstrap'
+import {
+  OverlayTrigger,
+  Tooltip,
+  Label,
+  Glyphicon,
+  Button,
+} from 'react-bootstrap'
 
 import Styles from './index.css'
 

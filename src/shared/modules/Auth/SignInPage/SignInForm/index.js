@@ -47,10 +47,12 @@ class SignInForm extends Component {
           forgetPassword="忘记登录密码 ?"
         />
         <div className={Styles.checkboxDiv}>
-          <Field name="promise" id="promise" component="input" type="checkbox" />
+          <Field component="input" type="checkbox" name="promise" id="promise" />
           <label htmlFor="promise" className={Styles.promise}>记住我</label>
         </div>
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>登 录</Button>
+        <Button type="submit" bsStyle="success" className={Styles.submitBtn} disabled={pristine || submitting}>
+          登 录
+        </Button>
       </form>
     )
   }

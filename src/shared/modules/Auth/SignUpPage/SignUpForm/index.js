@@ -55,12 +55,18 @@ class RegisterForm extends Component {
           label="密 码"
         />
         <div>
-          <Field name="agreement" id="agreement" component="input" type="checkbox" />
-          <label htmlFor="agreement" className={Styles.agreement}>同意<a href="">《开发平台协议》</a></label>
+          <Field component="input" type="checkbox" name="agreement" id="agreement" />
+          <label htmlFor="agreement" className={Styles.agreement}>
+            同意<a href="">《开发平台协议》</a>
+          </label>
         </div>
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>注册</Button>
+        <Button type="submit" bsStyle="success" className={Styles.submitBtn} disabled={pristine || submitting}>
+          注册
+        </Button>
         <p className={Styles.signUp}>
-          <button className={Styles.regBtn} type="button" disabled={submitting} onClick={this.redirectTo}>已有账户？马上登录</button>
+          <button type="button" className={Styles.regBtn} disabled={submitting} onClick={this.redirectTo}>
+            已有账户？马上登录
+          </button>
         </p>
       </form>
     )

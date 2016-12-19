@@ -50,6 +50,7 @@
       height: 50px;
       line-height: 50px;
       text-decoration: none;
+      letter-spacing: 1px;
       text-align: center;
       color: #666;
       &:hover {
@@ -99,8 +100,8 @@
   }
   a {
     display: inline-block;
-    width: 150px;
-    height: 102px;
+    width: 152px;
+    height: 104px;
     background: #eceff1;
   }
 }

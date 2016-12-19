@@ -27,7 +27,14 @@ class UserInfo extends React.Component {
           <img alt="your avatar" src={leapcorn} />
         </Link>
         <p className={Styles.userName}>{user.name}</p>
-        <Button bsStyle="default" className={Styles.profileEditBtn} type="button" onClick={this.redirectTo}>账户设置</Button>
+        <Button
+          type="button"
+          bsStyle="default"
+          className={Styles.profileEditBtn}
+          onClick={this.redirectTo}
+        >
+          账户设置
+        </Button>
         <p>公司：{user.company}</p>
         <p>地址：{user.address}</p>
         <p>邮箱：{user.email}</p>

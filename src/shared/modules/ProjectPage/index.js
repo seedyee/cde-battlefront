@@ -41,7 +41,7 @@ class ProjectPage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      activeClass: this.props.location.pathname,
+      activeClass: this.props.pathname,
     }
   }
 

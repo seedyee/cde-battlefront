@@ -20,7 +20,12 @@ export const onSubmitActions = (actions, valuesTransform = identity) =>
 
 export default function* reduxFormSubmitSaga() {
   while (true) {
-    const { actions: { REQUEST, SUCCESS, FAILURE }, resolve, reject, payload } = yield take(SUBMIT_FORM)
+    const {
+      actions: { REQUEST, SUCCESS, FAILURE },
+      resolve,
+      reject,
+      payload,
+    } = yield take(SUBMIT_FORM)
     yield put({ type: REQUEST, payload })
 
     const { success, failure } = yield race({

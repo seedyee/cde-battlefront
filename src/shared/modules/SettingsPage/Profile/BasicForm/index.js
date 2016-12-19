@@ -90,7 +90,14 @@ class BasicForm extends Component {
           labelFor="personal"
           label="个人介绍"
         />
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>更&nbsp;&nbsp;新</Button>
+        <Button
+          type="submit"
+          bsStyle="success"
+          className={Styles.submitBtn}
+          disabled={pristine || submitting}
+        >
+          更新
+        </Button>
       </form>
     )
   }
@@ -103,6 +110,7 @@ BasicForm.propTypes = {
 }
 
 import { updateBasicInfoActions } from '../../actions'
+import { selectEmails, selectMobiles } from '../../selectors'
 import { onSubmitActions } from '../../../utils/reduxFormSubmitSaga'
 import validate from './validate'
 
@@ -113,8 +121,6 @@ const comp = reduxForm({
   validate: validate(),
   onSubmit: onSubmitActions(updateBasicInfoActions),
 })(BasicForm)
-
-import { selectEmails, selectMobiles } from '../../selectors'
 
 const mapStateToProps = state => ({
   emails: selectEmails(state),

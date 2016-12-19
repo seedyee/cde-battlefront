@@ -113,8 +113,8 @@ function* addEmail() {
       try {
         const response = yield call(api.addEmail, ID, { email: payload.email })
         if (response.code === 0) {
-          const response = yield call(api.loadEmails, ID)
-          yield put(actions.addEmailActions.success(response))
+          const newEmails = yield call(api.loadEmails, ID)
+          yield put(actions.addEmailActions.success(newEmails))
           alert('新增邮箱成功 !')
         } else {
           yield put(actions.addEmailActions.failure(response.message))
@@ -218,8 +218,8 @@ function* addMobile() {
       try {
         const response = yield call(api.addMobile, ID, { mobile: payload.mobile })
         if (response.code === 0) {
-          const response = yield call(api.loadMobiles, ID)
-          yield put(actions.addMobileActions.success(response))
+          const newMobiles = yield call(api.loadMobiles, ID)
+          yield put(actions.addMobileActions.success(newMobiles))
           alert('手机添加成功 !')
         } else {
           yield put(actions.addMobileActions.failure(response.message))
