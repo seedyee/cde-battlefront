@@ -18,7 +18,7 @@ Cde-battlefront used a NodeJS V6 Universal React Boilerplate with an Amazing Dev
 
 - `npm start`
 
-** Note: The backend server uses local server by default, and modify the `RUNNING_SERVER_SWITCH` 's value to PROXY in `.env` file to use proxy backend server if you want**
+Note: The backend server uses local server by default, and modify the `RUNNING_SERVER_SWITCH` 's value to PROXY in `.env` file to use proxy backend server if you want
 
 ## NPM Commands
 
