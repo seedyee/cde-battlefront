@@ -28,11 +28,8 @@ const parseJSON = (response) => {
   throw new Error('Accept text/plain and application/json but not other types !')
 }
 
-const urlRoot = `${process.env.APP_HOST}:${process.env.SERVER_PORT}`
-const devApiPrefix = '/dev/api'
-const apiUrl = `${process.env.PROXY_SERVER_ROOT}:${process.env.PROXY_SERVER_PORT}`
-
-const createRequest = (rootUrl = '', prefix = '') => ({ method, url, data }) => fetch(rootUrl + prefix + url, {
+const urlRoot = process.env.RUNNING_SERVER
+const request = ({ method, url, data }) => fetch(urlRoot + url, {
   // Use the include value to send cookies in a
   // cross-origin resource sharing (CORS) request
   // credentials: 'include',
@@ -47,36 +44,30 @@ const createRequest = (rootUrl = '', prefix = '') => ({ method, url, data }) => 
   body: JSON.stringify(data),
 }).then(checkStatus).then(parseJSON)
 
-const realRequest = createRequest(apiUrl)
-export const realPost = (url, data) => realRequest({ method: 'POST', url, data })
-export const realGet = (url) => realRequest({ method: 'GET', url })
-export const realRel = (url) => realRequest({ method: 'DELETE', url })
-
-const request = createRequest(urlRoot, devApiPrefix)
 export const post = (url, data) => request({ method: 'POST', url, data })
 export const get = (url) => request({ method: 'GET', url })
 export const del = (url) => request({ method: 'DELETE', url })
 
-// API about auth
-export const login = (data) => realPost('/authc/signin', data)
-export const register = (data) => realPost('/accounts', data)
+// APIs about auth
+export const login = (data) => post('/authc/signin', data)
+export const register = (data) => post('/accounts', data)
 export const logout = (id) => post('/authc/signout', id)
 
 // APIs about user
-export const loadBasicInfo = (id) => realGet(`/accounts/${id}/basicInfo`)
-export const updateBasicInfo = (id, data) => realPost(`/accounts/${id}/basicInfo`, data)
-export const updateName = (id, data) => realPost(`/accounts/${id}/name`, data)
-export const updatePassword = (id, data) => realPost(`/accounts/${id}/password`, data)
+export const loadBasicInfo = (id) => get(`/accounts/${id}/basicInfo`)
+export const updateName = (id, data) => post(`/accounts/${id}/name`, data)
+export const updatePassword = (id, data) => post(`/accounts/${id}/password`, data)
+export const updateBasicInfo = (id, data) => post(`/accounts/${id}/basicInfo`, data)
 
 // APIs about Email
-export const loadEmails = (id) => realGet(`/accounts/${id}/emails`)
-export const addEmail = (id, email) => realPost(`/accounts/${id}/emails`, email)
-export const deleteEmail = ({ id, emailId }) => realRel(`/accounts/${id}/emails/${emailId}`)
-export const updateEmail = ({ id, emailId }, data) => realPost(`/accounts/${id}/emails/${emailId}`, data)
+export const loadEmails = (id) => get(`/accounts/${id}/emails`)
+export const addEmail = (id, email) => post(`/accounts/${id}/emails`, email)
+export const deleteEmail = ({ id, emailId }) => del(`/accounts/${id}/emails/${emailId}`)
+export const updateEmail = ({ id, emailId }, data) => post(`/accounts/${id}/emails/${emailId}`, data)
 export const sendEmail = ({ id, emailId }, data) => post(`/accounts/${id}/emails/${emailId}`, data)
 
 // APIs about Mobile
-export const loadMobiles = (id) => realGet(`/accounts/${id}/mobiles`)
-export const addMobile = (id, mobile) => realPost(`/accounts/${id}/mobiles`, mobile)
-export const deleteMobile = ({ id, mobileId }) => realRel(`/accounts/${id}/mobiles/${mobileId}`)
-export const updateMobile = ({ id, mobileId }, data) => realPost(`/accounts/${id}/mobiles/${mobileId}`, data)
+export const loadMobiles = (id) => get(`/accounts/${id}/mobiles`)
+export const addMobile = (id, mobile) => post(`/accounts/${id}/mobiles`, mobile)
+export const deleteMobile = ({ id, mobileId }) => del(`/accounts/${id}/mobiles/${mobileId}`)
+export const updateMobile = ({ id, mobileId }, data) => post(`/accounts/${id}/mobiles/${mobileId}`, data)

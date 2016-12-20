@@ -33,6 +33,13 @@ const createPlugins = (target, mode) => {
   const ifDevServer = ifElse(isDev && isServer) // eslint-disable-line no-unused-vars
   const ifProdClient = ifElse(isProd && isClient)
 
+  const PROFIX = '/dev/api'
+  const localHost = `http://${ip.address()}`
+  const local = `${localHost}:${process.env.SERVER_PORT}${PROFIX}`
+  const proxy = `${process.env.PROXY_SERVER}`
+  const ifProxy = ifElse(process.env.RUNNING_SERVER_SWITCH === 'PROXY')
+  const runningServer = ifProxy(proxy, local)
+
   return removeEmpty([
 
     // Create static HTML page. This can be used when server rendering is not interesting.
@@ -98,12 +105,11 @@ const createPlugins = (target, mode) => {
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
 
       'process.env.APP_ROOT': JSON.stringify(path.resolve(root)),
-      'process.env.APP_HOST': JSON.stringify(`http://${ip.address()}`),
+      'process.env.APP_HOST': JSON.stringify(localHost),
       // All the below items match the config items in our .env file. Go
       // to the .env_example for a description of each key.
       'process.env.SERVER_PORT': JSON.stringify(process.env.SERVER_PORT),
-      'process.env.PROXY_SERVER_PORT': JSON.stringify(process.env.PROXY_SERVER_PORT),
-      'process.env.PROXY_SERVER_ROOT': JSON.stringify(process.env.PROXY_SERVER_ROOT),
+      'process.env.RUNNING_SERVER': JSON.stringify(runningServer),
       'process.env.CLIENT_DEVSERVER_PORT': JSON.stringify(process.env.CLIENT_DEVSERVER_PORT),
 
       'process.env.DISABLE_SSR': process.env.DISABLE_SSR,
