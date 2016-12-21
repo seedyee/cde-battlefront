@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, Redirect } from 'react-router'
 import { Button } from 'react-bootstrap'
 
+import { formatDate } from '../../utils'
 import Styles from './index.css'
 import leapcorn from '../../assets/leapcorn-blue.png'
 
@@ -38,7 +39,7 @@ class UserInfo extends React.Component {
         <p>公司：{user.company}</p>
         <p>地址：{user.address}</p>
         <p>邮箱：{user.email}</p>
-        <p>注册：{user.timestamp}</p>
+        <p>注册：{formatDate(user.timestamp)}</p>
       </div>
     )
   }
