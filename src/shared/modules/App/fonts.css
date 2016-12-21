@@ -5,7 +5,7 @@
   src: url("./fonts/NotoSans-Regular.ttf") format("truetype");
 }
 
-body {
+html, body {
   font-family: "Noto Sans", Verdana, "Microsoft YaHei", "微软雅黑", "Hiragino Sans GB", "冬青黑体", SimHei;
   margin: 0;
   padding: 0;

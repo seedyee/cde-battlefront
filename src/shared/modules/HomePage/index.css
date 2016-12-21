@@ -1,41 +1,26 @@
 $textColor: orange;
 
 .Home {
-  margin: 0 auto;
-  background: url(../assets/great-wall.jpg) no-repeat 70% 40%;
-  height: 700px;
-}
-
-@mixin scale{
-  transform: scale(1.2);
-}
-
-.intro{
-  color: $textColor;
-  display: flex;
-  justify-content: center;
-  padding-top: 20px;
-  a{
-    color: #fff;
-    padding-left: calc(2px + 3px);
-    &:hover{
-      @include scale;
-      background: blue;
-      color: white;
-    }
-  }
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  right: 0px;
+  bottom: 0px;
+  background: url(../assets/great-wall.jpg) center center no-repeat fixed;
+  background-size: cover;
 }
 
 .footer {
   position: fixed;
-  right: 100px;
-  bottom: 8px;
-  width: $site-content-width;
-  height: 80px;
-  line-height: 80px;
+  width: 100%;
+  bottom: 0px;
+  height: 60px;
+  line-height: 60px;
+  background-color: rgba(0,0,0,0.4);
   ul {
     display: flex;
     justify-content: center;
+    margin: 0 auto;
     li {
       margin: 0 15px;
       a {
