@@ -51,6 +51,18 @@ class Nav extends React.Component {
                     <img alt="site logo" src={logo} />
                   </Link>
                 </li>
+                <li>
+                  <Link to="/">服务</Link>
+                </li>
+                <li>
+                  <Link to="/">项目</Link>
+                </li>
+                <li>
+                  <Link to="/">组件</Link>
+                </li>
+                <li>
+                  <Link to="/">发现</Link>
+                </li>
               </ul>
               {this.getDropdown()}
             </div>

@@ -20,7 +20,6 @@
   background: #fff;
 }
 
-
 .form {
   line-height: 40px;
   vertical-align: middle;
@@ -42,13 +41,13 @@
 .navUl {
   li {
     display: inline-block;
-    height: 50px;
+    height: 48px;
     margin: 10px 8px 0 0;
     a {
       display: inline-block;
-      width: 70px;
-      height: 50px;
-      line-height: 50px;
+      width: 75px;
+      height: 48px;
+      line-height: 48px;
       text-decoration: none;
       letter-spacing: 1px;
       text-align: center;
@@ -62,20 +61,16 @@
 }
 
 .activeNav {
-  border-bottom: 3px solid #d26911;
+  border-bottom: 2px solid rgb(88, 192, 193);
   a {
     color: $normal-color;
   }
 }
 
-
-
 .icon {
   font-size: 12px;
   padding-right: 5px;
 }
-
-
 
 .project{
   display: flex;
@@ -117,4 +112,3 @@
   line-height: 26px;
   text-align: center;
 }
-

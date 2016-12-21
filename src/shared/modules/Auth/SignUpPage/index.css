@@ -9,26 +9,5 @@
 }
 
 .content {
-  margin-bottom: 50px;
-}
-
-.footer {
-  width: $site-content-width;
-  height: 80px;
-  line-height: 80px;
-  border-top: 1px solid #ddd;
-  ul {
-    display: flex;
-    justify-content: center;
-    li {
-      margin: 0 15px;
-      a {
-        font-size: 13px;
-        color: #666;
-        &:hover {
-          color: $hover-color_blue;
-        }
-      }
-    }
-  }
+  margin-bottom: 35px;
 }
