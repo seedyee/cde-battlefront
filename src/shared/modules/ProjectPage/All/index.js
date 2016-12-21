@@ -61,7 +61,11 @@ class All extends Component {
     this.setState({ activeContent: activeKey })
   }
   getItems = () => Object.keys(items).map(key => (
-    <li key={key} onClick={this.setActiveNav(key)} className={this.state.activeKey === key ? Styles.activeNav : ''}>
+    <li
+      key={key}
+      onClick={this.setActiveNav(key)}
+      className={this.state.activeKey === key ? Styles.activeNav : ''}
+    >
       <a>{items[key]}</a>
     </li>
   ))
@@ -88,7 +92,9 @@ class All extends Component {
           </ul>
           <Form className={Styles.form} inline>
             <FormControl className={Styles.input} type="text" placeholder="search..." />
-            <Button className={Styles.submitBtn} bsStyle="success" bsSize="small" type="submit">搜 索</Button>
+            <Button className={Styles.submitBtn} bsStyle="success" bsSize="small" type="submit">
+              搜 索
+            </Button>
           </Form>
         </div>
         <div className={Styles.content}>

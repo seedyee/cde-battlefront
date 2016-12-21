@@ -54,12 +54,16 @@ class AddForm extends Component {
           <div>
             <Field name="public" component="input" type="radio" value="public" />
             <label htmlFor="public" className={Styles.radio}>公开</label>
-            <p className={Styles.radioState}>项目对所有访客可见，代码可以 fork，可以创建讨论，但是没有文件和任务功能</p>
+            <p className={Styles.radioState}>
+              项目对所有访客可见，代码可以 fork，可以创建讨论，但是没有文件和任务功能
+            </p>
           </div>
           <div>
             <Field name="public" component="input" type="radio" value="private" />
             <label htmlFor="private" className={Styles.radio}>私有</label>
-            <p className={Styles.radioState}>项目仅对成员可见，拥有代码仓库，创建讨论，上传文件，任务管理等功能</p>
+            <p className={Styles.radioState}>
+              项目仅对成员可见，拥有代码仓库，创建讨论，上传文件，任务管理等功能
+            </p>
           </div>
         </div>
         <div className={Styles.checkboxDiv}>
@@ -87,7 +91,9 @@ class AddForm extends Component {
           <Field name="members" component="input" type="text" placeholder="用户名/邮箱" className={Styles.membersInput} />
           <div>张三、李四</div>
         </div>
-        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>创建项目</Button>
+        <Button bsStyle="success" className={Styles.submitBtn} type="submit" disabled={pristine || submitting}>
+          创建项目
+        </Button>
       </form>
     )
   }

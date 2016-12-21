@@ -12,6 +12,7 @@
   display: flex;
   width: 230px;
   height: 550px;
+  margin-bottom: 150px;
   color: $normal-color;
   border: $border-style;
   border-radius: $border-radius;
@@ -66,5 +67,4 @@
 
 .content {
   width: $settings-content-width;
-  height: 720px;
 }
