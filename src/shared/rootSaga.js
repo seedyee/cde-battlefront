@@ -3,6 +3,7 @@ import reduxFormSubmitSaga from './modules/utils/reduxFormSubmitSaga'
 import authSaga from './modules/Auth/sagas'
 import settingsSaga from './modules/SettingsPage/sagas'
 import profileSaga from './modules/ProfilePage/sagas'
+import projectSaga from './modules/ProjectPage/sagas'
 
 export function* rootSaga() {
   yield [
@@ -10,6 +11,7 @@ export function* rootSaga() {
     fork(authSaga),
     fork(settingsSaga),
     fork(profileSaga),
+    fork(projectSaga),
   ]
 }
 export const CANCEL_SAGAS_HMR = 'CANCEL_SAGAS_HMR'

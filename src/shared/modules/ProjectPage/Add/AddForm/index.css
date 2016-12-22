@@ -49,32 +49,6 @@
   color: #888;
 }
 
-.checkboxDiv {
-  margin-top: 20px;
-}
-
-.selectDiv {
-  border-bottom: $border-style;
-  margin-bottom: 20px;
-}
-
-.select {
-  width: 160px;
-  height: 30px;
-  font-size: $normal-font-size;
-  letter-spacing: 0.5px;
-  color: $normal-color;
-  background-color: #fafafa;
-  border: 1px solid #ddd;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
-  outline: none;
-  margin: 15px 20px 25px 0;
-  &:focus {
-    background: #fff;
-  }
-}
-
 .membersDiv {
   padding-bottom: 20px;
   border-bottom: $border-style;

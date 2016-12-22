@@ -71,3 +71,6 @@ export const loadMobiles = (id) => get(`/accounts/${id}/mobiles`)
 export const addMobile = (id, mobile) => post(`/accounts/${id}/mobiles`, mobile)
 export const deleteMobile = ({ id, mobileId }) => del(`/accounts/${id}/mobiles/${mobileId}`)
 export const updateMobile = ({ id, mobileId }, data) => post(`/accounts/${id}/mobiles/${mobileId}`, data)
+
+// APIs about project
+export const addProject = (data) => post('/accounts/projects/create', data)
