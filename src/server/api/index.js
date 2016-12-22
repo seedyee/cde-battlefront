@@ -79,9 +79,7 @@ const mobiles = [
   },
 ]
 
-const success = {
-  error: null,
-}
+const success = { code: '0', message: '请求成功' }
 
 
 const id = Math.random().toString(36).substr(2);
@@ -111,77 +109,106 @@ router.post('/accounts', (req, res) => {
   }
 })
 
-router.post('/authc/signout', (req, res) => {
-  res.json({})
-})
+router.post('/authc/signout', (req, res) => { res.json({}) })
 
 /*
  * 查询用户信息
  */
 
-router.get('/accounts/:id/basicInfo', (req, res) => {
-  res.json(basicInfo)
-})
-
-router.get('/accounts/:id/emails', (req, res) => {
-  res.json(emails)
-})
-
-router.get('/accounts/:id/mobiles', (req, res) => {
-  res.json(mobiles)
-})
+router.get('/accounts/:id/basicInfo', (req, res) => { res.json(basicInfo) })
+router.get('/accounts/:id/emails', (req, res) => { res.json(emails) })
+router.get('/accounts/:id/mobiles', (req, res) => { res.json(mobiles) })
 
 /*
  * 修改用户信息
  */
 
-router.post('/accounts/:id/basicInfo', (req, res) => {
-  res.json(success)
-})
-
-router.post('/accounts/:id/password', (req, res) => {
-  res.json(success)
-})
-
-router.post('/accounts/:id/emails/:id', (req, res) => {
-  res.json(success)
-})
-
-router.post('/accounts/:id/mobiles/:id', (req, res) => {
-  res.json(success)
-})
+router.post('/accounts/:id/basicInfo', (req, res) => { res.json(success) })
+router.post('/accounts/:id/password', (req, res) => { res.json(success) })
+router.post('/accounts/:id/emails/:id', (req, res) => { res.json(success) })
+router.post('/accounts/:id/mobiles/:id', (req, res) => { res.json(success) })
 
 /*
  * 新增邮箱或手机
  */
 
-router.post('/accounts/:id/emails', (req, res) => {
-  res.json(success)
-})
-
-router.post('/accounts/:id/mobiles', (req, res) => {
-  res.json(success)
-})
+router.post('/accounts/:id/emails', (req, res) => { res.json(success) })
+router.post('/accounts/:id/mobiles', (req, res) => { res.json(success) })
 
 /*
  * 删除邮箱或手机
  */
 
-router.delete('/accounts/:id/emails/:id', (req, res) => {
-  res.json(success)
-})
-
-router.delete('/accounts/:id/mobiles/:id', (req, res) => {
-  res.json(success)
-})
+router.delete('/accounts/:id/emails/:id', (req, res) => { res.json(success) })
+router.delete('/accounts/:id/mobiles/:id', (req, res) => { res.json(success) })
 
 /*
  * 上传文件
  */
 
-router.post('/upload', (req, res) => {
-  res.json(success)
-})
+router.post('/upload/avatar', (req, res) => { res.json(success) })
+
+
+/* -----------------------------------project api----------------------------------- */
+
+const projects = [
+  { id: '1', projectName: 'project1', isPublic: true },
+  { id: '2', projectName: 'project2', isPublic: false },
+  { id: '3', projectName: 'project3', isPublic: false },
+]
+
+const project = {
+  id: '1',
+  projectName: 'project1',
+  describle: '第一个CDE项目',
+  isPublic: true,
+  members: ['陈先生', '罗先生', '李先生', '廖先生'],
+}
+
+const members = [
+  { accountId: '1', principal: '陈先生' },
+  { accountId: '2', principal: '罗先生' },
+  { accountId: '3', principal: '李先生' },
+  { accountId: '4', principal: '廖先生' },
+]
+
+
+// 查询所有项目
+router.get('/accounts/projects/all ', (req, res) => { res.json(projects) })
+// 查询创建项目
+router.get('/accounts/projects/created ', (req, res) => { res.json(projects) })
+// 查询参与的项目
+router.get('/accounts/projects/joined ', (req, res) => { res.json(projects) })
+// 查询关注的项目
+router.get('/accounts/projects/watched ', (req, res) => { res.json(projects) })
+// 查询收藏的项目
+router.get('/accounts/projects/collect ', (req, res) => { res.json(projects) })
+// 查询项目基本信息
+router.get('/accounts/projects/:id ', (req, res) => { res.json(project) })
+// 查询成员 or 搜索成员
+router.get('/accounts/projects/members ', (req, res) => { res.json(members) })
+
+// 创建项目
+router.post('/accounts/projects/create', (req, res) => { res.json(success) })
+// 更新项目
+router.post('/accounts/projects/:id/update', (req, res) => { res.json(success) })
+// 删除项目
+router.delete('/accounts/projects/:id/delete', (req, res) => { res.json(success) })
+
+// 添加项目成员
+router.post('/projects/:id/members', (req, res) => { res.json(success) })
+// 删除项目成员
+router.delete('/projects/:id/members', (req, res) => { res.json(success) })
+
+// 添加关注项目
+router.post('accounts/projects/:id/watched', (req, res) => { res.json(success) })
+// 删除关注醒目
+router.delete('accounts/projects/:id/watched', (req, res) => { res.json(success) })
+
+// 添加收藏项目
+router.post('accounts/projects/:id/collect', (req, res) => { res.json(success) })
+// 删除收藏醒目
+router.delete('accounts/projects/{id}/collect', (req, res) => { res.json(success) })
 
 export default router
 
