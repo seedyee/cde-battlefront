@@ -79,10 +79,9 @@ const mobiles = [
   },
 ]
 
-const success = { code: '0', message: '请求成功' }
-
-
 const id = Math.random().toString(36).substr(2);
+
+const success = { code: '0', message: '请求成功' }
 
 router.post('/authc/signin', (req, res) => {
   const { principal, password } = req.body
@@ -155,6 +154,8 @@ const projects = [
   { id: '1', projectName: 'project1', isPublic: true },
   { id: '2', projectName: 'project2', isPublic: false },
   { id: '3', projectName: 'project3', isPublic: false },
+  { id: '4', projectName: 'project4', isPublic: true },
+  { id: '5', projectName: 'project5', isPublic: false },
 ]
 
 const project = {
@@ -172,21 +173,20 @@ const members = [
   { accountId: '4', principal: '廖先生' },
 ]
 
-
 // 查询所有项目
-router.get('/accounts/projects/all ', (req, res) => { res.json(projects) })
+router.get('/accounts/projects/all', (req, res) => { res.json(projects) })
 // 查询创建项目
-router.get('/accounts/projects/created ', (req, res) => { res.json(projects) })
+router.get('/accounts/projects/created', (req, res) => { res.json(projects) })
 // 查询参与的项目
-router.get('/accounts/projects/joined ', (req, res) => { res.json(projects) })
+router.get('/accounts/projects/joined', (req, res) => { res.json(projects) })
 // 查询关注的项目
-router.get('/accounts/projects/watched ', (req, res) => { res.json(projects) })
+router.get('/accounts/projects/watched', (req, res) => { res.json(projects) })
 // 查询收藏的项目
-router.get('/accounts/projects/collect ', (req, res) => { res.json(projects) })
+router.get('/accounts/projects/collect', (req, res) => { res.json(projects) })
 // 查询项目基本信息
-router.get('/accounts/projects/:id ', (req, res) => { res.json(project) })
+router.get('/accounts/projects/:id', (req, res) => { res.json(project) })
 // 查询成员 or 搜索成员
-router.get('/accounts/projects/members ', (req, res) => { res.json(members) })
+router.get('/accounts/projects/members', (req, res) => { res.json(members) })
 
 // 创建项目
 router.post('/accounts/projects/create', (req, res) => { res.json(success) })

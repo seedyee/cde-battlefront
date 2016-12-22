@@ -30,7 +30,7 @@ class AvatarForm extends Component {
     e.preventDefault()
     const formData = new FormData()
     formData.append('file', this.state.file)
-    fetch('http://localhost:1337/dev/api/upload', {
+    fetch('http://localhost:1337/dev/api/upload/image', {
       method: 'POST',
       body: formData,
     })
