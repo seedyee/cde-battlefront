@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
 import {
   Nav,
   NavItem,
@@ -55,11 +56,12 @@ class ProjectPage extends React.Component {
   )
 
   getContent = () => {
+    const { projects } = this.props
     switch (this.props.params.name) {
       case 'add':
         return <Add />
       case 'all':
-        return <All />
+        return <All projects={projects} />
       case 'create':
         return <Creation />
       case 'participate':
@@ -144,4 +146,10 @@ class ProjectPage extends React.Component {
   }
 }
 
-export default ProjectPage
+import { selectProjects } from './selectors'
+
+const mapStateToProps = state => ({
+  projects: selectProjects(state),
+})
+
+export default connect(mapStateToProps)(ProjectPage)

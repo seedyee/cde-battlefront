@@ -2,6 +2,16 @@ import { take, put, call, fork, select } from 'redux-saga/effects'
 import * as actions from './actions'
 import * as api from '../api'
 
+function* loadProjects() {
+  yield put(actions.loadProjectsActions.request())
+  try {
+    const projects = yield call(api.loadProjects)
+    yield put(actions.loadProjectsActions.success(projects))
+  } catch (e) {
+    yield put(actions.loadProjectsActions.failure(e))
+  }
+}
+
 function* addProject() {
   while (true) {
     const { payload } = yield take(actions.addProjectActions.REQUEST)
@@ -20,9 +30,9 @@ function* addProject() {
     }
   }
 }
-
 export default function* projectSaga() {
   yield [
+    fork(loadProjects),
     fork(addProject),
   ]
 }

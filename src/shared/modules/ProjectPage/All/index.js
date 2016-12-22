@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import { Glyphicon, Form, FormControl, Button } from 'react-bootstrap'
+import { Form, FormControl, Button } from 'react-bootstrap'
 
+import AllProjects from './AllProjects'
+import Public from './Public'
+import Private from './Private'
 import Styles from './index.css'
 
 const items = {
@@ -8,44 +11,6 @@ const items = {
   public: '公开',
   private: '私有',
 }
-
-const AllProject = () => (
-  <div className={Styles.project}>
-    <div>
-      <div className={Styles.projectImg}>
-        <a href=""></a>
-      </div>
-      <p className={Styles.projectName}>
-        <Glyphicon glyph="lock" className={Styles.icon} />
-        my project
-      </p>
-    </div>
-    <div>
-      <div className={Styles.projectImg}>
-        <a href=""></a>
-      </div>
-      <p className={Styles.projectName}>
-        <Glyphicon glyph="lock" className={Styles.icon} />
-        my project
-      </p>
-    </div>
-    <div>
-      <div className={Styles.projectImg}>
-        <a href=""></a>
-      </div>
-      <p className={Styles.projectName}>
-        <Glyphicon glyph="lock" className={Styles.icon} />
-        my project
-      </p>
-    </div>
-  </div>
-)
-const Public = () => (
-  <div>Public</div>
-)
-const Private = () => (
-  <div>Private</div>
-)
 
 class All extends Component {
   constructor() {
@@ -71,15 +36,18 @@ class All extends Component {
   ))
 
   getCountent = (type) => {
+    const { projects } = this.props
+    const publicProjects = Object.values(projects).filter(p => p.isPublic === true)
+    const privateProjects = Object.values(projects).filter(p => p.isPublic === false)
     switch (type) {
       case 'all':
-        return <AllProject />
+        return <AllProjects projects={projects} />
       case 'public':
-        return <Public />
+        return <Public publicProjects={publicProjects} />
       case 'private':
-        return <Private />
+        return <Private privateProjects={privateProjects} />
       default:
-        return <AllProject />
+        return <AllProjects projects={projects} />
     }
   }
 
