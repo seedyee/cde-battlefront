@@ -48,6 +48,10 @@ class ProjectPage extends React.Component {
     <Glyphicon glyph={name} className={Styles.icon} />
   )
 
+  tooltip = () => (
+    <Tooltip id="tooltip"><strong className={Styles.tooltip}>点击创建项目</strong></Tooltip>
+  )
+
   firstSidebarItems = () => (
     <Nav bsStyle="pills" className={Styles.navBottom} stacked onSelect={this.onSelected}>
       {Object.values(firstFields).map(i => (
@@ -79,19 +83,15 @@ class ProjectPage extends React.Component {
     </div>
   )
 
-  tooltip = () => (
-    <Tooltip id="tooltip"><strong className={Styles.tooltip}>点击创建项目</strong></Tooltip>
-  )
-
   routes = () => {
-    const { projects } = this.props
+    const { all, created, joined, watched, collect } = this.props
     return ([
       { pattern: `${pathPrefix}/add`, component: Add },
-      { pattern: `${pathPrefix}/all`, component: Projects, allProjects: projects },
-      { pattern: `${pathPrefix}/create`, component: Projects },
-      { pattern: `${pathPrefix}/participate`, component: Projects },
-      { pattern: `${pathPrefix}/concern`, component: Projects },
-      { pattern: `${pathPrefix}/collect`, component: Projects },
+      { pattern: `${pathPrefix}/all`, component: Projects, projects: all },
+      { pattern: `${pathPrefix}/create`, component: Projects, projects: created },
+      { pattern: `${pathPrefix}/participate`, component: Projects, projects: joined },
+      { pattern: `${pathPrefix}/concern`, component: Projects, projects: watched },
+      { pattern: `${pathPrefix}/collect`, component: Projects, projects: collect },
     ])
   }
 
@@ -99,7 +99,7 @@ class ProjectPage extends React.Component {
     <Match
       {...route}
       render={() => (
-        <route.component projects={route.allProjects} />
+        <route.component projects={route.projects} />
       )}
     />
   )
@@ -134,10 +134,20 @@ class ProjectPage extends React.Component {
   }
 }
 
-import { selectProjects } from './selectors'
+import {
+  selectAll,
+  selectCreated,
+  selectJoined,
+  selectWatched,
+  selectCollect,
+} from './selectors'
 
 const mapStateToProps = state => ({
-  projects: selectProjects(state),
+  all: selectAll(state),
+  created: selectCreated(state),
+  joined: selectJoined(state),
+  watched: selectWatched(state),
+  collect: selectCollect(state),
 })
 
 export default connect(mapStateToProps)(ProjectPage)
