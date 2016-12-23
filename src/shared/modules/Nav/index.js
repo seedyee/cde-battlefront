@@ -27,7 +27,7 @@ class Nav extends React.Component {
         pullRight
       >
         <MenuItem eventKey="/profile">我的主页</MenuItem>
-        <MenuItem eventKey="/project/all">项目管理</MenuItem>
+        <MenuItem eventKey="/project/category/all">项目管理</MenuItem>
         <MenuItem divider />
         <MenuItem eventKey="/settings/profile">个人设置</MenuItem>
         {logined ? <MenuItem eventKey="/" onClick={() => logoutRequest({ id: user.id })}> 退 出 </MenuItem> : ''}
