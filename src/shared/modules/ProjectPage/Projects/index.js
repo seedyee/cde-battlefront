@@ -12,7 +12,7 @@ const items = {
   private: '私有',
 }
 
-class All extends Component {
+class Projects extends Component {
   constructor() {
     super()
     this.state = {
@@ -37,8 +37,8 @@ class All extends Component {
 
   getCountent = (type) => {
     const { projects } = this.props
-    const publicProjects = Object.values(projects).filter(p => p.isPublic === true)
-    const privateProjects = Object.values(projects).filter(p => p.isPublic === false)
+    const publicProjects = projects ? Object.values(projects).filter(p => p.isPublic === true) : null
+    const privateProjects = projects ? Object.values(projects).filter(p => p.isPublic === false) : null
     switch (type) {
       case 'all':
         return <AllProjects projects={projects} />
@@ -73,4 +73,4 @@ class All extends Component {
   }
 }
 
-export default All
+export default Projects

@@ -14,6 +14,7 @@
   justify-content: space-between;
   border-bottom: $border-style;
 }
+
 .content {
   height: 100px;
   margin-top: 20px;

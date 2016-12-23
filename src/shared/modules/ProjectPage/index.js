@@ -1,6 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { Link } from 'react-router'
+import { Link, Match } from 'react-router'
 import { connect } from 'react-redux'
 import {
   Nav,
@@ -12,29 +12,22 @@ import {
 
 import withRouter from '../utils/withRouter'
 import Add from './Add'
-import All from './All'
-import Creation from './Creation'
-import Participation from './Participation'
-import Concern from './Concern'
-import Collection from './Collection'
+import Projects from './Projects'
 import Styles from './index.css'
 
-const pathPrefix = '/project/'
+const pathPrefix = '/project'
 
 const firstFields = [
-  { activeKey: 'project', path: 'all', name: '项目', icon: 'folder-open' },
-  { activeKey: 'component', path: 'create', name: '组件', icon: 'wrench' },
+  { activeKey: 'project', path: '/all', name: '项目', icon: 'folder-open' },
+  { activeKey: 'component', path: '/create', name: '组件', icon: 'wrench' },
 ]
 
-const secondFields1 = [
-  { path: 'all', name: '所有项目 (1)', icon: 'folder-open' },
-  { path: 'create', name: '我创建的 (1)', icon: 'folder-close' },
-  { path: 'participate', name: '我参与的 (1)', icon: 'edit' },
-]
-
-const secondFields2 = [
-  { path: 'concern', name: '我关注的 (0)', icon: 'eye-open' },
-  { path: 'collect', name: '我收藏的 (0)', icon: 'heart' },
+const secondFields = [
+  { name: '所有项目', path: '/all', icon: 'folder-open' },
+  { name: '我创建的', path: '/create', icon: 'folder-close' },
+  { name: '我参与的', path: '/participate', icon: 'edit' },
+  { name: '我关注的', path: '/concern', icon: 'eye-open' },
+  { name: '我收藏的', path: '/collect', icon: 'heart' },
 ]
 
 @withRouter
@@ -55,26 +48,6 @@ class ProjectPage extends React.Component {
     <Glyphicon glyph={name} className={Styles.icon} />
   )
 
-  getContent = () => {
-    const { projects } = this.props
-    switch (this.props.params.name) {
-      case 'add':
-        return <Add />
-      case 'all':
-        return <All projects={projects} />
-      case 'create':
-        return <Creation />
-      case 'participate':
-        return <Participation />
-      case 'concern':
-        return <Concern />
-      case 'collect':
-        return <Collection />
-      default:
-        return <All />
-    }
-  }
-
   firstSidebarItems = () => (
     <Nav bsStyle="pills" className={Styles.navBottom} stacked onSelect={this.onSelected}>
       {Object.values(firstFields).map(i => (
@@ -92,19 +65,8 @@ class ProjectPage extends React.Component {
 
   secondSidebarItems = () => (
     <div className={Styles.nav}>
-      <Nav bsStyle="pills" className={Styles.navTop} onSelect={this.onSelected}>
-        {Object.values(secondFields1).map(i => (
-          <NavItem
-            key={i.path}
-            eventKey={`${pathPrefix}${i.path}`}
-            className={this.state.activeClass === `${pathPrefix}${i.path}` ? Styles.activeNav : ''}
-          >
-            {this.getIcon(i.icon)}{i.name}
-          </NavItem>
-        ))}
-      </Nav>
       <Nav bsStyle="pills" onSelect={this.onSelected}>
-        {Object.values(secondFields2).map(i => (
+        {Object.values(secondFields).map(i => (
           <NavItem
             key={i.path}
             eventKey={`${pathPrefix}${i.path}`}
@@ -121,6 +83,27 @@ class ProjectPage extends React.Component {
     <Tooltip id="tooltip"><strong className={Styles.tooltip}>点击创建项目</strong></Tooltip>
   )
 
+  routes = () => {
+    const { projects } = this.props
+    return ([
+      { pattern: `${pathPrefix}/add`, component: Add },
+      { pattern: `${pathPrefix}/all`, component: Projects, allProjects: projects },
+      { pattern: `${pathPrefix}/create`, component: Projects },
+      { pattern: `${pathPrefix}/participate`, component: Projects },
+      { pattern: `${pathPrefix}/concern`, component: Projects },
+      { pattern: `${pathPrefix}/collect`, component: Projects },
+    ])
+  }
+
+  MatchWithSubRoutes = (route) => (
+    <Match
+      {...route}
+      render={() => (
+        <route.component projects={route.allProjects} />
+      )}
+    />
+  )
+
   render() {
     return (
       <div className={Styles.ProjectPage}>
@@ -131,15 +114,20 @@ class ProjectPage extends React.Component {
         <div className={Styles.content}>
           <div className={Styles.SecondSidebar}>
             <OverlayTrigger placement="bottom" overlay={this.tooltip()}>
-              <h3 onClick={() => this.setState({ activeClass: '/project/add' })} className={this.state.activeClass === '/project/add' ? Styles.activeAdd : ''}>
-                <Link to="/project/add" className={Styles.add}>
+              <h3
+                onClick={() => this.setState({ activeClass: `${pathPrefix}/add` })}
+                className={this.state.activeClass === `${pathPrefix}/add` ? Styles.activeAdd : ''}
+              >
+                <Link to={`${pathPrefix}/add`} className={Styles.add}>
                   {this.getIcon('plus')}新建项目
                 </Link>
               </h3>
             </OverlayTrigger>
             {this.secondSidebarItems()}
           </div>
-          {this.getContent()}
+          {Object.values(this.routes()).map((route, i) => (
+            <this.MatchWithSubRoutes key={i} {...route} />
+          ))}
         </div>
       </div>
     )
