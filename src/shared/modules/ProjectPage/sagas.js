@@ -2,13 +2,13 @@ import { take, put, call, fork, select } from 'redux-saga/effects'
 import * as actions from './actions'
 import * as api from '../api'
 
-function* loadProjects() {
-  yield put(actions.loadProjectsActions.request())
+function* loadAll() {
+  yield put(actions.loadAllActions.request())
   try {
-    const projects = yield call(api.loadProjects)
-    yield put(actions.loadProjectsActions.success(projects))
+    const projects = yield call(api.loadAll)
+    yield put(actions.loadAllActions.success(projects))
   } catch (e) {
-    yield put(actions.loadProjectsActions.failure(e))
+    yield put(actions.loadAllActions.failure(e))
   }
 }
 
@@ -32,7 +32,7 @@ function* addProject() {
 }
 export default function* projectSaga() {
   yield [
-    fork(loadProjects),
+    fork(loadAll),
     fork(addProject),
   ]
 }
