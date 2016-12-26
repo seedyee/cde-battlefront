@@ -26,3 +26,8 @@ export const selectCollect = createSelector(
   selectProject(),
   s => s.collect
 )
+
+export const selectProfile = createSelector(
+  selectProject(),
+  s => s.profile
+)

@@ -78,5 +78,6 @@ export const loadCreated = () => get('/accounts/projects/created')
 export const loadJoined = () => get('/accounts/projects/joined')
 export const loadWatched = () => get('/accounts/projects/watched')
 export const loadCollect = () => get('/accounts/projects/all')
+export const loadProfile = (id) => get(`/accounts/projects/${id}`)
 export const addProject = (data) => post('/accounts/projects/create', data)
 

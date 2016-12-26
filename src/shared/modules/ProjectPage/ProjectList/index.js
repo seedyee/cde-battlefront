@@ -36,18 +36,18 @@ class Projects extends Component {
   ))
 
   getCountent = (type) => {
-    const { projects } = this.props
-    const publicProjects = projects ? Object.values(projects).filter(p => p.isPublic === true) : null
-    const privateProjects = projects ? Object.values(projects).filter(p => p.isPublic === false) : null
+    const { data, actions } = this.props
+    const publicProjects = data ? Object.values(data).filter(p => p.isPublic === true) : null
+    const privateProjects = data ? Object.values(data).filter(p => p.isPublic === false) : null
     switch (type) {
       case 'all':
-        return <AllProjects projects={projects} />
+        return <AllProjects projects={data} actions={actions} />
       case 'public':
-        return <Public publicProjects={publicProjects} />
+        return <Public publicProjects={publicProjects} actions={actions} />
       case 'private':
-        return <Private privateProjects={privateProjects} />
+        return <Private privateProjects={privateProjects} actions={actions} />
       default:
-        return <AllProjects projects={projects} />
+        return <AllProjects projects={data} actions={actions} />
     }
   }
 

@@ -1,3 +1,4 @@
+/* eslint-disable object-shorthand*/
 import React from 'react'
 import Helmet from 'react-helmet'
 import { Match } from 'react-router'
@@ -45,19 +46,47 @@ class ProjectPage extends React.Component {
   )
 
   routes = () => {
-    const { all, created, joined, watched, collect } = this.props
+    const { all, created, joined, watched, collect, profile, loadProfile } = this.props
     return ([
-      { pattern: `${pathPrefix}/basic`, component: Basic },
+      { pattern: `${pathPrefix}/basic`, component: Basic, data: profile },
       {
         pattern: `${pathPrefix}/category`,
         component: Category,
         routes: [
           { pattern: `${pathPrefix}/category/add`, component: Add },
-          { pattern: `${pathPrefix}/category/all`, component: ProjectList, projects: all },
-          { pattern: `${pathPrefix}/category/create`, component: ProjectList, projects: created },
-          { pattern: `${pathPrefix}/category/participate`, component: ProjectList, projects: joined },
-          { pattern: `${pathPrefix}/category/concern`, component: ProjectList, projects: watched },
-          { pattern: `${pathPrefix}/category/collect`, component: ProjectList, projects: collect },
+          { pattern: `${pathPrefix}/category/all`,
+            component: ProjectList,
+            data: all,
+            actions: { loadProfile: loadProfile },
+          },
+          { pattern: `${pathPrefix}/category/create`,
+            component: ProjectList,
+            data: created,
+            actions: {
+              loadProfile: loadProfile,
+            },
+          },
+          { pattern: `${pathPrefix}/category/participate`,
+            component: ProjectList,
+            data: joined,
+            actions: {
+              loadProfile: loadProfile,
+            },
+          },
+          { pattern: `${pathPrefix}/category/concern`,
+            component: ProjectList,
+            data: watched,
+            actions: {
+              loadProfile: loadProfile,
+            },
+          },
+          { pattern: `${pathPrefix}/category/collect`,
+            component: ProjectList,
+            data: collect,
+            actions: {
+              loadProfile: loadProfile,
+            },
+          },
         ],
       },
     ])
@@ -69,7 +98,8 @@ class ProjectPage extends React.Component {
       render={(props) => (
         <route.component
           {...props}
-          projects={route.projects}
+          data={route.data}
+          actions={route.actions}
           routes={route.routes}
         />
       )}
@@ -97,7 +127,9 @@ import {
   selectJoined,
   selectWatched,
   selectCollect,
+  selectProfile,
 } from './selectors'
+import { loadProfileActions } from './actions'
 
 const mapStateToProps = state => ({
   all: selectAll(state),
@@ -105,6 +137,12 @@ const mapStateToProps = state => ({
   joined: selectJoined(state),
   watched: selectWatched(state),
   collect: selectCollect(state),
+  profile: selectProfile(state),
 })
 
-export default connect(mapStateToProps)(ProjectPage)
+export default connect(
+  mapStateToProps,
+  {
+    loadProfile: loadProfileActions.request,
+  }
+)(ProjectPage)

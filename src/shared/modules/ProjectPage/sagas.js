@@ -70,6 +70,20 @@ function* addProject() {
     }
   }
 }
+
+function* loadProfile() {
+  while (true) {
+    const { payload } = yield take(actions.loadProfileActions.REQUEST)
+    try {
+      const response = yield call(api.loadProfile, payload)
+      yield put(actions.loadProfileActions.success(response))
+    } catch (e) {
+      yield put(actions.loadProfileActions.failure(e))
+      alert(e)
+    }
+  }
+}
+
 export default function* projectSaga() {
   yield [
     fork(loadAll),
@@ -77,6 +91,7 @@ export default function* projectSaga() {
     fork(loadJoined),
     fork(loadWatched),
     fork(loadCollect),
+    fork(loadProfile),
     fork(addProject),
   ]
 }

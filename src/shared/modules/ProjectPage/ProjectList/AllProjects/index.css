@@ -17,10 +17,11 @@
     border: 1px solid #337ab7;
     border-radius: 4px;
     transition: border .2s ease-in-out;
-    touch-action: manipulation;
   }
-  a {
+  button {
     display: inline-block;
+    padding: 0;
+    margin: 0;
     width: 152px;
     height: 104px;
     background: #eceff1;

@@ -56,7 +56,7 @@ class Projects extends React.Component {
     <Match
       {...route}
       render={() => (
-        <route.component projects={route.projects} routes={route.routes} />
+        <route.component data={route.data} actions={route.actions} />
       )}
     />
   )

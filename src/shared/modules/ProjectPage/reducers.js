@@ -48,10 +48,20 @@ const collect = (state = [], action) => {
   }
 }
 
+const profile = (state = [], action) => {
+  switch (action.type) {
+    case projectActions.loadProfileActions.SUCCESS:
+      return action.payload
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   all,
   created,
   joined,
   watched,
   collect,
+  profile,
 })
