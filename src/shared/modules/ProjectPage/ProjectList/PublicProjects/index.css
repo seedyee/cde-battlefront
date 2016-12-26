@@ -1,0 +1,46 @@
+.project{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.projectImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 112px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border .2s ease-in-out;
+  margin-right: 30px;
+  &:hover {
+    border: 1px solid #337ab7;
+    border-radius: 4px;
+    transition: border .2s ease-in-out;
+    touch-action: manipulation;
+  }
+  a {
+    display: inline-block;
+    width: 152px;
+    height: 104px;
+    background: #eceff1;
+  }
+}
+
+.logo{
+  width: 150px;
+  height: 102px;
+}
+
+.projectName {
+  width: 150px;
+  height: 26px;
+  line-height: 26px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.icon {
+  font-size: 12px;
+  padding-right: 5px;
+}

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form, FormControl, Button } from 'react-bootstrap'
 
 import AllProjects from './AllProjects'
-import Public from './Public'
+import PublicProjects './PublicProjects'
 import Private from './Private'
 import Styles from './index.css'
 
