@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form, FormControl, Button } from 'react-bootstrap'
 
 import AllProjects from './AllProjects'
-import PublicProjects './PublicProjects'
+import PublicProjects from './PublicProjects'
 import Private from './Private'
 import Styles from './index.css'
 
@@ -43,7 +43,7 @@ class Projects extends Component {
       case 'all':
         return <AllProjects projects={data} actions={actions} />
       case 'public':
-        return <Public publicProjects={publicProjects} actions={actions} />
+        return <PublicProjects publicProjects={publicProjects} actions={actions} />
       case 'private':
         return <Private privateProjects={privateProjects} actions={actions} />
       default:
